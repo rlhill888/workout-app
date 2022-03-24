@@ -15,4 +15,12 @@ Rails.application.routes.draw do
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
+
+  get 'loadposts/:id', to: 'posts#load_posts'
+
+  get 'increment_post_like/:id', to: 'posts#increment_like'
+  get 'increment_post_dislike/:id', to: 'posts#increment_dislike'
+
+  get 'increment_comment_like/:id', to: 'comment#increment_like'
+  get 'increment_comment_dislike/:id', to: 'comment#increment_dislike'
 end
