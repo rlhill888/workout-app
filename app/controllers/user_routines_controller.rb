@@ -18,7 +18,7 @@ class UserRoutinesController < ApplicationController
     end
 
     def show
-        find_user_routine
+        redner json: find_user_routine
     end
 
 

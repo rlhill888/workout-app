@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    # skip_before_action :authorize, only: :reset_user_password
+    before_action :authorize_user
 
     def index
         render json: User.all
@@ -6,7 +8,7 @@ class UsersController < ApplicationController
 
     def create
 
-        user= User.create!(user_params)
+        user= User.create!(create_user_params)
 
         bmi_calculation= (user.weight * 703)/(user.height * user.height)
         bmr_calculation= 66.47+(6.24 * user.weight)+(12.7*user.height)-(6.75*user.age)
@@ -18,19 +20,25 @@ class UsersController < ApplicationController
     end
 
     def show
-        render json: find_user
+        render json: current_user
     end
 
     def update
-        user= find_user
-        user.update!(user_params)
+        user= current_user
+        user.update!(update_user_params)
         render json: user
     end
 
     def delete
-        find_user.destroy
+        current_user.destroy
         head :no_content
     end
+
+    # def reset_user_password
+    #     user = find_user
+    #     user.reset_password(params[:password])
+    #     render json: user
+    # end
 
     
 
@@ -41,7 +49,11 @@ class UsersController < ApplicationController
     end
 
 
-    def user_params
-        params.permit(:first_name, :last_name, :user_name, :email, :form_questions_answered, :watched_tutorial, :goal_type, :age, :weight, :height, :initial_form_activity_level, :profile_pic, :password)
+    def create_user_params
+        params.permit(:first_name, :last_name, :user_name, :email, :goal_type, :age, :weight, :height, :initial_form_activity_level, :profile_pic, :password)
+    end
+
+    def update_user_params
+        params.permit(:first_name, :last_name, :goal_type, :age, :weight, :height, :initial_form_activity_level, :profile_pic)
     end
 end

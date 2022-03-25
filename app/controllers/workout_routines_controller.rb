@@ -6,7 +6,8 @@ class WorkoutRoutinesController < ApplicationController
     end
 
     def create
-        workout_routine = WorkoutRoutine.create()
+        workout_routine = WorkoutRoutine.create!(create_workout_routine_params)
+        render json: workout_routine, status: :created
     end
 
     def update

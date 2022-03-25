@@ -22,6 +22,11 @@ class User < ApplicationRecord
 
     has_secure_password
 
+    def reset_password(password)
+        self.password = password
+        save!
+    end
+
 
 
 end

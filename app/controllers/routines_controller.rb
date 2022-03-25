@@ -12,14 +12,14 @@ class RoutinesController < ApplicationController
         
         routine= Routine.create!(create_routine_params)
 
-        array= params[:workout_array]
+        # array= params[:workout_array]
         
-        array.map do |a|
+        # array.map do |a|
             
-            workout_routine= WorkoutRoutine.create!( routine_id: routine.id, reps: a[:reps], sets: a[:sets], workout_id: a[:workout_id])  
-        end
+        #     workout_routine= WorkoutRoutine.create!( routine_id: routine.id, reps: a[:reps], sets: a[:sets], workout_id: a[:workout_id])  
+        # end
 
-        user_routine = UserRoutine.create!(user_id: params[:user_id], routine_id: routine.id, currently_using: false)
+        # user_routine = UserRoutine.create!(user_id: params[:user_id], routine_id: routine.id, currently_using: false)
 
         render json: routine
     end
