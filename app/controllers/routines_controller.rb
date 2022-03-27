@@ -20,18 +20,27 @@ class RoutinesController < ApplicationController
         # end
 
         # user_routine = UserRoutine.create!(user_id: params[:user_id], routine_id: routine.id, currently_using: false)
-
+        
         render json: routine
+
     end
 
     def update
+
         routine= find_routine
+
+        return render json: { errors: ["Not authorized"] }, status: :unauthorized unless routine.created_by_id = session[:user_id]
+        byebug
+
         routine.update!(update_routine_params)
         render json: routine
     end
 
     def delete
-        find_routine.destroy
+        routine= find_routine
+        return render json: { errors: ["Not authorized"] }, status: :unauthorized unless routine.created_by_id == session[:user_id]
+
+        routine.destroy
         head :no_content
     end
 
@@ -47,16 +56,12 @@ class RoutinesController < ApplicationController
         params.permit(:name, :description, :image)
     end
 
-    def workout_routine_params
-        params.permit(:workout_id, :reps, :sets)
-    end
+    # def workout_routine_params
+    #     params.permit(:workout_id, :reps, :sets)
+    # end
 
     def create_routine_params
-        params.permit( :name, :description, :image)
-    end
-
-    def user_id_param
-        params.permit( :user_id)
+        params.permit( :name, :description, :image, :created_by_id)
     end
 
     

@@ -16,7 +16,13 @@ Rails.application.routes.draw do
   # Leave this here to help deploy your app later!
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 
-  get 'loadposts/:id', to: 'posts#load_posts'
+  get '/loadposts/:id', to: 'posts#load_posts'
+
+  get '/me', to: 'users#show'
+
+  post '/login', to: 'sessions#login'
+
+  delete '/logout', to: 'sessions#logout'
 
   get 'increment_post_like/:id', to: 'posts#increment_like'
   get 'increment_post_dislike/:id', to: 'posts#increment_dislike'

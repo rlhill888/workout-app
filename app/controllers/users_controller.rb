@@ -1,13 +1,15 @@
 class UsersController < ApplicationController
-    # skip_before_action :authorize, only: :reset_user_password
+   
     before_action :authorize_user
+    skip_before_action :authorize_user, only: [:create, :index]
 
     def index
         render json: User.all
     end 
 
     def create
-
+        
+        
         user= User.create!(create_user_params)
 
         bmi_calculation= (user.weight * 703)/(user.height * user.height)
@@ -15,12 +17,16 @@ class UsersController < ApplicationController
 
         user.bmi = bmi_calculation
         user.bmr = bmr_calculation
-
+        user.watched_tutorial = false
+        
         render json: user, status: :created
+
+        
     end
+    
 
     def show
-        render json: current_user
+        render json: current_user, include: ['routines', 'routines.workouts'], status: :ok
     end
 
     def update

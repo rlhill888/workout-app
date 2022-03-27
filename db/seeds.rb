@@ -24,57 +24,35 @@ puts 'seeding...'
 # password_digest: '')
 
 user1= User.create(
-    first_name: 'r', 
-    last_name: 'l', 
-    user_name: 'user 1', 
-    email: 'bleh@yahoo.com', 
-    form_questions_answered: false, 
-    watched_tutorial: false, 
-    goal_type: 'gain weight', 
+    first_name: 'Rodney', 
+    last_name: 'Hill', 
+    user_name: 'TestUser1', 
+    email: 'rl@gmail.com', 
+    goal_type: 'To gain muscle mass', 
     age: 20, 
-    weight: 20, 
-    height: 5, 
-    bmi: 32, 
-    bmr: 45,
-    initial_form_activity_level: false,
-    password: 'dapassword',
-    profile_pic: 'stuff'
+    weight: 150, 
+    height: 66, 
+    bmi: 24, 
+    bmr: 1100,
+    initial_form_activity_level: 'Light exercise a few times a week',
+    password: '123',
+    profile_pic: ''
     )
 
-user2= User.create(
-    first_name: 'user 2', 
-    last_name: 'user 2', 
-    user_name: 'user 2', 
-    email: 'svdasvsav', 
-    form_questions_answered: false, 
-    watched_tutorial: false, 
-    goal_type: 'gain weight', 
-    age: 20, 
-    weight: 20, 
-    height: 5, 
-    bmi: 32, 
-    bmr: 45,
-    initial_form_activity_level: false,
-    password: 'dapassword',
-    profile_pic: 'stuff'
-    )
-
-user3= User.create(
-    first_name: 'user 3', 
-    last_name: 'user 3', 
-    user_name: 'user 3', 
-    email: 'svdasvsav', 
-    form_questions_answered: false, 
-    watched_tutorial: false, 
-    goal_type: 'gain weight', 
-    age: 20, 
-    weight: 20, 
-    height: 5, 
-    bmi: 32, 
-    bmr: 45,
-    initial_form_activity_level: false,
-    password: 'dapassword',
-    profile_pic: 'stuff'
+    user2= User.create(
+    first_name: 'Test User', 
+    last_name: 'Test User', 
+    user_name: 'TestUser2', 
+    email: 'test@gmail.com', 
+    goal_type: 'To gain muscle mass', 
+    age: 30, 
+    weight: 160, 
+    height: 66, 
+    bmi: 24, 
+    bmr: 1100,
+    initial_form_activity_level: 'Light exercise a few times a week',
+    password: '123',
+    profile_pic: ''
     )
 
 #/////////////////// following ///////////////////////
@@ -84,13 +62,6 @@ following1= Following.create(
     favorite: false,
     user_id: user1.id,
     user_getting_followed_id: user2.id
-)
-
-following2= Following.create(
-    name_of_user_being_followed: user3.user_name,
-    favorite: false,
-    user_id: user1.id,
-    user_getting_followed_id: user3.id
 )
 
 
@@ -545,6 +516,8 @@ gobletsquat= Workout.create(
 
 puts 'finished workouts'
 
+#/////////////////////////////////////// routines /////////////////////////////////
+
 # routine1= Routine.create(
 #     name: '',
 #     description: '',
@@ -553,10 +526,11 @@ puts 'finished workouts'
 # )
 
 routine1= Routine.create(
-    name: 'test',
-    description: 'testy test',
-    image: 'image',
-    users_using_routine: 0
+    name: 'routine 1',
+    description: 'test for the first routine',
+    image: 'https://www.incimages.com/uploaded_files/image/1920x1080/getty_200493710-002_2000146820009280376_193311.jpg',
+    users_using_routine: 1,
+    created_by_id: user1.id
 )
 
 

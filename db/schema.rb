@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_23_060442) do
+ActiveRecord::Schema.define(version: 2022_03_26_235030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,9 +89,10 @@ ActiveRecord::Schema.define(version: 2022_03_23_060442) do
     t.string "description"
     t.string "image"
     t.integer "users_using_routine"
-    t.string "created_by"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "created_by_id"
+    t.index ["created_by_id"], name: "index_routines_on_created_by_id"
   end
 
   create_table "user_meals", force: :cascade do |t|
@@ -118,8 +119,6 @@ ActiveRecord::Schema.define(version: 2022_03_23_060442) do
     t.string "last_name"
     t.string "user_name"
     t.string "email"
-    t.boolean "form_questions_answered"
-    t.boolean "watched_tutorial"
     t.string "goal_type"
     t.integer "age"
     t.integer "weight"
@@ -162,6 +161,7 @@ ActiveRecord::Schema.define(version: 2022_03_23_060442) do
   add_foreign_key "meal_ingredients", "ingredients"
   add_foreign_key "meal_ingredients", "meals"
   add_foreign_key "posts", "users"
+  add_foreign_key "routines", "users", column: "created_by_id"
   add_foreign_key "user_meals", "meals"
   add_foreign_key "user_meals", "users"
   add_foreign_key "user_routines", "routines"
