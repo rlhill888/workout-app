@@ -70,7 +70,8 @@ function SignUp({setUser }){
                 })
             }
             else{
-                res.json().then((res)=> res.errors.map((e)=>  setErrorMessage([...errorMessage, e])))
+                
+                // res.json().then((res)=> res.errors.map((e)=>  setErrorMessage((p)=> [...p, e])))
 
             }
         })

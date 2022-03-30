@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     skip_before_action :authorize_user, only: [:create, :index]
 
     def index
-        render json: User.all
+        render json: User.all, each_serializer: UserFollowingDetailsSerializer
     end 
 
     def create
@@ -17,7 +17,6 @@ class UsersController < ApplicationController
 
         user.bmi = bmi_calculation
         user.bmr = bmr_calculation
-        user.watched_tutorial = false
         
         render json: user, status: :created
 
@@ -26,12 +25,18 @@ class UsersController < ApplicationController
     
 
     def show
-        render json: current_user, include: ['routines', 'routines.workouts'], status: :ok
+        render json: current_user, include: ['routines', 'routines.workouts', 'routines.workout_routines'], status: :ok
     end
 
     def update
         user= current_user
+        bmi_calculation= (user.weight * 703)/(user.height * user.height)
+        bmr_calculation= 66.47+(6.24 * user.weight)+(12.7*user.height)-(6.75*user.age)
         user.update!(update_user_params)
+        
+        user.bmi = bmi_calculation
+        user.bmr = bmr_calculation
+        
         render json: user
     end
 
@@ -60,6 +65,6 @@ class UsersController < ApplicationController
     end
 
     def update_user_params
-        params.permit(:first_name, :last_name, :goal_type, :age, :weight, :height, :initial_form_activity_level, :profile_pic)
+        params.permit( :age, :weight, :profile_pic)
     end
 end

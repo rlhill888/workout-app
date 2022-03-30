@@ -11,12 +11,25 @@ import WorkOutPlan from './WorkOutPlan';
 import MealPlan from './MealPlan';
 import Settings from './Settings';
 import CreateRoutine from './CreateRoutine';
+import WorkoutCard from './WorkoutCard';
+import UpdateRoutine from './UpdateRoutine';
+import CreatePost from './CreatePost';
+import RoutineCard from './RoutineCard';
+import CreateMeal from './CreateMeal';
+import ChangeStats from './ChangeStats';
 
 function App() {
 
   const history = useHistory();
 
   const [user, setUser]= useState(null)
+  const [updateData, setUpdateData]= useState(0)
+  const [workoutBeingShown, setWorkoutBeingShown]= useState(null)
+  const [routineBeingShown, setRoutineBeingShown]= useState(null)
+  const [workouts, setWorkouts]= useState(null)
+
+  const [ingredients, setIngredients]= useState([])
+
 
 
   useEffect(()=>{
@@ -27,7 +40,19 @@ function App() {
         .then((res)=> setUser(res))
       }
     })
-  },[])
+    fetch('workouts')
+    .then(res=> res.json())
+    .then(data=> setWorkouts(data))
+
+    fetch('/ingredients')
+        .then(res=> res.json())
+        .then(res=> setIngredients(res))
+    
+
+
+  },[updateData])
+
+  
 
   function CheckedLoggedIn(){
     if(!user){
@@ -35,7 +60,6 @@ function App() {
     }
   }
 
-  fetch('me')
   
   if(user){
     console.log(user)
@@ -43,7 +67,7 @@ function App() {
       <>
       <Switch>
         <Route exact path="/">
-          <Home user={user}/>
+          <Home user={user} setRoutineBeingShown={setRoutineBeingShown}/>
         </Route>
         <Route exact path="/login">
           <LogIn setUser={setUser}/>
@@ -58,14 +82,38 @@ function App() {
           <MealPlan />
         </Route>
         <Route exact path="/workoutplan">
-          <WorkOutPlan />
+          <WorkOutPlan routines={user.routines} setRoutineBeingShown={setRoutineBeingShown}/>
         </Route>
-        <Route exact path="/settings">
-          <Settings />
+        <Route exact path="/profile">
+          <Settings user={user}/>
         </Route>
         <Route exact path="/createroutine">
-          <CreateRoutine />
+          <CreateRoutine updateData={updateData} user={user} workouts={workouts} setWorkoutBeingShown={setWorkoutBeingShown} setUpdateData={setUpdateData}/>
         </Route>
+        <Route exact path="/workouts/:id">
+          <WorkoutCard workout={workoutBeingShown}/>
+        </Route>
+        <Route exact path="/updateroutine/:id">
+          <UpdateRoutine workouts={workouts} setUpdateData={setUpdateData} user={user} routine={routineBeingShown} setWorkoutBeingShown={setWorkoutBeingShown}/>
+        </Route>
+        <Route exact path="/createpost">
+          <CreatePost user={user} />
+        </Route>
+        <Route exact path="/routine/:id">
+          <RoutineCard setRoutineBeingShown={setRoutineBeingShown} routine={routineBeingShown} setWorkoutBeingShown={setWorkoutBeingShown}/>
+        </Route>
+        <Route exact path="/routine/updateroutine/:id">
+          <UpdateRoutine workouts={workouts} setUpdateData={setUpdateData} user={user} routine={routineBeingShown} setWorkoutBeingShown={setWorkoutBeingShown}/>
+        </Route>
+        <Route exact path="/createmeal">
+          <CreateMeal ingredients={ingredients} user={user}/>
+        </Route>
+        <Route exact path="/changestats/:id">
+          <ChangeStats user={user}/>
+        </Route>
+        {/* <Route  exact path ="/createroutine/workout">
+             <WorkoutCard />
+        </Route> */}
       </Switch>
       </>
     )

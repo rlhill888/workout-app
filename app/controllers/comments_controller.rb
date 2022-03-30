@@ -2,9 +2,11 @@ class CommentsController < ApplicationController
 
     def create
         comment = Comment.create!(comment_params)
-        coment.likes= 0
+        comment.likes= 0
         comment.dislikes= 0
-        render json: comment status: :ok
+        user = User.find(comment.user_id)
+        comment.created_by = user.user_name
+        render json: comment, status: :created
     end
 
     def delete

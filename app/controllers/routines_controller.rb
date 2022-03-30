@@ -29,17 +29,12 @@ class RoutinesController < ApplicationController
 
         routine= find_routine
 
-        return render json: { errors: ["Not authorized"] }, status: :unauthorized unless routine.created_by_id = session[:user_id]
-        byebug
-
         routine.update!(update_routine_params)
         render json: routine
     end
 
-    def delete
+    def destroy
         routine= find_routine
-        return render json: { errors: ["Not authorized"] }, status: :unauthorized unless routine.created_by_id == session[:user_id]
-
         routine.destroy
         head :no_content
     end

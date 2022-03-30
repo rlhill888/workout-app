@@ -12,7 +12,7 @@ function NavBar(){
     <Link to='/workoutplan'> Work Out plan </Link>
     <br />
     <br />
-    <Link to='/settings'> Settings </Link>
+    <Link to='/profile'> Profile </Link>
     <br />
     <br />
     <Link to='/'> Home </Link>

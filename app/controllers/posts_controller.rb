@@ -3,17 +3,22 @@ class PostsController < ApplicationController
     def create
         post = Post.create!(create_post_params)
         post.likes= 0
-        posts.dislikes= 0
+        post.dislikes= 0
         render json: post  
     end
 
     def load_posts
-
-        posts= []
+        
         user = find_user
+        
+        posts= []
         followings= user.followings
-        followings.map do |f|
-            user_getting_followed= User.find(f.user_getting_followed_id)
+
+        
+
+        followings.map do |a|
+            
+            user_getting_followed= User.find(a.user_getting_followed_id)
             
             user_getting_followed.posts.map do |p|
                 posts.push(p)
@@ -22,7 +27,7 @@ class PostsController < ApplicationController
 
        posts.sort! { |a, b|  b.id <=> a.id }
        
-        render json: posts
+        return render json: posts, status: :ok
     end
 
     def increment_like
@@ -40,7 +45,7 @@ class PostsController < ApplicationController
     private
 
     def create_post_params
-        params.permit(:user_id, :title, :image, :description, :meal_post, :routine_post)
+        params.permit(:user_id, :title, :image, :description)
     end
 
     def update_post_params

@@ -1,11 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import NavBar from "./NavBar";
+import RoutineDisplayCardWorkoutPlan from "./RoutineDisplayCardWorkoutPlan";
 
 import { useHistory } from "react-router-dom";
 
-function WorkOutPlan(){
+function WorkOutPlan({routines, setRoutineBeingShown}){
+
 
     const history= useHistory()
+   
 
     return(
     <>
@@ -14,6 +17,13 @@ function WorkOutPlan(){
     <br/>
     <br/>
     <button onClick={()=> history.push('/createRoutine')} >Create Routine</button>
+    <br />
+    <br />
+    {routines.map((r)=>{
+        return(
+            <RoutineDisplayCardWorkoutPlan r={r} setRoutineBeingShown={setRoutineBeingShown} />
+        )
+    })}
     </>
     )
 }
