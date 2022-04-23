@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import PostCard from "./PostCard";
-
+import RoutinePost from "./RoutinePost";
 import { useHistory } from "react-router-dom";
 
 
@@ -70,7 +70,12 @@ function PostForm({users, posts, user}){
            <br />
            <div>
                {posts.map((p)=>{
-                   return <PostCard user={user} key={`postcard-${p.id}`} post={p}/>
+                   if(p.routine_post===true){
+                    return <RoutinePost user={user} post={p}/>
+                }
+                   if(p.routine_post=== false && p.meal_post=== false){
+                    return <PostCard user={user} key={`postcard-${p.id}`} post={p}/>
+                   }
                })}
            </div>
            

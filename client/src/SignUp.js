@@ -153,11 +153,11 @@ function SignUp({setUser }){
         <br />
         <br />
         <h3>Your BMI</h3>
-        <p>bmi description</p>
+        <p>Body mass index is a value derived from the mass and height of a person. The BMI is defined as the body mass divided by the square of the body height, and is expressed in units of kg/m², resulting from mass in kilograms and height in metres.</p>
         <br />
         <br />
         <h3>And your BMR</h3>
-        <p>bmr description</p>
+        <p>Basal metabolic rate is the rate of energy expenditure per unit time by endothermic animals at rest. It is reported in energy units per unit time ranging from watt to ml O₂/min or joule per hour per kg body mass J/. Proper measurement requires a strict set of criteria to be met.</p>
         <br/>
         <br />
         <button onClick={()=> setformPage(3)}>Continue Creating Account</button>

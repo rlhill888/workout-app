@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import { useHistory } from "react-router-dom";
 
 
-function RoutineCard({routine, setRoutineBeingShown, setWorkoutBeingShown}){
+function RoutineCard({user, routine, setRoutineBeingShown, setWorkoutBeingShown}){
     console.log(routine)
     const history= useHistory()
     const [workoutArray, setWorkoutArray]= useState([])
@@ -31,14 +31,25 @@ function RoutineCard({routine, setRoutineBeingShown, setWorkoutBeingShown}){
     
     }, [])
     console.log(workoutArray)
+
+    let editButton
+
+    if(routine.created_by_id !== user.idid){
+        editButton= <> </>
+    }
+    if(routine.created_by_id === user.id){
+        editButton=  <button onClick={()=>{
+            setRoutineBeingShown(routine)
+            history.push(`updateroutine/${routine.id}`)
+        }}>Edit Routine</button>
+    }
+
    
     return (<> 
+    <button onClick={history.goBack}>Back</button>
     <h1>{routine.name}</h1>
     <br />
-    <button onClick={()=>{
-        setRoutineBeingShown(routine)
-        history.push(`updateroutine/${routine.id}`)
-    }}>Edit Routine</button>
+        {editButton}
     <br />
     <br />
     <div>

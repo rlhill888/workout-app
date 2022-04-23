@@ -1,12 +1,19 @@
 import React, {useState} from "react";
+import { GiphyFetch } from '@giphy/js-fetch-api'
+import TextList from './components/TextList'
+import Error from './components/Error'
+
+const giphy = new GiphyFetch(process.env.REACT_APP_GIPHY_KEY)
 
 
 function PostCard({post, user}){
 
     const [comment, setComment]= useState('')
     const [showComments, setShowComments]= useState(false)
+   
     let comments;
 
+    
     if(showComments===true){
         comments= post.comments.map((c)=>{
             return(
@@ -16,6 +23,7 @@ function PostCard({post, user}){
             )
         })
     }
+    
 
     function handlesSubmit(e){
         e.preventDefault()
@@ -35,6 +43,10 @@ function PostCard({post, user}){
         setShowComments(true)
 
     }
+    
+
+   
+
     return(
         <> 
         <br />
@@ -50,10 +62,6 @@ function PostCard({post, user}){
             <h2>{post.description}</h2>
             <br />
             <br />
-            <p> Likes</p>
-            <img src='https://pic.onlinewebfonts.com/svg/img_530230.png' height='50' width='50'></img>
-            <p> Dislikes</p>
-            <img src='http://cdn.onlinewebfonts.com/svg/img_530229.png' height='50' width='50'></img>
         </div>
         <div>
             <form onSubmit={handlesSubmit}>

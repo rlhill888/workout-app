@@ -3,12 +3,28 @@ import LogOutButton from "./LogOutButton";
 import NavBar from "./NavBar";
 import PostForm from "./PostForm";
 import { useHistory } from "react-router-dom";
+import { GiphyFetch } from '@giphy/js-fetch-api'
+import TextList from './components/TextList'
+import Error from './components/Error'
+
+const giphy = new GiphyFetch(process.env.REACT_APP_GIPHY_KEY)
 
 
 function Home({user, setRoutineBeingShown}){
 
     const [posts, setPosts]=useState([])
     const [users, setUsers]= useState([])
+
+    const [text, setText] = useState('')
+    const [results, setResults] = useState([])
+    const [err, setErr] = useState(false)
+
+    const apiCall = async () => {
+        const res = await giphy.animate(text, {limit: 20})
+        console.log(res.data)
+        setResults(res.data)
+      }
+  
 
     const history = useHistory();
     

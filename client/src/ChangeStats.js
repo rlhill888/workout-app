@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-
+import { useHistory } from "react-router-dom";
 
 function ChangeStats({user}){
     const [age, setAge]= useState(user.age)
@@ -8,6 +8,9 @@ function ChangeStats({user}){
     const [height, setHeight]= useState(user.height)
     const [profilePic, setProfilePic]= useState(user.profile_pic) 
     const [goalType, setGoalType]= useState(user.goal_type)
+    const [privacySetting, setPrivacySetting]= useState(user.public_user)
+
+    const history= useHistory()
 
     function handleSubmit(e){
         e.preventDefault()
@@ -20,7 +23,8 @@ function ChangeStats({user}){
                 age: age,
                 height: height,
                 weight: weight,
-                profile_pic: profilePic
+                profile_pic: profilePic,
+                public_user: privacySetting
             })
         })
         .then(res=> res.json())
@@ -29,6 +33,7 @@ function ChangeStats({user}){
 
     return(
         <div>
+         <button onClick={history.goBack}>Back</button>
             <h1>{user.user_name}</h1>
             <br />
             <form onSubmit={handleSubmit}>
@@ -38,6 +43,13 @@ function ChangeStats({user}){
                 <br />
                 <label name='weight'>Weight: </label>
                 <input name='weight' value={weight} onChange={(e)=> setWeight(e.target.value)}></input>
+                <br />
+                <br />
+                <label>Account Privacy: </label>
+                <select onChange={(e)=> setPrivacySetting(e.target.value)} value={privacySetting}>
+                <option value={true}>Public</option>
+                <option value={false}>Private</option>
+                </select>
                 <br />
                 <br />
                 <label name='profilepic'>Profile Pic Url:</label>

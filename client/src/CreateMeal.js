@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import MealSelectorCard from "./MealSelectorCard";
 
 
 function CreateMeal({user, ingredients}){
@@ -9,9 +10,9 @@ function CreateMeal({user, ingredients}){
     const [image, setImage]= useState('')
     const [mealObj, setMealObj]= useState([])
     const [mealCheckedObj, setMealCheckedObj]= useState([])
+    const [showMealPanel, setShowMealPanel]= useState(false)
 
-   const filteredIngredientsArray= ingredients.filter((i)=> i.macro_type.includes(filterOption) && i.name.includes(searchFilter))
-
+  
 
 
    
@@ -20,30 +21,108 @@ function CreateMeal({user, ingredients}){
         ingredients.map((i)=> setMealCheckedObj((p)=> [...p, { [`${i.name} checked`] : false}]))
         
     }, [])
+
+    function handleSubmit(e){
+        e.preventDefault()
+        let mealId 
+
+        const meal={
+            name: name, 
+            description: description,
+            image: image,
+        }
+
+        fetch('meals', {
+            method: 'POST',
+            headers:{
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(meal)
+        })
+        .then(res=> res.json())
+        .then(data=>{
+            console.log(data)
+            mealId= data.id
+            console.log(mealId)
+            fetch('user_meals', {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify({
+                    meal_id: mealId,
+                    user_id: user.id
+                })
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            mealObj.forEach((meal)=>{
+                fetch('meal_ingredients', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type' : 'application/json'
+                    },
+                    body: JSON.stringify({
+                        meal_id: mealId,
+                        ingredient_id: meal.id,
+                        servings: meal.servings
+                    })
+
+                })
+                .then(res=> res.json())
+                .then(res=> console.log(res))
+            })
+        })
+    }
    
     console.log(mealObj)
-    const macrosearchfilter = document.querySelector('#macrosearchfilter')
 
-    
+    let showMeals
 
-    function checkBoxes(i){
-        let value
-        mealCheckedObj.map((obj)=>{
-            if(Object.keys(obj)[0]===`${i.name} checked`){
-                return value = ((Object.values(obj)[0]))
-            }
-        })
-        return value
+    if(showMealPanel===false){
+        showMeals = <button onClick={()=> setShowMealPanel(true)}> Show Meals</button>
     }
 
-    
-    console.log(mealObj)
+    if(showMealPanel===true){
+        const filteredIngredientsArray= ingredients.filter((i)=> i.macro_type.includes(filterOption) && i.name.includes(searchFilter))
+        showMeals = <div> 
+
+        <button onClick={()=> setShowMealPanel(false)}>Hide Meals </button>
+                <br/>
+                <br/>
+                <label type='search ingredient'>Search Ingredient: </label>
+                <input type='search ingredient' value={searchFilter} onChange={(e)=> setSearchFilter(e.target.value)}></input>
+                     <select onChange={(e)=>setFilterOption(e.target.value)}name="Macro Search Filter" id='macrosearchfilter' >
+                        <option value="">--- Pick a macro to search by ---</option>
+                        <option value="protein">Protein</option>
+                        <option value="carb">Carb</option>
+                        <option value="fat">Fat</option>
+                    </select>
+                <br/>
+                <br />
+                <br/>
+                <br/>
+        
+        
+        {filteredIngredientsArray.map((i)=>{
+            return <MealSelectorCard 
+            key={`Meal Selector Card: ${i.id}`}
+            i={i} 
+            mealCheckedObj={mealCheckedObj} 
+            setMealCheckedObj={setMealCheckedObj} 
+            mealObj={mealObj}
+            setMealObj={setMealObj}
+            />
+        })}
+        </div>
+    }
+
   
     return(
         <> 
         <h1> Create Meal</h1>
         <br />
-        <form>
+        <form onSubmit={handleSubmit}>
             <label name='mealname'>New Meal Name</label>
             <br />
             <input value={name} onChange={(e)=> setName(e.target.value)} name='mealname'></input>
@@ -62,10 +141,11 @@ function CreateMeal({user, ingredients}){
             <input value={image} onChange={(e)=> setImage(e.target.value)} name='mealimage'></input>
             <br />
             <br />
+            <input type='submit' value='Create Meal'></input>
         </form>
         <br />
         <br />
-        <label type='search ingredient'>Search Ingredient: </label>
+        {/* <label type='search ingredient'>Search Ingredient: </label>
         <select onChange={(e)=>setFilterOption(e.target.value)}name="Macro Search Filter" id='macrosearchfilter' >
             <option value="">--- Pick a macro to search by ---</option>
             <option value="protein">Protein</option>
@@ -73,67 +153,9 @@ function CreateMeal({user, ingredients}){
             <option value="fat">Fat</option>
         </select>
         <input type='search ingredient' value={searchFilter} onChange={(e)=> setSearchFilter(e.target.value)}></input>
-        {filteredIngredientsArray.map((i)=>{
-            
-        function handleChecked(e){
-            
-        mealCheckedObj.map((o)=>{
-            let index = mealCheckedObj.indexOf(o)
-            
-            if(Object.keys(o)[0]===`${i.name} checked`){
-                let copyState= [...mealCheckedObj]
-                copyState[index]= {...copyState[index], [`${i.name} checked`]:  !Object.values(o)[0]}
-                setMealCheckedObj(copyState)
-            }
-            if(e.target.checked){
-                setMealObj((p)=> [...p, i])
-            }
-            if(!e.target.checked){
-                mealObj.map((o)=>{
-                    
-                    
-                    if(o.ingredient.id=== i.id){
-                        const index= mealObj.indexOf(o)
-                        mealObj.splice(index, 1)
-                        
-                        
-                    }
-                })
-            }
-            
-         })
-    }
-            return(
-                <> 
-                <div>
-                    <br />
-                    <h1>{i.name} 
-                    <input name={`${i.name} checked`}
-                    type='checkbox' 
-                    key={`workoutcheckbox${i.id}`} 
-                    id={`workoutcheckbox${i.name}`} 
-                    value={i}
-                    checked={checkBoxes(i)}
-                    onChange={handleChecked}
-                    ></input>
-                    </h1> 
-                    
-                    <h3>Main Macro: {i.macro_type}</h3>
-                    <br />
-                    <h3>Serving Size:</h3>
-                    <h3>{i.serving_size} {i.serving_measurement_type}</h3>
-                    <br />
-                    <h2>Macros:</h2>
-                    <ul>
-                        <li>Protein: {i.protein} g</li>
-                        <li>Carbs: {i.carb} g</li>
-                        <li>Fats: {i.fat} g</li>
-                    </ul>
-                    <br />
-                </div>
-                </>
-            )
-        })}
+        <br/>
+        <br /> */}
+        {showMeals}
         </>
     )
 }

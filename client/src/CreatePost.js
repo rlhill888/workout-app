@@ -23,7 +23,9 @@ function CreatePost({user}){
                 user_id: user.id,
                 title: title,
                 image: image,
-                description: description
+                description: description,
+                routine_post: false,
+                meal_post: false
             })
         })
         .then(res=> res.json())

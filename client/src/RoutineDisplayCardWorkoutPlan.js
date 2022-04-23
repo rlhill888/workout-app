@@ -3,9 +3,10 @@ import { useHistory } from "react-router-dom";
 
 
 
-function RoutineDisplayCardWorkoutPlan({r, setRoutineBeingShown}){
+function RoutineDisplayCardWorkoutPlan({r, setRoutineBeingShown, user}){
     let settings
     const history = useHistory();
+    console.log(r)
 
     const [showSettings, setShowSettings]= useState(false)
     if(showSettings===false){
@@ -30,8 +31,42 @@ function RoutineDisplayCardWorkoutPlan({r, setRoutineBeingShown}){
                     }
                 })
             }}>Delete Routine</button>
+            <button onClick={()=>{
+                const body= {
+                    user_id: user.id,
+                    title: r.name,
+                    image: r.image,
+                    description: r.description,
+                    meal_post: false,
+                    routine_post: true,
+                    share_routine_id: r.id
+                }
+                
+                 fetch('http://localhost:4000/posts',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type' : 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user_id: user.id,
+                        title: r.name,
+                        image: r.image,
+                        description: r.description,
+                        meal_post: false,
+                        routine_post: true,
+                        share_routine_id: r.id
+                    })
+                })
+                .then(res=> res.json())
+                .then(res=> console.log(res))
+            
+            }}>Share Routine</button>
+            <button onClick={()=> setShowSettings((p)=> !p)}>Close Settings</button>
         
         </>
+    }
+    if(user.id !== r.created_by_id){
+        settings= <> </>
     }
     return(
         <> 

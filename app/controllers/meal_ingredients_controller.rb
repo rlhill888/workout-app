@@ -9,8 +9,8 @@ class MealIngredientsController < ApplicationController
     end
     
     def create
-        meal_ingredient = meal_ingredient.create(meal_ingredient_params)
-        render json: meal_ingredient status: :ok
+        meal_ingredient = MealIngredient.create!(meal_ingredient_params)
+        render json: meal_ingredient, status: :ok
     end
 
     def delete 
@@ -26,6 +26,6 @@ class MealIngredientsController < ApplicationController
     end
 
     def meal_ingredient_params
-        params.permit(:ingredient_id, :meal_id)
+        params.permit(:ingredient_id, :meal_id, :servings)
     end 
 end

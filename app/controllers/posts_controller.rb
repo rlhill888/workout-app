@@ -45,7 +45,7 @@ class PostsController < ApplicationController
     private
 
     def create_post_params
-        params.permit(:user_id, :title, :image, :description)
+        params.permit(:user_id, :title, :image, :description, :meal_post, :routine_post, :share_routine_id)
     end
 
     def update_post_params

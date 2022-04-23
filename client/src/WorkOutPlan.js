@@ -4,7 +4,7 @@ import RoutineDisplayCardWorkoutPlan from "./RoutineDisplayCardWorkoutPlan";
 
 import { useHistory } from "react-router-dom";
 
-function WorkOutPlan({routines, setRoutineBeingShown}){
+function WorkOutPlan({routines, setRoutineBeingShown, user}){
 
 
     const history= useHistory()
@@ -21,7 +21,7 @@ function WorkOutPlan({routines, setRoutineBeingShown}){
     <br />
     {routines.map((r)=>{
         return(
-            <RoutineDisplayCardWorkoutPlan r={r} setRoutineBeingShown={setRoutineBeingShown} />
+            <RoutineDisplayCardWorkoutPlan r={r} user={user} setRoutineBeingShown={setRoutineBeingShown} />
         )
     })}
     </>

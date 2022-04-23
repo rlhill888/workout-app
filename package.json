@@ -11,6 +11,8 @@
     "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
   },
   "dependencies": {
-    "google-maps-react": "^2.0.6"
+    "@giphy/js-fetch-api": "^4.1.2",
+    "google-maps-react": "^2.0.6",
+    "react-google-maps": "^9.4.5"
   }
 }

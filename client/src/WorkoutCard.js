@@ -1,12 +1,13 @@
 import React from "react";
-
+import { useHistory } from "react-router-dom";
 
 
 function WorkoutCard({workout}){
     // console.log(workout)
-
+    const history= useHistory()
     return(
         <div>
+            <button onClick={history.goBack}>Back</button>
              <h1>{workout.name}</h1>
              <br />
              <br />

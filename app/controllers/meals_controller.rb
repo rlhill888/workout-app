@@ -10,7 +10,7 @@ class MealsController < ApplicationController
     def create
         meal = Meal.create!(meal_params)
 
-        render json: meal_params, status: :created
+        render json: meal, status: :created
     end
 
     def update
@@ -19,10 +19,10 @@ class MealsController < ApplicationController
         render json: meal
     end
 
-    def delete
+    def destroy
         find_meal.destroy
         head :no_content
-    def 
+    end 
 
     private
 
@@ -31,6 +31,7 @@ class MealsController < ApplicationController
     end
 
     def meal_params
-        params.permit(:name, :description, :public)
+        params.permit(:name, :description, :public, :image)
     end
+
 end

@@ -64,6 +64,60 @@ following1= Following.create(
     user_getting_followed_id: user2.id
 )
 
+#/////////////////////////////////////// routines /////////////////////////////////
+
+# routine1= Routine.create(
+#     name: '',
+#     description: '',
+#     image: '',
+#     users_using_routine: 0
+# )
+
+back_and_biceps_tone_muscle= Routine.create(
+    name: 'Back and Biceps',
+    description: 'Back And Biceps Workout For toning muscle and building definition',
+    image: 'https://onnitacademy.imgix.net/wp-content/uploads/2019/01/backopener.jpg',
+    users_using_routine: 0
+)
+
+chest_and_tricep_tone_muscle= Routine.create(
+    name: 'Chest and Triceps',
+    description: 'Chest and Tricep Workout for toning muscle and building definition',
+    image: 'https://fitnessvolt.com/wp-content/uploads/2022/02/chest-and-triceps-workout-750x422.jpg',
+    users_using_routine: 0
+)
+
+legs_tone_muscle= Routine.create(
+    name: 'Leg Day',
+    description: 'Lay Day workout for toning muscle and building definition',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG_0HwBSDnVzWrKTHPnFM8vMCb0RC_N2WZmg&usqp=CAU',
+    users_using_routine: 0
+)
+
+
+
+# /////// routine workout Tables
+
+# workoutroutinejoint1= WorkoutRoutine.create(
+#     workout_id: ,
+#     routine_id: ,
+#     reps: ,
+#     sets: 
+# )
+
+#/////// routine workout Tables
+
+# workoutroutinejoint1= WorkoutRoutine.create(
+#     workout_id: ,
+#     routine_id: ,
+#     reps: ,
+#     sets: 
+# )
+
+
+
+
+
 
 #/////////////////// workouts ////////////////////////
 puts 'seeding workouts...'
@@ -96,8 +150,8 @@ weightedpulldowns= Workout.create(
     target_muscles: 'latissimus dorsi, pectoralis major, rotator cuff, and biceps brachii'
 )
 
-weightedrow= Workout.create(
-    name: 'weighted rows',
+seatedweightedrow= Workout.create(
+    name: 'seated weighted rows',
     description: 'The seated row is an exercise you can do with a weight machine to work the muscles in your upper back. Specifically, the seated row targets the muscles in your upper back and also the latissimus dorsi — a muscle on the outer side of the chest wall.',
     gif: 'https://www.verywellfit.com/thmb/6dHuq9Us1ek7jq8TazJ-FHpSFLI=/735x0/51-3498605-Seated-Cable-Row-GIF-7b65c9e27d14457584be75440b0786d5.gif',
     video_link: 'A77hAjcpN1s',
@@ -501,14 +555,124 @@ gobletsquat= Workout.create(
 
 puts 'finished workouts'
 
-#/////////////////////////////////////// routines /////////////////////////////////
 
-# routine1= Routine.create(
-#     name: '',
-#     description: '',
-#     image: '',
-#     users_using_routine: 0
-# )
+workoutroutinejointld1= WorkoutRoutine.create(
+    workout_id: burpee.id,
+    routine_id: legs_tone_muscle.id,
+    reps: 12,
+    sets: 3
+)
+workoutroutinejointld2= WorkoutRoutine.create(
+    workout_id: weightedlunge.id,
+    routine_id: legs_tone_muscle.id,
+    reps: 12,
+    sets: 4
+)
+workoutroutinejointld3= WorkoutRoutine.create(
+    workout_id: weightedsquats.id,
+    routine_id: legs_tone_muscle.id,
+    reps: 12,
+    sets: 4
+)
+workoutroutinejointld4= WorkoutRoutine.create(
+    workout_id: deadlift.id,
+    routine_id: legs_tone_muscle.id,
+    reps: 12,
+    sets: 4
+)
+
+workoutroutinejointld5= WorkoutRoutine.create(
+    workout_id: hamstringcurl.id,
+    routine_id: legs_tone_muscle.id,
+    reps: 12,
+    sets: 4
+)
+
+workoutroutinejointld6= WorkoutRoutine.create(
+    workout_id: calfraise.id,
+    routine_id: legs_tone_muscle.id,
+    reps: 40,
+    sets: 3
+)
+
+workoutroutinejointtmbb1= WorkoutRoutine.create(
+    workout_id: jogging.id,
+    routine_id: back_and_biceps_tone_muscle.id,
+)
+
+workoutroutinejointtmbb2= WorkoutRoutine.create(
+    workout_id: barbellcurl.id,
+    routine_id: back_and_biceps_tone_muscle.id,
+    reps: 15,
+    sets: 4
+)
+workoutroutinejointtmbb3= WorkoutRoutine.create(
+    workout_id: pullups.id,
+    routine_id: back_and_biceps_tone_muscle.id,
+    reps: 12,
+    sets: 4
+)
+workoutroutinejointtmbb4= WorkoutRoutine.create(
+    workout_id: weightedpulldowns.id,
+    routine_id: back_and_biceps_tone_muscle.id,
+    reps: 10,
+    sets: 4
+)
+workoutroutinejointtmbb5= WorkoutRoutine.create(
+    workout_id: barbellbentrow.id,
+    routine_id: back_and_biceps_tone_muscle.id,
+    reps: 12,
+    sets: 4
+)
+workoutroutinejointtmbb6= WorkoutRoutine.create(
+    workout_id: seatedweightedrow.id,
+    routine_id: back_and_biceps_tone_muscle.id,
+    reps: 12,
+    sets: 4
+)
+
+workoutroutinejointcttm1= WorkoutRoutine.create(
+    workout_id: jumprope.id,
+    routine_id: chest_and_tricep_tone_muscle.id,
+    reps: nil,
+    sets: nil
+)
+
+workoutroutinejointctttm2= WorkoutRoutine.create(
+    workout_id: benchpress.id,
+    routine_id: chest_and_tricep_tone_muscle.id,
+    reps: 12,
+    sets: 4
+)
+
+workoutroutinejointccttm3= WorkoutRoutine.create(
+    workout_id: dumbellchestpress.id,
+    routine_id: chest_and_tricep_tone_muscle.id,
+    reps: 12,
+    sets: 4
+)
+
+workoutroutinejointcctm4= WorkoutRoutine.create(
+    workout_id: dips.id,
+    routine_id: chest_and_tricep_tone_muscle.id,
+    reps: 12,
+    sets: 4
+)
+
+workoutroutinejointctttm5= WorkoutRoutine.create(
+    workout_id: inclinebenchpress.id,
+    routine_id: chest_and_tricep_tone_muscle.id,
+    reps: 10,
+    sets: 3
+)
+workoutroutinejointctttm6= WorkoutRoutine.create(
+    workout_id: dumbellchestpress.id,
+    routine_id: chest_and_tricep_tone_muscle.id,
+    reps: 12,
+    sets: 3
+)
+
+
 
 
 

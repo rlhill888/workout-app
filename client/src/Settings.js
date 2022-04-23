@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from "./NavBar";
 import {  useHistory } from "react-router-dom";
+import {Map, GoogleApiWrapper} from 'google-maps-react'
 
 
 
@@ -26,9 +27,12 @@ function Settings({user}){
             <h3>{`BMR: ${user.bmr}`}</h3>
             <h3>{`age: ${user.age}`}</h3>
             <h3>{`weight: ${user.weight}`}</h3>
-            <h3>{`height: ${height} ft`}</h3>
+            <h3>{`height: ${height /12} ft`}</h3>
+        </div>
+        <div >
         </div>
         <button onClick={()=> history.push(`/changestats/${user.id}`)}>Change Stats</button>
+        <button onClick={()=> history.push('/map')}>Look At Gyms inside Philadelphia</button>
         </>
     )
 }

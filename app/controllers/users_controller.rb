@@ -12,20 +12,30 @@ class UsersController < ApplicationController
         
         user= User.create!(create_user_params)
 
-        bmi_calculation= (user.weight * 703)/(user.height * user.height)
+        bmi_calculation= (user.weight / (user.height * user.height).to_d * 703).to_d * 100
         bmr_calculation= 66.47+(6.24 * user.weight)+(12.7*user.height)-(6.75*user.age)
 
-        user.bmi = bmi_calculation
-        user.bmr = bmr_calculation
+        user.bmi= bmi_calculation 
+        user.bmr= bmr_calculation
+        user.public_user= false
+        user.save
+    
+        if user.goal_type == "To Tone muscles and get muscle definition"
+            UserRoutine.create!(user_id: user.id, routine_id: 208, currently_using: true)
+            UserRoutine.create!(user_id: user.id, routine_id: 209, currently_using: true)
+            UserRoutine.create!(user_id: user.id, routine_id: 210, currently_using: true)
+        end
+        
         
         render json: user, status: :created
+        
 
         
     end
     
 
     def show
-        render json: current_user, include: ['routines', 'routines.workouts', 'routines.workout_routines'], status: :ok
+        render json: current_user, include: ['routines', 'routines.workouts', 'routines.workout_routines', 'meals', 'meals.ingredients', 'meals.meal_ingredients'], status: :ok
     end
 
     def update
@@ -65,6 +75,6 @@ class UsersController < ApplicationController
     end
 
     def update_user_params
-        params.permit( :age, :weight, :profile_pic)
+        params.permit( :age, :weight, :profile_pic, :public_user)
     end
 end

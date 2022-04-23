@@ -17,6 +17,30 @@ import CreatePost from './CreatePost';
 import RoutineCard from './RoutineCard';
 import CreateMeal from './CreateMeal';
 import ChangeStats from './ChangeStats';
+import IndivisualMealBeingShownCard from './IndivisualMealBeingShownCard';
+import UpdateMeal from './UpdateMeal';
+import * as gymData from "./data/open-gym.json"
+
+
+import {GoogleMap, withScriptjs, withGoogleMap, Marker} from 'react-google-maps'
+
+
+function Map(){
+
+    return(
+        <GoogleMap 
+        defaultZoom={10} 
+        defaultCenter={{lat: 39.952583, lng: -75.165222}}
+        >
+          {/* {gymData.map((a)=>{
+            <Marker key={`${a.postalcode1}${a.address11}`}/>
+          })} */}
+          </GoogleMap>
+
+    )
+}
+
+const WrappedMap = withScriptjs(withGoogleMap(Map))
 
 function App() {
 
@@ -26,6 +50,7 @@ function App() {
   const [updateData, setUpdateData]= useState(0)
   const [workoutBeingShown, setWorkoutBeingShown]= useState(null)
   const [routineBeingShown, setRoutineBeingShown]= useState(null)
+  const [mealBeingShown, setMealBeingShown]= useState(null)
   const [workouts, setWorkouts]= useState(null)
 
   const [ingredients, setIngredients]= useState([])
@@ -79,10 +104,10 @@ function App() {
           <WelcomeLogIn setUser={setUser}/>
         </Route>
         <Route exact path="/mealplan">
-          <MealPlan />
+          <MealPlan setMealBeingShown={setMealBeingShown} user={user}/>
         </Route>
         <Route exact path="/workoutplan">
-          <WorkOutPlan routines={user.routines} setRoutineBeingShown={setRoutineBeingShown}/>
+          <WorkOutPlan user={user} routines={user.routines} setRoutineBeingShown={setRoutineBeingShown}/>
         </Route>
         <Route exact path="/profile">
           <Settings user={user}/>
@@ -100,7 +125,10 @@ function App() {
           <CreatePost user={user} />
         </Route>
         <Route exact path="/routine/:id">
-          <RoutineCard setRoutineBeingShown={setRoutineBeingShown} routine={routineBeingShown} setWorkoutBeingShown={setWorkoutBeingShown}/>
+          <RoutineCard setRoutineBeingShown={setRoutineBeingShown} routine={routineBeingShown} setWorkoutBeingShown={setWorkoutBeingShown} user={user}/>
+        </Route>
+        <Route exact path="/meal/:id">
+          <IndivisualMealBeingShownCard meal={mealBeingShown}/>
         </Route>
         <Route exact path="/routine/updateroutine/:id">
           <UpdateRoutine workouts={workouts} setUpdateData={setUpdateData} user={user} routine={routineBeingShown} setWorkoutBeingShown={setWorkoutBeingShown}/>
@@ -108,8 +136,22 @@ function App() {
         <Route exact path="/createmeal">
           <CreateMeal ingredients={ingredients} user={user}/>
         </Route>
+        <Route exact path="/updatemeal/:id">
+          <UpdateMeal ingredients={ingredients} meal={mealBeingShown}/>
+        </Route>
         <Route exact path="/changestats/:id">
           <ChangeStats user={user}/>
+        </Route>
+        <Route exact path="/map">
+          <div style={{width: "100vw", height: "100vh"}}> 
+          <WrappedMap 
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCfcLd8NSm0bUbI3zKOTDOPxrWFw-L92LQ`}
+          loadingElement={<div style={{height: "100%"}}/>} 
+          containerElement={<div style={{height: "100%"}}/>} 
+          mapElement={<div style={{height: "100%"}}/>} 
+          />
+
+          </div>
         </Route>
         {/* <Route  exact path ="/createroutine/workout">
              <WorkoutCard />

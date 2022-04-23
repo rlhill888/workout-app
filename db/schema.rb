@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_29_224720) do
+ActiveRecord::Schema.define(version: 2022_04_20_024606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2022_03_29_224720) do
     t.bigint "meal_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "servings"
     t.index ["ingredient_id"], name: "index_meal_ingredients_on_ingredient_id"
     t.index ["meal_id"], name: "index_meal_ingredients_on_meal_id"
   end
@@ -83,6 +84,10 @@ ActiveRecord::Schema.define(version: 2022_03_29_224720) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "meal_post"
     t.boolean "routine_post"
+    t.bigint "share_routine_id"
+    t.bigint "share_meal_id"
+    t.index ["share_meal_id"], name: "index_posts_on_share_meal_id"
+    t.index ["share_routine_id"], name: "index_posts_on_share_routine_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -132,6 +137,7 @@ ActiveRecord::Schema.define(version: 2022_03_29_224720) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
+    t.boolean "public_user"
   end
 
   create_table "workout_routines", force: :cascade do |t|
@@ -162,6 +168,8 @@ ActiveRecord::Schema.define(version: 2022_03_29_224720) do
   add_foreign_key "followings", "users", column: "user_getting_followed_id"
   add_foreign_key "meal_ingredients", "ingredients"
   add_foreign_key "meal_ingredients", "meals"
+  add_foreign_key "posts", "meals", column: "share_meal_id"
+  add_foreign_key "posts", "routines", column: "share_routine_id"
   add_foreign_key "posts", "users"
   add_foreign_key "routines", "users", column: "created_by_id"
   add_foreign_key "user_meals", "meals"
