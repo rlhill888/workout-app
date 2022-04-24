@@ -20,7 +20,7 @@ class WorkoutRoutinesController < ApplicationController
         render json: find_workout_routine
     end
 
-    def delete
+    def destroy
         find_workout_routine.destroy
         head :no_content
     end

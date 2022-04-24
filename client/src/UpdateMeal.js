@@ -38,6 +38,7 @@ function UpdateMeal({meal, ingredients}){
         })
 
         meal.meal_ingredients.map((mealIngredient)=>{
+            console.log(mealIngredient)
             meal.ingredients.map((ingredient)=>{
         
                 if(mealIngredient.ingredient_id===ingredient.id){
@@ -57,6 +58,8 @@ function UpdateMeal({meal, ingredients}){
     }, [])
 
     console.log(mealObj)
+
+
     function handleSubmit(e){
         const jsonMealObj={
             name: name, 
@@ -83,7 +86,7 @@ function UpdateMeal({meal, ingredients}){
         mealObj.map((updatedIngredient)=>{
             ingredientsBeingAddedArray.push(updatedIngredient)
             originalMealObj.map((originalIngredient)=>{
-                if(updatedIngredient === originalIngredient){
+                if(updatedIngredient.id === originalIngredient.id){
                     
                     const index = ingredientsBeingAddedArray.indexOf(originalIngredient)
                     
@@ -117,10 +120,51 @@ function UpdateMeal({meal, ingredients}){
             })
             return updateServingsarray
         })
-        console.log(updateServingsarray)
-       
+
+        console.log('Ingredients being added: ', ingredientsBeingAddedArray)
+        console.log('Ingredients being deleted: ', ingredientsBeingsDeletedArray)
+        console.log('Servings being updated: ', updateServingsarray)
         
-        
+        ingredientsBeingAddedArray.map((ingredient)=>{
+            fetch('http://localhost:4000/meal_ingredients', {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify({
+                    ingredient_id: ingredient.id,
+                    meal_id: meal.id,
+                    servings: ingredient.servings
+                })
+            })
+            .then(res=> res.json())
+            .then(data=> console.log(data))
+        })
+
+        ingredientsBeingsDeletedArray.map((ingredient)=>{
+            fetch(`http://localhost:4000/meal_ingredients/${ingredient.mealIngredientId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+            console.log(ingredient)
+            
+        })
+
+        updateServingsarray.map((ingredient)=>{
+            fetch(`http://localhost:4000/meal_ingredients/${ingredient.mealIngredientId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-type' : 'application/json'
+                },
+                body: JSON.stringify({
+                    servings: ingredient.servings
+                })
+            })
+            .then(res=> res.json())
+            .then(data=> console.log(data))
+        })
     }
 
     let showMeals

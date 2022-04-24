@@ -13,7 +13,13 @@ class MealIngredientsController < ApplicationController
         render json: meal_ingredient, status: :ok
     end
 
-    def delete 
+    def update
+        meal_ingredient = find_meal_ingredient
+        meal_ingredient.update!(meal_ingredient_update_params)
+        render json: meal_ingredient
+    end
+
+    def destroy 
         find_meal_ingredient.destroy
         head :no_content
     end
@@ -28,4 +34,7 @@ class MealIngredientsController < ApplicationController
     def meal_ingredient_params
         params.permit(:ingredient_id, :meal_id, :servings)
     end 
+    def meal_ingredient_update_params
+        params.permit(:servings)
+    end
 end

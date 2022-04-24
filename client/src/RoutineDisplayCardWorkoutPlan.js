@@ -7,6 +7,7 @@ function RoutineDisplayCardWorkoutPlan({r, setRoutineBeingShown, user}){
     let settings
     const history = useHistory();
     console.log(r)
+    console.log(user)
 
     const [showSettings, setShowSettings]= useState(false)
     if(showSettings===false){
@@ -65,8 +66,28 @@ function RoutineDisplayCardWorkoutPlan({r, setRoutineBeingShown, user}){
         
         </>
     }
-    if(user.id !== r.created_by_id){
-        settings= <> </>
+    if(user.id !== r.created_by_id&&showSettings===false){
+        settings= <> 
+        <button onClick={()=> setShowSettings((previousState)=> true)}>Settings</button>
+        </>
+    }
+    if(user.id !== r.created_by_id&&showSettings===true){
+        settings= <> 
+        <button onClick={()=> setShowSettings((previousState)=> false)}>CloseSettings</button>
+        <button onClick={()=>{
+            const filteredArray = user.user_routines.filter((userRoutine)=>{
+                return userRoutine.user_id === user.id && userRoutine.routine_id === r.id
+            })
+            const selectedUserRoutine= filteredArray[0]
+
+            fetch(`/user_routines/${selectedUserRoutine.id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            })
+        }}>Remove Routine</button>
+        </>
     }
     return(
         <> 

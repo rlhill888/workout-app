@@ -5,53 +5,25 @@ import SetsAndRepsTab from "./SetsAndRepsTab";
 function CreateRoutineSelectorCard({w, worokoutInfoObject, workOutSearchCheckBox, setWorkOutSearchCheckBox, setworokoutInfoObject, setWorkoutBeingShown}){
 
                 const history = useHistory();
-                let index
+              
                 let showSetsAndReps
-
-                findIndex()
                 checkSetsAndRepsAreBeingShown()
-                
-                function findIndex(){
-                    let indexNumber
-                    
-                    worokoutInfoObject.map(o=>{
-                        if((Object.values(o)[0]).toString()=== w.id.toString()){
-                           return indexNumber =worokoutInfoObject.indexOf(o)
-                        }
-                    })
-                    console.log(indexNumber)
-                    return index = indexNumber
-                }
 
                 function checkSetsAndRepsAreBeingShown(){
-                    let showSetsAndRepsTab
-                    workOutSearchCheckBox.forEach((o)=>{
-                        if(Object.keys(o)[0]===`${w.name} checked`){
-                            return showSetsAndRepsTab= Object.values(o)[0]
-                        }
-    
-                    })
-                    
-                    if(showSetsAndRepsTab===false){
-                        return <> </>
+                    const index =workOutSearchCheckBox.findIndex((element)=> Object.keys(element)[0]===`${w.name} checked`)
+                    if(workOutSearchCheckBox[index][`${w.name} checked`]===false){
+                        return showSetsAndReps= <> </>
                     }
-                    if(showSetsAndRepsTab===true){
+                    if(workOutSearchCheckBox[index][`${w.name} checked`]===true){
                         return showSetsAndReps= <div> 
-                            <SetsAndRepsTab w={w} worokoutInfoObject={worokoutInfoObject} index={index}/>
+                            <SetsAndRepsTab w={w} worokoutInfoObject={worokoutInfoObject} setworokoutInfoObject={setworokoutInfoObject}/>
                         </div>
                     }
                 }
 
                 function checkBoxes(w){
-                    let checkboxValue
-                    workOutSearchCheckBox.map((o)=>{
-                        if(Object.keys(o)[0]===`${w.name} checked`){
-                         checkboxValue= ((Object.values(o)[0]))
-                           return checkboxValue
-                        }
-                    })
-                    return checkboxValue
-                    
+                    const index =workOutSearchCheckBox.findIndex((element)=> Object.keys(element)[0]===`${w.name} checked`)
+                    return workOutSearchCheckBox[index][`${w.name} checked`]
                 }
 
                 
@@ -66,25 +38,17 @@ function CreateRoutineSelectorCard({w, worokoutInfoObject, workOutSearchCheckBox
                     key={`workoutcheckbox${w.id}`} 
                     id={`workoutcheckbox${w.name}`} 
                     onChange={(e)=>{ 
-                        workOutSearchCheckBox.map((o)=>{
-                            let index = workOutSearchCheckBox.indexOf(o)
-                            
-                           if(Object.keys(o)[0]===`${w.name} checked`){
-                               let copyState = [...workOutSearchCheckBox]
-                               copyState[index]= {...copyState[index],  [`${w.name} checked`]:  !Object.values(o)[0] }
-
-                              setWorkOutSearchCheckBox(copyState)
-                           }
-                        })
-
-    
+                        const index =workOutSearchCheckBox.findIndex((element)=> Object.keys(element)[0]===`${w.name} checked`)
+                        let copyOfWorkoutSearchCheckObj = [...workOutSearchCheckBox]
+                        copyOfWorkoutSearchCheckObj[index]= {...copyOfWorkoutSearchCheckObj[index], [`${w.name} checked`] : !Object.values(copyOfWorkoutSearchCheckObj[index])[0]}
+                        setWorkOutSearchCheckBox(copyOfWorkoutSearchCheckObj)
                         if(e.target.checked){
-                            setworokoutInfoObject((p)=> [...p, { id: e.target.value}])
+                            setworokoutInfoObject((p)=> [...p, w])
                         }
                         if(!e.target.checked){
                             worokoutInfoObject.map((o)=>{
-                                if(o.id=== e.target.value){
-                                    const workoutindex= worokoutInfoObject.indexOf(o.id)
+                                if(o.id.toString()=== e.target.value){
+                                    const index= worokoutInfoObject.indexOf(o)
                                     worokoutInfoObject.splice(index, 1)
                                     
                                 }

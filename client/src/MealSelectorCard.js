@@ -6,30 +6,15 @@ function MealSelectorCard({i, mealCheckedObj, setMealCheckedObj, mealObj, setMea
     let showServings
     checkServingsAreBeingShown()
     function checkBoxes(i){
-        let value
-       
-        mealCheckedObj.map((obj)=>{
-            if(Object.keys(obj)[0]===`${i.name} checked`){
-                return value = ((Object.values(obj)[0]))
-            }
-        })
-        return value
+        const index= mealCheckedObj.findIndex((element)=> Object.keys(element)[0]===`${i.name} checked`)
+        return mealCheckedObj[index][`${i.name} checked`]
     }
     function checkServingsAreBeingShown(){
-        let showServingsTab
-
-        mealCheckedObj.forEach((o)=>{
-            if(Object.keys(o)[0]===`${i.name} checked`){
-                return showServingsTab= Object.values(o)[0]
-            }
-
-        })
-
-        if(showServingsTab=== false){
+        const index= mealCheckedObj.findIndex((element)=> Object.keys(element)[0]===`${i.name} checked`)
+        if(mealCheckedObj[index][`${i.name} checked`]=== false){
             return showServings= <> </>
         }
-
-        if(showServingsTab=== true){
+        if(mealCheckedObj[index][`${i.name} checked`]=== true){
             return showServings= <ServingsTab mealObj={mealObj} i={i} setMealObj={setMealObj}/>
         }
     }
@@ -46,7 +31,7 @@ function MealSelectorCard({i, mealCheckedObj, setMealCheckedObj, mealObj, setMea
                     value={i.id}
                     checked={checkBoxes(i)}
                     onChange={(e)=> {
-                        let index= mealCheckedObj.findIndex((element)=> Object.keys(element)[0]===`${i.name} checked`)
+                        const index= mealCheckedObj.findIndex((element)=> Object.keys(element)[0]===`${i.name} checked`)
                         let copyState= [...mealCheckedObj]
                         copyState[index]= {...copyState[index], [`${i.name} checked`]:  !Object.values(copyState[index])[0]}
                         setMealCheckedObj(copyState)

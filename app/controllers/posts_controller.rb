@@ -41,6 +41,10 @@ class PostsController < ApplicationController
         post.increment(:dislikes, 1)
         render json: post.dislikes
     end
+    def destroy
+        find_post.destroy
+        head :no_content
+    end
 
     private
 

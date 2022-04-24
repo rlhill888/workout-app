@@ -16,7 +16,7 @@ function CreateRoutine({user, workouts, setWorkoutBeingShown, setUpdateData, upd
     const [imageLink, setImageLink]= useState('')
     const [workOutSearchCheckBox, setWorkOutSearchCheckBox]= useState([])
     
-    let workoutsearch;
+    let workoutsearch
 
     useEffect(()=>{
         workouts.map((w)=> setWorkOutSearchCheckBox((p)=> [...p, { [`${w.name} checked`]: false }]))
@@ -104,11 +104,6 @@ function CreateRoutine({user, workouts, setWorkoutBeingShown, setUpdateData, upd
             <button onClick={()=> setShowworkouts(false)}> Hide Workouts</button>
             <br/>
             <br />
-            {/* <select id='workout filter selector'>
-                <option>--- Select Search Filter ---</option>
-                <option value='name'>Name</option>
-                <option value='name'>Targeted muscle</option>
-            </select> */}
 
 
             <label name='workout search'> Search Work Outs:</label>

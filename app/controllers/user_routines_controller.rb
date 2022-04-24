@@ -12,7 +12,7 @@ class UserRoutinesController < ApplicationController
         render json: user_routine
     end
 
-    def delete
+    def destroy
         find_user_routine.destroy
         head :no_content
     end

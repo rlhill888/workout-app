@@ -3,6 +3,8 @@ class UserSerializer < ActiveModel::Serializer
   has_many :routines, serializer: RoutineDetailsSerializer
   has_many :meals
   has_many :posts
+  has_many :user_routines
+  has_many :posts
   
 
 end

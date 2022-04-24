@@ -2,6 +2,8 @@ import React from "react";
 import NavBar from "./NavBar";
 import {  useHistory } from "react-router-dom";
 import {Map, GoogleApiWrapper} from 'google-maps-react'
+import PostCard from "./PostCard";
+import PostSettings from "./Postsettings";
 
 
 
@@ -33,6 +35,16 @@ function Settings({user}){
         </div>
         <button onClick={()=> history.push(`/changestats/${user.id}`)}>Change Stats</button>
         <button onClick={()=> history.push('/map')}>Look At Gyms inside Philadelphia</button>
+        <br />
+        <br />
+        <h2>Posts:</h2>
+        {user.posts.map((post)=>{
+            return (
+            <div>
+                <PostCard post={post} user={user}/>
+                <PostSettings post={post}/>
+            </div>)
+        })}
         </>
     )
 }

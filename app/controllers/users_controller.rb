@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     
 
     def show
-        render json: current_user, include: ['routines', 'routines.workouts', 'routines.workout_routines', 'meals', 'meals.ingredients', 'meals.meal_ingredients'], status: :ok
+        render json: current_user, include: ['routines', 'routines.workouts', 'routines.workout_routines', 'meals', 'meals.ingredients', 'meals.meal_ingredients', 'user_routines', 'posts', 'posts.user', 'post.comments'], status: :ok
     end
 
     def update
