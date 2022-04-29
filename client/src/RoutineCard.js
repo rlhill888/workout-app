@@ -1,16 +1,25 @@
 import React, {useEffect, useState} from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 
-function RoutineCard({user, routine, setRoutineBeingShown, setWorkoutBeingShown}){
-    console.log(routine)
+
+function RoutineCard({user, setRoutineBeingShown, setWorkoutBeingShown}){
     const history= useHistory()
+    const params= useParams()
     const [workoutArray, setWorkoutArray]= useState([])
+    const [routine, setRoutine]= useState({})
 
-    console.log('start')
    
     useEffect(()=>{
-        routine.workouts.map((w)=>{
+        let routine 
+        fetch(`http://localhost:4000/routines/${params.id}`)
+        .then(res=> res.json())
+        .then(res=> {
+            
+        routine = res
+        setRoutine(res)
+            
+         routine.workouts.map((w)=>{
         
             routine.workout_routines.map((wr)=>{
             
@@ -28,9 +37,10 @@ function RoutineCard({user, routine, setRoutineBeingShown, setWorkoutBeingShown}
             })
             
         })
+        })
+       
     
     }, [])
-    console.log(workoutArray)
 
     let editButton
 

@@ -14,11 +14,11 @@ class User < ApplicationRecord
     has_many :workouts, through: :workout_routines
     has_many :ingredients, through: :meal_ingredients
 
-    # validates :first_name, :last_name, :user_name, :email, :weight, :height, :age, presence: true
+    validates :first_name, :last_name, :user_name, :email, :weight, :height, :age, presence: true
    
     # validates :email, format: { with: /^(.+)@(.+)$/, message: "Email invalid"  }, uniqueness: { case_sensitive: false }, length: { minimum: 4, maximum: 254 }
 
-    # validates :email, :user_name, uniqueness: true
+    validates :email, :user_name, uniqueness: true
 
     has_secure_password
 

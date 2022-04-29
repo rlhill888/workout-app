@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_20_024606) do
+ActiveRecord::Schema.define(version: 2022_04_25_213818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 2022_04_20_024606) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "created_by_id"
+    t.boolean "default_workout4me_routine"
     t.index ["created_by_id"], name: "index_routines_on_created_by_id"
   end
 
@@ -138,6 +139,10 @@ ActiveRecord::Schema.define(version: 2022_04_20_024606) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
     t.boolean "public_user"
+    t.float "carb_macros"
+    t.float "protein_macros"
+    t.float "fat_macros"
+    t.integer "calories"
   end
 
   create_table "workout_routines", force: :cascade do |t|

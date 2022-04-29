@@ -1,13 +1,19 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import NavBar from "./NavBar";
 import RoutineDisplayCardWorkoutPlan from "./RoutineDisplayCardWorkoutPlan";
 
 import { useHistory } from "react-router-dom";
 
-function WorkOutPlan({routines, setRoutineBeingShown, user}){
+function WorkOutPlan({user}){
 
-
+    const [routines, setRoutines]= useState([])
     const history= useHistory()
+    
+    useEffect(()=>{
+        fetch('current_user_routines')
+        .then(res=> res.json())
+        .then(res=> setRoutines(res))
+    }, [])
    
 
     return(
@@ -21,7 +27,7 @@ function WorkOutPlan({routines, setRoutineBeingShown, user}){
     <br />
     {routines.map((r)=>{
         return(
-            <RoutineDisplayCardWorkoutPlan r={r} user={user} setRoutineBeingShown={setRoutineBeingShown} />
+            <RoutineDisplayCardWorkoutPlan r={r} user={user} />
         )
     })}
     </>

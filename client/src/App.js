@@ -58,11 +58,16 @@ function App() {
 
 
   useEffect(()=>{
-    fetch('me')
+    fetch('/me')
     .then(res=>{
       if(res.ok){
         res.json()
         .then((res)=> setUser(res))
+      }
+      else{
+        res.json()
+        .then(data=> console.log(data))
+        .then(history.push('/login'))
       }
     })
     fetch('workouts')
@@ -92,7 +97,7 @@ function App() {
       <>
       <Switch>
         <Route exact path="/">
-          <Home user={user} setRoutineBeingShown={setRoutineBeingShown}/>
+          <Home user={user} />
         </Route>
         <Route exact path="/login">
           <LogIn setUser={setUser}/>

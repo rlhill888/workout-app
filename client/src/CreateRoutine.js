@@ -4,7 +4,7 @@ import { Route, useRouteMatch, Switch } from "react-router-dom";
 import WorkoutCard from "./WorkoutCard";
 import CreateRoutineSelectorCard from "./CreateRoutineSelectorCard";
 
-function CreateRoutine({user, workouts, setWorkoutBeingShown, setUpdateData, updateData}){
+function CreateRoutine({user}){
 
     const history= useHistory()
 
@@ -15,11 +15,20 @@ function CreateRoutine({user, workouts, setWorkoutBeingShown, setUpdateData, upd
     const [routineDescription, setRoutineDescription]= useState('')
     const [imageLink, setImageLink]= useState('')
     const [workOutSearchCheckBox, setWorkOutSearchCheckBox]= useState([])
+    const [workouts, setWorkouts]= useState([])
     
     let workoutsearch
 
     useEffect(()=>{
-        workouts.map((w)=> setWorkOutSearchCheckBox((p)=> [...p, { [`${w.name} checked`]: false }]))
+        fetch('http://localhost:4000/workouts')
+        .then(res=>res.json())
+        .then(res=> {
+            setWorkouts(res)
+            let copyArray= []
+            let workouts = res
+            workouts.map((w)=> copyArray.push({ [`${w.name} checked`]: false }))
+            setWorkOutSearchCheckBox(copyArray)
+        })
     }, [])
     
     console.log(worokoutInfoObject)
@@ -83,12 +92,10 @@ function CreateRoutine({user, workouts, setWorkoutBeingShown, setUpdateData, upd
             })
         })
 
-        setUpdateData((p) => {
-            
-            return p +1})
+       
 
 
-        // history.push('/')
+       
     }
 
 
@@ -118,7 +125,6 @@ function CreateRoutine({user, workouts, setWorkoutBeingShown, setUpdateData, upd
                 workOutSearchCheckBox={workOutSearchCheckBox} 
                 setWorkOutSearchCheckBox={setWorkOutSearchCheckBox} 
                 setworokoutInfoObject={setworokoutInfoObject}
-                setWorkoutBeingShown={setWorkoutBeingShown}
                 />
             })}
         </div>

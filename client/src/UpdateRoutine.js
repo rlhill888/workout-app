@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import CreateRoutineSelectorCard from "./CreateRoutineSelectorCard";
 
-function UpdateRoutine({routine, user, workouts, setWorkoutBeingShown, setUpdateData}){
+function UpdateRoutine({ user}){
 
     const [worokoutInfoObject, setworokoutInfoObject]= useState([])
     const [showWorkouts, setShowworkouts]= useState(false)
@@ -12,12 +12,27 @@ function UpdateRoutine({routine, user, workouts, setWorkoutBeingShown, setUpdate
     const [imageLink, setImageLink]= useState('')
     const [workOutSearchCheckBox, setWorkOutSearchCheckBox]= useState([])
     const [originalWorkoutObj, setOriginalWorkoutObj]= useState([])
+    const [workouts, setWorkouts]= useState([])
+    const [routine, setRoutine]= useState({})
 
     let workoutsearch
     const history= useHistory()
+    const params= useParams()
 
 
     useEffect(()=>{
+        fetch('http://localhost:4000/workouts')
+        .then(res=>res.json())
+        .then(res=> {
+            let workouts = res
+            setWorkouts(res)
+
+
+        fetch(`http://localhost:4000/routines/${params.id}`)
+        .then(res => res.json())
+        .then(res =>{
+        let routine = res
+        setRoutine(res)
         let workOutSearchCheckBox =[]
         let workoutObj= []
 
@@ -49,6 +64,13 @@ function UpdateRoutine({routine, user, workouts, setWorkoutBeingShown, setUpdate
         setRoutineName(routine.name)
         setRoutineDescription(routine.description)
         setImageLink(routine.image)
+        })
+
+        
+
+        })
+
+       
         
     }, [])
 
@@ -188,7 +210,6 @@ function UpdateRoutine({routine, user, workouts, setWorkoutBeingShown, setUpdate
                 workOutSearchCheckBox={workOutSearchCheckBox} 
                 setWorkOutSearchCheckBox={setWorkOutSearchCheckBox} 
                 setworokoutInfoObject={setworokoutInfoObject}
-                setWorkoutBeingShown={setWorkoutBeingShown}
                 />
             })}
         </div>

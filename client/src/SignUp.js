@@ -33,7 +33,7 @@ function SignUp({setUser }){
             setErrorMessage(errorMessage.length = 0)
         }
 
-        const height = (heightFeet*12) +heightInches
+        const height = (parseInt(heightFeet)*12) +parseInt(heightInches)
        
 
         if(password1 !== password2){
@@ -71,7 +71,14 @@ function SignUp({setUser }){
             }
             else{
                 
-                // res.json().then((res)=> res.errors.map((e)=>  setErrorMessage((p)=> [...p, e])))
+                res.json().then((res)=> {
+                    let errorsArray = []
+                    res.errors.map((error)=>{
+                        errorsArray.push(error)
+                    })
+                     setErrorMessage(errorsArray)
+                })
+                
 
             }
         })
@@ -85,7 +92,7 @@ function SignUp({setUser }){
     if(errorMessage.length>0){
         errorMessages= <div>
             <h2> Error </h2>
-            <ul>{errorMessage.map((e)=> <li>{e}</li>)}</ul>
+            <ul>{errorMessage.map((e)=> <li key={`${e} error message`}>{e}</li>)}</ul>
         </div>
     }
 

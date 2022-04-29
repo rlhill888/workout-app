@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from "react";
 import MealSelectorCard from "./MealSelectorCard";
+import { useParams, useHistory } from "react-router-dom";
 
 
-function UpdateMeal({meal, ingredients}){
+function UpdateMeal(){
     const [filterOption, setFilterOption]= useState('')
     const [searchFilter, setSearchFilter]= useState('')
     const [name, setName]= useState('')
@@ -12,6 +13,10 @@ function UpdateMeal({meal, ingredients}){
     const [mealCheckedObj, setMealCheckedObj]= useState([])
     const [showMealPanel, setShowMealPanel]= useState(false)
     const [originalMealObj, setOriginalMealObj]= useState([])
+    const [meal, setMeal]= useState({})
+    const [ingredients, setIngredients]= useState([])
+    const params = useParams()
+    const history = useHistory()
 
   
 
@@ -21,7 +26,18 @@ function UpdateMeal({meal, ingredients}){
     useEffect(()=>{
         let mealCheckedObj = []
         let ingredientsArray =[]
+        let ingredients
+        let meal
+        fetch('http://localhost:4000/ingredients')
+        .then(res=> res.json())
+        .then(res=> {
+            ingredients = res
+            setIngredients(res)
 
+        fetch(`http://localhost:4000/meals/${params.id}`)
+        .then(res=> res.json())
+        .then(res=> {
+            meal = res
 
         ingredients.map((i)=>{
             mealCheckedObj.push({ [`${i.name} checked`] : false})
@@ -55,6 +71,9 @@ function UpdateMeal({meal, ingredients}){
         setImage(meal.image)
         setName(meal.name)
         setDescription(meal.description)
+        })
+        })
+        
     }, [])
 
     console.log(mealObj)
@@ -165,6 +184,7 @@ function UpdateMeal({meal, ingredients}){
             .then(res=> res.json())
             .then(data=> console.log(data))
         })
+        history.push('/mealplan')
     }
 
     let showMeals

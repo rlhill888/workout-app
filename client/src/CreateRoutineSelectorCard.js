@@ -2,7 +2,7 @@ import React from "react";
 import {  useHistory } from "react-router-dom";
 import SetsAndRepsTab from "./SetsAndRepsTab";
 
-function CreateRoutineSelectorCard({w, worokoutInfoObject, workOutSearchCheckBox, setWorkOutSearchCheckBox, setworokoutInfoObject, setWorkoutBeingShown}){
+function CreateRoutineSelectorCard({w, worokoutInfoObject, workOutSearchCheckBox, setWorkOutSearchCheckBox, setworokoutInfoObject}){
 
                 const history = useHistory();
               
@@ -67,7 +67,6 @@ function CreateRoutineSelectorCard({w, worokoutInfoObject, workOutSearchCheckBox
                     {showSetsAndReps}
                     </>
                     <h2 onClick={()=> {
-                        setWorkoutBeingShown(w)
                         history.push(`workouts/${w.id}`)
                         }}>{`Click to see more information about ${w.name}`}</h2>
                         <br />

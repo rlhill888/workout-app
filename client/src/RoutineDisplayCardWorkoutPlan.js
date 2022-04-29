@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 
 
-function RoutineDisplayCardWorkoutPlan({r, setRoutineBeingShown, user}){
+function RoutineDisplayCardWorkoutPlan({r, user}){
     let settings
     const history = useHistory();
     console.log(r)
@@ -20,7 +20,6 @@ function RoutineDisplayCardWorkoutPlan({r, setRoutineBeingShown, user}){
 
         settings= <> 
             <button onClick={()=>{
-                setRoutineBeingShown(r)
                 history.push(`/updateroutine/${r.id}`)
             }}> Change Routine</button>
             <button onClick={()=>{
@@ -60,7 +59,6 @@ function RoutineDisplayCardWorkoutPlan({r, setRoutineBeingShown, user}){
                 })
                 .then(res=> res.json())
                 .then(res=> console.log(res))
-            
             }}>Share Routine</button>
             <button onClick={()=> setShowSettings((p)=> !p)}>Close Settings</button>
         

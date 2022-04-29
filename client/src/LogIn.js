@@ -9,6 +9,7 @@ function LogIn({setUser}){
     const [password, setPassword]= useState('')
     const [userName, setUserName]= useState('')
     const [age, setAge]= useState(null)
+    const [errors, setErrors]= useState([])
 
     function handleSubmit(e){
         e.preventDefault()
@@ -29,8 +30,17 @@ function LogIn({setUser}){
         .then(res=>{
             if(res.ok){
                 res.json().then((res)=> {
+                    console.log(res)
                     setUser(res)
                     history.push('/')
+                })
+            }
+            else{
+                res.json()
+                .then(data=> {
+                    let copyArray= []
+                    data.errors.map(e=> copyArray.push(e))
+                    setErrors(copyArray)
                 })
             }
         })
@@ -46,6 +56,7 @@ function LogIn({setUser}){
          <h1>WORK OUT 4 ME</h1>
 
          <h3>Log In</h3>
+        
 
          <form>
 
@@ -56,14 +67,16 @@ function LogIn({setUser}){
         <br></br>
         <label name='Password'> Password</label>
         <br></br>
-        <input name= 'Password' onChange={(e)=> setPassword(e.target.value)}></input>
+        <input name= 'Password' type="password" onChange={(e)=> setPassword(e.target.value)}></input>
         <br></br>
         <br></br>
         <input type='submit' onClick={handleSubmit} value='log in'></input>
         
          </form>
-
-         <br/>
+         <br />
+        {errors.map((error=>{
+                    return <h3>{error}</h3>
+                }))}
          <br/>
          <Link to="/signup" exact>  Sign Up</Link>
 

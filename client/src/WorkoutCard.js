@@ -1,10 +1,18 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import { useHistory, useParams } from "react-router-dom";
 
 
-function WorkoutCard({workout}){
+function WorkoutCard(){
     // console.log(workout)
+    const params = useParams()
     const history= useHistory()
+    const [workout, setWorkout]=useState({})
+    
+    useEffect(()=>{ 
+        fetch(`http://localhost:4000/workouts/${params.id}`)
+        .then(res=> res.json())
+        .then(res=> setWorkout(res))
+    }, [])
     return(
         <div>
             <button onClick={history.goBack}>Back</button>

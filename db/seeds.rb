@@ -73,26 +73,123 @@ following1= Following.create(
 #     users_using_routine: 0
 # )
 
+
+
+#//////// to Tone Muscles and Gain muscle definition =>
+
 back_and_biceps_tone_muscle= Routine.create(
     name: 'Back and Biceps',
     description: 'Back And Biceps Workout For toning muscle and building definition',
     image: 'https://onnitacademy.imgix.net/wp-content/uploads/2019/01/backopener.jpg',
-    users_using_routine: 0
+    users_using_routine: 0,
+    default_workout4me_routine: true
 )
 
 chest_and_tricep_tone_muscle= Routine.create(
     name: 'Chest and Triceps',
     description: 'Chest and Tricep Workout for toning muscle and building definition',
     image: 'https://fitnessvolt.com/wp-content/uploads/2022/02/chest-and-triceps-workout-750x422.jpg',
-    users_using_routine: 0
+    users_using_routine: 0,
+    default_workout4me_routine: true
 )
 
 legs_tone_muscle= Routine.create(
     name: 'Leg Day',
-    description: 'Lay Day workout for toning muscle and building definition',
+    description: 'Lag Day workout for toning muscle and building definition',
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG_0HwBSDnVzWrKTHPnFM8vMCb0RC_N2WZmg&usqp=CAU',
-    users_using_routine: 0
+    users_using_routine: 0,
+    default_workout4me_routine: true
 )
+
+
+#/////////////////////////////
+
+#//////////////////////////// To Loose Overall Weight
+
+legs_loose_overall_weight= Routine.create(
+    name: 'Leg Day',
+    description: 'Leg Day Workout for Loosing Overall Weight',
+    image: 'https://images.squarespace-cdn.com/content/v1/594c5ab34f14bcca1a010c20/1610611255512-0LBIOET45MCZSLMTGAR5/ke17ZwdGBToddI8pDm48kIdwuL-YH8qdQNkAqEk86rtZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpyrlDB6o-m1QpI9POf53GOOdPhFP3XS315CDLRkhmFZV6m7nputAs4I1PhPGOKRgIc/10+Must-Do+Leg+Day+Exercises+For+Weight+Loss.jpg',
+    users_using_routine: 0,
+    default_workout4me_routine: true
+)
+
+chest_and_triceps_loose_overall_weight= Routine.create(
+    name: 'Chest and Tricep',
+    description: 'Chest and Tricep Workout for Loosing Overall Weight',
+    image: 'https://i.ytimg.com/vi/dHBXHNwzry8/maxresdefault.jpg',
+    users_using_routine: 0,
+    default_workout4me_routine: true
+)
+
+back_and_biceps_loose_overall_weight= Routine.create(
+    name: 'Back and Biceps',
+    description: 'Back and Biceps workout for loosing overall weight',
+    image: 'https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/olima-back.jpg',
+    users_using_routine: 0,
+    default_workout4me_routine: true
+)
+
+#//////////////////
+
+#/////////////////  To Gain Overall Weight
+
+leg_day_gain_overall_weight= Routine.create(
+    name: 'Leg day',
+    description: 'Leg workout for gaining over all body weight',
+    image: 'https://images.squarespace-cdn.com/content/v1/594c5ab34f14bcca1a010c20/1608908836519-B9R39IW8XHP6O9U1IUWU/ke17ZwdGBToddI8pDm48kIdwuL-YH8qdQNkAqEk86rtZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpyrlDB6o-m1QpI9POf53GOOdPhFP3XS315CDLRkhmFZV6m7nputAs4I1PhPGOKRgIc/4+Tips+To+Build+Big+Legs+Without+Squats.jpg',
+    users_using_routine: 0,
+    default_workout4me_routine: true
+)
+
+chest_and_triceps_gain_overall_weight= Routine.create(
+    name: 'Chest and Triceps',
+    description: 'Chest and tricep workout for gaining overall body weight',
+    image: 'https://www.bodybuilding.com/images/aaron-marinos-tailored-chest-triceps-workout-header-960x540.jpg',
+    users_using_routine: 0,
+    default_workout4me_routine: true
+)
+
+back_and_biceps_gain_overall_weight= Routine.create(
+    name: 'Back and Biceps',
+    description: 'Back and bicep workout for gaining overall body weight',
+    image: 'https://fitnessvolt.com/wp-content/uploads/2022/02/Back-and-Biceps-Workout-750x422.jpg',
+    users_using_routine: 0,
+    default_workout4me_routine: true
+)
+
+#/////////////
+
+#////////// to gain muscle mass
+
+leg_day_gain_muscle_mass= Routine.create(
+    name: 'Leg day',
+    description: 'Leg day workout for gaining muscle mass',
+    image: 'https://fitnessvolt.com/wp-content/uploads/2021/10/Best-Leg-Day-Workouts.jpg',
+    users_using_routine: 0,
+    default_workout4me_routine: true
+)
+
+chest_and_triceps_gain_muscle_mass= Routine.create(
+    name: 'Chest and Triceps',
+    description: 'Chest and Tricep workout for gaining muscle mass',
+    image: 'http://www.fitnessdayone.com/wp-content/uploads/2021/10/chest-and-triceps-or-chest-and-biceps.jpg',
+    users_using_routine: 0,
+    default_workout4me_routine: true
+)
+
+back_and_biceps_gain_muscle_mass= Routine.create(
+    name: 'Back and Biceps',
+    description: 'Back and biceps workout for gaining overall muscle mass',
+    image: 'https://d3h9ln6psucegz.cloudfront.net/wp-content/uploads/2010/03/Back_Exercises.jpg',
+    users_using_routine: 0,
+    default_workout4me_routine: true
+)
+
+
+#////////////////
+
+
 
 
 
@@ -423,7 +520,7 @@ legraises= Workout.create(
 
 mountainclimbers= Workout.create(
     name: 'mountain climbers',
-    description: "That's the concept behind mountain climbers. Performed from a plank position, you'll alternate bringing one knee to your chest, then back out again, speeding up each time until you're running against the floor. While the move sounds simple, mountain climbers exercise almost the entire body and raise your heart rate",
+    description: "That's the concept behind mountain climbers. Performed from a plank position, you'll alternate bringing one knee to your chest, then back out again, speeding up each time until you're jogging against the floor. While the move sounds simple, mountain climbers exercise almost the entire body and raise your heart rate",
     gif: 'https://media1.popsugar-assets.com/files/thumbor/Iu8waoj6rmL6c7B8gZUdS1ZIa3I/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2017/06/08/791/n/1922729/c4943793a2ba2dd5_SlowerClimbers.gif',
     video_link: 'cnyTQDSE884',
     workout_tag: 'calisthenic',
@@ -432,7 +529,7 @@ mountainclimbers= Workout.create(
 
 jogging= Workout.create(
     name: 'jogging',
-    description: 'Jogging is a form of trotting or running at a slow or leisurely pace. The main intention is to increase physical fitness with less stress on the body than from faster running but more than walking, or to maintain a steady speed for longer periods of time',
+    description: 'Jogging is a form of trotting or jogging at a slow or leisurely pace. The main intention is to increase physical fitness with less stress on the body than from faster jogging but more than walking, or to maintain a steady speed for longer periods of time',
     gif: 'https://c.tenor.com/8y_rhrPTw50AAAAC/jogging.gif',
     video_link: 'fQ7ewHFw_I8',
     workout_tag: 'cardio',
@@ -556,6 +653,8 @@ gobletsquat= Workout.create(
 puts 'finished workouts'
 
 
+#///////////// tone muscle workout joint tables
+
 workoutroutinejointld1= WorkoutRoutine.create(
     workout_id: burpee.id,
     routine_id: legs_tone_muscle.id,
@@ -668,6 +767,336 @@ workoutroutinejointctttm5= WorkoutRoutine.create(
 workoutroutinejointctttm6= WorkoutRoutine.create(
     workout_id: dumbellchestpress.id,
     routine_id: chest_and_tricep_tone_muscle.id,
+    reps: 12,
+    sets: 3
+)
+
+#//////////
+
+#////////////// Gain overall Weight
+
+workoutroutinejointgowld1= WorkoutRoutine.create(
+    workout_id: weightedsquats.id,
+    routine_id: leg_day_gain_overall_weight.id,
+    reps: 8,
+    sets: 3
+)
+
+workoutroutinejointgowld2= WorkoutRoutine.create(
+    workout_id: hamstringcurl.id,
+    routine_id: leg_day_gain_overall_weight.id,
+    reps: 10,
+    sets: 4
+)
+
+workoutroutinejointgowld3= WorkoutRoutine.create(
+    workout_id: deadlift.id,
+    routine_id: leg_day_gain_overall_weight.id,
+    reps: 10,
+    sets: 3
+)
+
+workoutroutinejoint1gowld4= WorkoutRoutine.create(
+    workout_id: weightedlunge.id,
+    routine_id: leg_day_gain_overall_weight.id,
+    reps: 10,
+    sets: 3
+)
+
+workoutroutinejoint1gowct1= WorkoutRoutine.create(
+    workout_id: benchpress.id,
+    routine_id: chest_and_triceps_gain_overall_weight.id,
+    reps: 8,
+    sets: 3
+)
+
+workoutroutinejointgowct2= WorkoutRoutine.create(
+    workout_id: dips.id,
+    routine_id: chest_and_triceps_gain_overall_weight.id,
+    reps: 3,
+    sets: 15
+)
+
+workoutroutinejointgowct3= WorkoutRoutine.create(
+    workout_id: pushup.id,
+    routine_id: chest_and_triceps_gain_overall_weight.id,
+    reps: 15,
+    sets: 4
+)
+
+workoutroutinejointgowct4= WorkoutRoutine.create(
+    workout_id: dumbellflys.id,
+    routine_id: chest_and_triceps_gain_overall_weight.id,
+    reps: 8,
+    sets: 3
+)
+
+workoutroutinejointgowct5= WorkoutRoutine.create(
+    workout_id: dumbellchestpress.id,
+    routine_id: chest_and_triceps_gain_overall_weight.id,
+    reps: 8,
+    sets: 3
+)
+
+
+workoutroutinejointbbgov1= WorkoutRoutine.create(
+    workout_id: pullups.id,
+    routine_id: back_and_biceps_gain_overall_weight.id,
+    reps: 8,
+    sets: 3
+)
+
+workoutroutinejointbbgow2= WorkoutRoutine.create(
+    workout_id: weightedpulldowns.id,
+    routine_id: back_and_biceps_gain_overall_weight.id,
+    reps: 8,
+    sets: 3
+)
+
+workoutroutinejointbbgow3= WorkoutRoutine.create(
+    workout_id: dumbellcurls.id,
+    routine_id: back_and_biceps_gain_overall_weight.id,
+    reps: 10,
+    sets: 3
+)
+
+workoutroutinejointbbgow4= WorkoutRoutine.create(
+    workout_id: barbellbentrow.id,
+    routine_id: back_and_biceps_gain_overall_weight.id,
+    reps: 10,
+    sets: 3
+)
+
+#///////////////// loose overall weight
+workoutroutinejointtlowld1= WorkoutRoutine.create(
+    workout_id: jogging.id,
+    routine_id: legs_loose_overall_weight.id,
+    reps: 10
+)
+
+workoutroutinejointtlowld2= WorkoutRoutine.create(
+    workout_id: cycling.id,
+    routine_id: legs_loose_overall_weight.id,
+    reps: 10
+)
+
+workoutroutinejointtlowld3= WorkoutRoutine.create(
+    workout_id: weightedsquats.id,
+    routine_id: legs_loose_overall_weight.id,
+    reps: 20,
+    sets: 4
+)
+
+workoutroutinejointtlowld4= WorkoutRoutine.create(
+    workout_id: deadlift.id,
+    routine_id: legs_loose_overall_weight.id,
+    reps: 20,
+    sets: 4
+)
+
+workoutroutinejointtlowld5= WorkoutRoutine.create(
+    workout_id: situps.id,
+    routine_id: legs_loose_overall_weight.id,
+    reps: 20,
+    sets: 3
+)
+
+workoutroutinejointtlowld6= WorkoutRoutine.create(
+    workout_id: bicyclecrunches.id,
+    routine_id: legs_loose_overall_weight.id,
+    reps: 1,
+    sets: 3
+)
+
+workoutroutinejointtlowld7= WorkoutRoutine.create(
+    workout_id: plank.id,
+    routine_id: legs_loose_overall_weight.id,
+    reps: 1,
+    sets: 3
+)
+
+workoutroutinejointtlowct1= WorkoutRoutine.create(
+    workout_id: jogging.id,
+    routine_id: chest_and_triceps_loose_overall_weight.id,
+    reps: 10 
+)
+
+workoutroutinejointtlowct2= WorkoutRoutine.create(
+    workout_id: jumprope.id,
+    routine_id: chest_and_triceps_loose_overall_weight.id,
+    reps: 10
+)
+
+workoutroutinejointtlowct3= WorkoutRoutine.create(
+    workout_id: dumbellchestpress,
+    routine_id: chest_and_triceps_loose_overall_weight.id,
+    reps: 20,
+    sets: 3
+)
+
+workoutroutinejointtlowct4= WorkoutRoutine.create(
+    workout_id: dumbellflys.id,
+    routine_id: chest_and_triceps_loose_overall_weight.id,
+    reps: 20,
+    sets: 3
+)
+
+workoutroutinejointtlowct5= WorkoutRoutine.create(
+    workout_id: mountainclimbers.id,
+    routine_id: chest_and_triceps_loose_overall_weight.id,
+    reps: 1,
+    sets: 3
+)
+
+workoutroutinejointtlowct6= WorkoutRoutine.create(
+    workout_id: legraises.id,
+    routine_id: chest_and_triceps_loose_overall_weight.id,
+    reps: 20,
+    sets: 3
+)
+
+workoutroutinejointtlowct7= WorkoutRoutine.create(
+    workout_id: plank.id,
+    routine_id: chest_and_triceps_loose_overall_weight.id,
+    reps: 1,
+    sets: 3
+)
+
+
+
+workoutroutinejointbbtlow1= WorkoutRoutine.create(
+    workout_id: jogging.id,
+    routine_id: back_and_biceps_loose_overall_weight.id,
+    reps: 10
+)
+
+workoutroutinejointbbtlow2= WorkoutRoutine.create(
+    workout_id: burpee.id,
+    routine_id: back_and_biceps_loose_overall_weight.id,
+    reps: 15,
+    sets: 3
+)
+
+workoutroutinejointbbtlow3= WorkoutRoutine.create(
+    workout_id: dumbellcurls.id,
+    routine_id: back_and_biceps_loose_overall_weight.id,
+    reps: 15,
+    sets: 3
+)
+
+workoutroutinejointbbtlow4= WorkoutRoutine.create(
+    workout_id: pullups.id,
+    routine_id: back_and_biceps_loose_overall_weight.id,
+    reps: 12,
+    sets: 3
+)
+
+workoutroutinejointbbtlow5= WorkoutRoutine.create(
+    workout_id: crunches.id,
+    routine_id: back_and_biceps_loose_overall_weight.id,
+    reps: 20,
+    sets: 4
+)
+
+workoutroutinejointbbtlow6= WorkoutRoutine.create(
+    workout_id: plank.id,
+    routine_id: back_and_biceps_loose_overall_weight.id,
+    reps: 1,
+    sets: 3
+)
+
+#/////////////
+
+#///////// gain muscle mass =>
+
+workoutroutinejointgmmld1= WorkoutRoutine.create(
+    workout_id: weightedsquats.id,
+    routine_id: leg_day_gain_muscle_mass.id,
+    reps: 8,
+    sets: 4
+)
+
+workoutroutinejointgmmld2= WorkoutRoutine.create(
+    workout_id: hamstringcurl.id,
+    routine_id: leg_day_gain_muscle_mass.id,
+    reps: 8,
+    sets: 3
+)
+
+workoutroutinejointgmmld3= WorkoutRoutine.create(
+    workout_id: deadlift.id,
+    routine_id: leg_day_gain_muscle_mass.id,
+    reps: 8,
+    sets: 4
+)
+
+workoutroutinejointldgmm4= WorkoutRoutine.create(
+    workout_id: weightedlunge.id,
+    routine_id: leg_day_gain_muscle_mass.id,
+    reps: 12,
+    sets: 4
+)
+
+
+workoutroutinejointctgmm1= WorkoutRoutine.create(
+    workout_id: benchpress.id,
+    routine_id: chest_and_triceps_gain_muscle_mass.id,
+    reps: 8,
+    sets: 3
+)
+
+workoutroutinejointgmmct2= WorkoutRoutine.create(
+    workout_id: dips.id,
+    routine_id: chest_and_triceps_gain_muscle_mass.id,
+    reps: 10,
+    sets: 4
+)
+
+workoutroutinejointgmmct3= WorkoutRoutine.create(
+    workout_id: pushup.id,
+    routine_id: chest_and_triceps_gain_muscle_mass.id,
+    reps: 15,
+    sets: 3
+)
+
+workoutroutinejointgmmct4= WorkoutRoutine.create(
+    workout_id: dumbellflys.id,
+    routine_id: chest_and_triceps_gain_muscle_mass.id,
+    reps: 8,
+    sets: 3
+)
+
+workoutroutinejointgmmct5= WorkoutRoutine.create(
+    workout_id: dumbellchestpress.id,
+    routine_id: chest_and_triceps_gain_muscle_mass.id,
+    reps: 8,
+    sets: 3
+)
+
+workoutroutinejointbbgmm1= WorkoutRoutine.create(
+    workout_id: pullups.id,
+    routine_id: back_and_biceps_gain_muscle_mass.id,
+    reps: 12,
+    sets: 4
+)
+
+workoutroutinejointbbgmm2= WorkoutRoutine.create(
+    workout_id: weightedpulldowns.id,
+    routine_id: back_and_biceps_gain_muscle_mass.id,
+    reps: 10,
+    sets: 3
+)
+
+workoutroutinejointbbgmm3= WorkoutRoutine.create(
+    workout_id: dumbellcurls.id,
+    routine_id: back_and_biceps_gain_muscle_mass.id,
+    reps: 15,
+    sets: 3
+)
+
+workoutroutinejointbbgmm4= WorkoutRoutine.create(
+    workout_id: barbellbentrow.id,
+    routine_id: back_and_biceps_gain_muscle_mass.id,
     reps: 12,
     sets: 3
 )
