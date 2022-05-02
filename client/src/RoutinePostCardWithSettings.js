@@ -11,11 +11,12 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Grid from '@mui/material/Grid';
+import PostSettings from "./Postsettings";
 import { CardActionArea, CardContent, Card } from '@mui/material';
 import { useHistory } from "react-router-dom";
 
 
-function RoutinePost({post, user}){
+function RoutinePostCardWithSettings({post, user}){
     const history =useHistory()
     const [comment, setComment]= useState('')
     const [showComments, setShowComments]= useState(false)
@@ -81,11 +82,15 @@ function RoutinePost({post, user}){
                 <Container>
 
         <br />
+        <br />
+        <PostSettings></PostSettings>
+        <br />
+        <br />
        <div>
            <Avatar src={post.user.profile_pic} ></Avatar>
             <h1>{post.user.user_name} posted thier routine: {post.title}</h1>
             <br />
-            <Button variant="contained" onClick={addRoutine}>Add {post.user.user_name}'s "{routine.name}"  to your list of routines</Button>
+            <Button disabled variant="contained" onClick={addRoutine}>Add {post.user.user_name}'s "{routine.name}"  to your list of routines</Button>
             <br />
             <br />
             <CardMedia component="img" image={post.image} height='400' width='500'></CardMedia>
@@ -177,4 +182,5 @@ function RoutinePost({post, user}){
 }
 
 
-export default RoutinePost
+
+export default RoutinePostCardWithSettings

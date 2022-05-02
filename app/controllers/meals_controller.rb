@@ -24,6 +24,12 @@ class MealsController < ApplicationController
         head :no_content
     end 
 
+    def current_user_meals
+        user = current_user
+        render json: user.meals
+    end 
+
+
     private
 
     def find_meal

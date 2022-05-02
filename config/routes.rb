@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#logout'
 
   get '/current_user_routines', to: 'routines#current_user_routines'
+  get '/current_user_meals', to: 'meals#current_user_meals'
 
   get 'increment_post_like/:id', to: 'posts#increment_like'
   get 'increment_post_dislike/:id', to: 'posts#increment_dislike'

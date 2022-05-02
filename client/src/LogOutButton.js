@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import Button from '@mui/material/Button';
 
 
 function LogOutButton(){
@@ -13,7 +14,7 @@ function LogOutButton(){
     }
 
     return(
-        <button onClick={handleClick} >Log Out</button>
+        <Button variant='contained' onClick={handleClick} >Log Out</Button>
     )
 
     

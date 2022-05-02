@@ -1,34 +1,36 @@
 import React, {useState} from "react";
+import Button from '@mui/material/Button';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 function PostSettings({post}){
 
-    const [showSettings, setShowSettings]= useState(false)
+    
 
-    let settings
 
-    if(showSettings===false){
-        settings= <button onClick={()=> setShowSettings(true)}>Settings</button>
-    }
-
-    if(showSettings===true){
-        settings= <> 
-        <button onClick={()=> setShowSettings(false)}>Close Settings</button>
-        <button onClick={()=>{
+    return(
+        <Accordion>
+            <AccordionSummary expandIcon={<SettingsIcon />}>
+            Post Settings
+            </AccordionSummary>
+            <AccordionDetails>
+            <> 
+        <Button onClick={()=>{
             fetch(`http://localhost:4000/posts/${post.id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-type' : 'applicaton/json'
                 }
             })
-        }}>Delete</button>
+        }}> 
+        <DeleteIcon />
+        Delete Post</Button>
         </>
-    }
-
-
-    return(
-        <div>
-            {settings}
-        </div>
+            </AccordionDetails>
+        </Accordion>
     )
 }
 

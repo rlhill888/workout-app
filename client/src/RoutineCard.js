@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from "react";
 import { useHistory, useParams } from "react-router-dom";
+import RoutineCardSettings from "./RoutineCardSettings";
+import NavBar from "./NavBar";
+import { CardActionArea, CardMedia, CardContent, Card } from '@mui/material';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 
 
 
@@ -8,7 +15,6 @@ function RoutineCard({user, setRoutineBeingShown, setWorkoutBeingShown}){
     const params= useParams()
     const [workoutArray, setWorkoutArray]= useState([])
     const [routine, setRoutine]= useState({})
-
    
     useEffect(()=>{
         let routine 
@@ -42,50 +48,56 @@ function RoutineCard({user, setRoutineBeingShown, setWorkoutBeingShown}){
     
     }, [])
 
-    let editButton
+    
 
-    if(routine.created_by_id !== user.idid){
-        editButton= <> </>
-    }
-    if(routine.created_by_id === user.id){
-        editButton=  <button onClick={()=>{
-            setRoutineBeingShown(routine)
-            history.push(`updateroutine/${routine.id}`)
-        }}>Edit Routine</button>
-    }
 
    
     return (<> 
-    <button onClick={history.goBack}>Back</button>
-    <h1>{routine.name}</h1>
+    <NavBar user={user}/>
     <br />
-        {editButton}
+    <br />
+    <h1>{routine.name}</h1>
     <br />
     <br />
     <div>
-        <p>{routine.description}</p>
+        <h3>{routine.description}</h3>
     </div>
     <br />
     <br />
-    {workoutArray.map((w)=>{
-        return(<> 
+    <Grid container spacing={2}>
+
+        {workoutArray.map((w)=>{
+        return(<Box
+            m={4} 
+            p={2}
+            sx={{
+                width: 300,
+                height: 300
+              }}
+        > 
 
         <br />
-            <div>
+            <Card
+            elevation={15}
+            >
                 <h2>{w.name}</h2>
-                <img onClick={()=> {
+                <CardActionArea>
+                     <img onClick={()=> {
                     setWorkoutBeingShown(w.workout)
                     history.push(`/workouts/${w.workout.id}`)
-                }} src={w.gif} height='200' width='200'></img>
+                }} src={w.gif} height='200' width='300'></img>
+                </CardActionArea>
                 <h2>{`Sets: ${w.sets}`}</h2>
                 <h2>{`Reps: ${w.reps}`}</h2>
 
-            </div>
+            </Card>
         <br />
-        </>
+        </Box>
            
         )
     })}
+    </Grid>
+    
     </>)
 }
 

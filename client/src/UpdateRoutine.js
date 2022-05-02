@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { useHistory, useParams } from "react-router-dom";
 import CreateRoutineSelectorCard from "./CreateRoutineSelectorCard";
+import ErrorsCard from "./ErrorsCard";
 
 function UpdateRoutine({ user}){
 
@@ -14,6 +15,7 @@ function UpdateRoutine({ user}){
     const [originalWorkoutObj, setOriginalWorkoutObj]= useState([])
     const [workouts, setWorkouts]= useState([])
     const [routine, setRoutine]= useState({})
+    const [errors, setErros]= useState([])
 
     let workoutsearch
     const history= useHistory()
@@ -26,8 +28,6 @@ function UpdateRoutine({ user}){
         .then(res=> {
             let workouts = res
             setWorkouts(res)
-
-
         fetch(`http://localhost:4000/routines/${params.id}`)
         .then(res => res.json())
         .then(res =>{
@@ -90,8 +90,10 @@ function UpdateRoutine({ user}){
             },
             body: JSON.stringify(routineObj)
         })
-        .then(res=>res.json())
-        .then(data=> console.log(data))
+        .then(res=>{
+        if(res.ok){
+             res.json()
+             .then(data=> console.log(data))
 
         let workoutBeingAdded = []
         let workoutBeingDeleted= []
@@ -180,7 +182,14 @@ function UpdateRoutine({ user}){
             .then(res=> res.json())
             .then(data=> console.log(data))
         })
-
+        history.push(`/routine/${routine.id}`)
+        } 
+        else{
+            res.json()
+            .then(res=> setErros(res.errors))
+        }  
+       })
+        
     }
 
     console.log(worokoutInfoObject)
@@ -219,6 +228,7 @@ function UpdateRoutine({ user}){
        <> 
        <button onClick={()=> history.push('/workoutplan')}>Back To Workout Plan</button>
        <h1>Update {routine.name}</h1>
+       <ErrorsCard errors={errors}/>
        <form onSubmit={handleSubmit}>
 
            <div>  

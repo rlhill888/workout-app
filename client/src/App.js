@@ -19,6 +19,8 @@ import CreateMeal from './CreateMeal';
 import ChangeStats from './ChangeStats';
 import IndivisualMealBeingShownCard from './IndivisualMealBeingShownCard';
 import UpdateMeal from './UpdateMeal';
+import UpdateDailyMacros from './UpdateDailyMacros';
+import Socail from './Socail';
 import * as gymData from "./data/open-gym.json"
 
 
@@ -117,11 +119,14 @@ function App() {
         <Route exact path="/profile">
           <Settings user={user}/>
         </Route>
+        <Route exact path="/social">
+          <Socail user={user}/>
+        </Route>
         <Route exact path="/createroutine">
           <CreateRoutine updateData={updateData} user={user} workouts={workouts} setWorkoutBeingShown={setWorkoutBeingShown} setUpdateData={setUpdateData}/>
         </Route>
         <Route exact path="/workouts/:id">
-          <WorkoutCard workout={workoutBeingShown}/>
+          <WorkoutCard user={user}/>
         </Route>
         <Route exact path="/updateroutine/:id">
           <UpdateRoutine workouts={workouts} setUpdateData={setUpdateData} user={user} routine={routineBeingShown} setWorkoutBeingShown={setWorkoutBeingShown}/>
@@ -146,6 +151,9 @@ function App() {
         </Route>
         <Route exact path="/changestats/:id">
           <ChangeStats user={user}/>
+        </Route>
+        <Route exact path="/updatedailymacros">
+          <UpdateDailyMacros user={user}/>
         </Route>
         <Route exact path="/map">
           <div style={{width: "100vw", height: "100vh"}}> 

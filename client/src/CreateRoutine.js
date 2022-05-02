@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Route, useRouteMatch, Switch } from "react-router-dom";
 import WorkoutCard from "./WorkoutCard";
 import CreateRoutineSelectorCard from "./CreateRoutineSelectorCard";
+import ErrorsCard from "./ErrorsCard";
 
 function CreateRoutine({user}){
 
@@ -16,6 +17,7 @@ function CreateRoutine({user}){
     const [imageLink, setImageLink]= useState('')
     const [workOutSearchCheckBox, setWorkOutSearchCheckBox]= useState([])
     const [workouts, setWorkouts]= useState([])
+    const [errors, setErrors]= useState([])
     
     let workoutsearch
 
@@ -52,8 +54,11 @@ function CreateRoutine({user}){
             },
             body: JSON.stringify(routine)
         })
-        .then(res=>res.json())
-        .then(data=> {
+        .then(res=>{
+        
+        if(res.ok){
+            res.json()
+            .then(data=> {
             console.log(data)
             routineid= data.id
             const userRoutineObj = {
@@ -90,12 +95,15 @@ function CreateRoutine({user}){
             .then(res=> res.json())
             .then(data => console.log(data))
             })
+            history.push(`routine/${routineid}`)
         })
-
-       
-
-
-       
+        }
+        else{
+            res.json()
+            .then(res=>setErrors(res.errors))
+        }
+    })
+        
     }
 
 
@@ -134,6 +142,7 @@ function CreateRoutine({user}){
        <> 
        <button onClick={()=> history.push('/workoutplan')}>Back To Workout Plan</button>
        <h1>Create Routine</h1>
+       <ErrorsCard errors={errors}/>
        <form>
 
            <div>  

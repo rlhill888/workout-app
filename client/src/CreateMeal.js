@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 import MealSelectorCard from "./MealSelectorCard";
+import { useHistory } from "react-router-dom";
+import ErrorsCard from "./ErrorsCard";
 
 
 function CreateMeal({user, ingredients}){
@@ -11,11 +13,9 @@ function CreateMeal({user, ingredients}){
     const [mealObj, setMealObj]= useState([])
     const [mealCheckedObj, setMealCheckedObj]= useState([])
     const [showMealPanel, setShowMealPanel]= useState(false)
+    const [errors, setErrors]= useState([])
 
-  
-
-
-   
+    const history = useHistory()
 
     useEffect(()=>{
         ingredients.map((i)=> setMealCheckedObj((p)=> [...p, { [`${i.name} checked`] : false}]))
@@ -39,8 +39,11 @@ function CreateMeal({user, ingredients}){
             },
             body: JSON.stringify(meal)
         })
-        .then(res=> res.json())
-        .then(data=>{
+        .then(res=> {
+            
+        if(res.ok){
+             res.json()
+             .then(data=>{
             console.log(data)
             mealId= data.id
             console.log(mealId)
@@ -72,7 +75,16 @@ function CreateMeal({user, ingredients}){
                 .then(res=> res.json())
                 .then(res=> console.log(res))
             })
+            history.push(`/meal/${mealId}`)
         })
+        }
+        else{
+            res.json()
+            .then(res=> setErrors(res.errors))
+        }
+        })
+        
+        
     }
    
     console.log(mealObj)
@@ -121,6 +133,7 @@ function CreateMeal({user, ingredients}){
     return(
         <> 
         <h1> Create Meal</h1>
+        <ErrorsCard errors={errors}/>
         <br />
         <form onSubmit={handleSubmit}>
             <label name='mealname'>New Meal Name</label>

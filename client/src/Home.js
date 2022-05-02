@@ -3,6 +3,13 @@ import LogOutButton from "./LogOutButton";
 import NavBar from "./NavBar";
 import PostForm from "./PostForm";
 import { useHistory } from "react-router-dom";
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Paper from '@mui/material/Paper';
+import Container from '@mui/material/Container';
+import HomeCSS from './Home.module.css'
+
+import { CardActionArea, CardMedia, CardContent, Card } from '@mui/material';
 
 
 function Home({user}){
@@ -38,23 +45,35 @@ function Home({user}){
 
 return(
     <>
+    <br />
     <LogOutButton />
     <h1>Welcome {user.user_name}</h1>
-    <img src={user.profile_pic} height='150' width='150'></img>
     <br />
     <br />
-    <NavBar />
+    <NavBar user={user}/>
     <br />
     <br />
     <h1>Here Are Your Routines You Are Currently Using</h1>
     <br />
     {routines.map((a)=>{
+        console.log(a)
         return(
-        <div onClick={()=>{ 
-            history.push(`routine/${a.id}`)}}>
-            <h1>{a.name}</h1>
-            <img  src={a.image} width="900" height="500" object-fit= 'cover'></img>
-        </div>
+            <Box my={4}>
+            <Card elevation={15} >
+            <CardContent>
+                <h1>{a.name}</h1>
+            </CardContent>
+            <CardActionArea   onClick={()=>{ history.push(`routine/${a.id}`)}}>
+            <CardMedia
+            component="img"
+            height="300"
+            image={a.image}
+            ></CardMedia> 
+            </CardActionArea>
+            </Card>
+
+            </Box>
+        
         )
     })}
     <br />

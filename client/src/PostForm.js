@@ -2,6 +2,9 @@ import React, {useState} from "react";
 import PostCard from "./PostCard";
 import RoutinePost from "./RoutinePost";
 import { useHistory } from "react-router-dom";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 
 
 function PostForm({users, posts, user}){
@@ -27,57 +30,32 @@ function PostForm({users, posts, user}){
        <div>
            <h1 >Posts</h1>
            <br />
-           <br />
-           <div>
-               <form onSubmit={(e)=>{
-                   e.preventDefault()
-                   console.log(userShowing[0].id)
-                   fetch('followings', {
-                       method: 'POST',
-                       headers: {
-                           'Content-Type' : 'application/json'
-                       },
-                       body: JSON.stringify({
-                           user_id: user.id,
-                           user_getting_followed_id: userShowing[0].id,
-                           favorite: false
-                       })
-                   })
-                   .then(res=> res.json())
-                   .then(res=> console.log(res))
-                   
-               }}>
-                   <input onChange={(e)=>{
-                       
-                        let user_filter = users.filter((u)=>{ 
-                            return e.target.value === u.user_name})
-                          
-                        
-                        if(user_filter.length >=1){
-                            setUserShowing(user_filter)
-                            return setShowFollowButton(true)
-                        }
-                        else{
-                            setUserShowing(null)
-                             return setShowFollowButton(false)
-                        }
-                   }} placeholder='search a User to follow'></input>
-                   {followUserButton}
-               </form>
-           </div>
-           <br />
-           <button onClick={()=> history.push('createpost')}>Create Post</button>
-           <br />
-           <div>
+           <Grid container>
+            <div>
                {posts.map((p)=>{
                    if(p.routine_post===true){
-                    return <RoutinePost user={user} post={p}/>
+                    return (
+                    <Box key={`post ${p.id}`}mx={4} my={2}>
+                    <Grid item>
+                    <RoutinePost user={user} post={p}/>
+                    </Grid>
+                    </Box>
+                    )
                 }
                    if(p.routine_post=== false && p.meal_post=== false){
-                    return <PostCard user={user} key={`postcard-${p.id}`} post={p}/>
+                    return( 
+                    <Box key={`post ${p.id}`} mx={4} my={2}>
+                    <Grid item>
+                    <PostCard user={user} key={`postcard-${p.id}`} post={p}/>
+                    </Grid>
+                    </Box>
+
+                    )
                    }
                })}
            </div>
+           </Grid>
+          
            
            
 

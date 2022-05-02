@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
 import { useHistory, useParams } from "react-router-dom";
+import NavBar from "./NavBar";
 
 
-function WorkoutCard(){
+function WorkoutCard({user}){
     // console.log(workout)
     const params = useParams()
     const history= useHistory()
@@ -15,7 +16,9 @@ function WorkoutCard(){
     }, [])
     return(
         <div>
-            <button onClick={history.goBack}>Back</button>
+            <NavBar user={user}/>
+            <br />
+            <br />
              <h1>{workout.name}</h1>
              <br />
              <br />

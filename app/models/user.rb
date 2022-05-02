@@ -19,6 +19,8 @@ class User < ApplicationRecord
     # validates :email, format: { with: /^(.+)@(.+)$/, message: "Email invalid"  }, uniqueness: { case_sensitive: false }, length: { minimum: 4, maximum: 254 }
 
     validates :email, :user_name, uniqueness: true
+    # validates :user_name, length: { minimum: 5 }
+    # validates :password, length: { minimum: 6 }
 
     has_secure_password
 

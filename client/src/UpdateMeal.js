@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import MealSelectorCard from "./MealSelectorCard";
 import { useParams, useHistory } from "react-router-dom";
+import ErrorsCard from "./ErrorsCard";
 
 
 function UpdateMeal(){
@@ -15,6 +16,7 @@ function UpdateMeal(){
     const [originalMealObj, setOriginalMealObj]= useState([])
     const [meal, setMeal]= useState({})
     const [ingredients, setIngredients]= useState([])
+    const [errors, setErrors]= useState([])
     const params = useParams()
     const history = useHistory()
 
@@ -37,6 +39,7 @@ function UpdateMeal(){
         fetch(`http://localhost:4000/meals/${params.id}`)
         .then(res=> res.json())
         .then(res=> {
+            setMeal(res)
             meal = res
 
         ingredients.map((i)=>{
@@ -75,6 +78,7 @@ function UpdateMeal(){
         })
         
     }, [])
+    console.log(meal)
 
     console.log(mealObj)
 
@@ -93,8 +97,12 @@ function UpdateMeal(){
             },
             body: JSON.stringify(jsonMealObj)
         })
-        .then(res=> res.json())
-        .then(data=> console.log(data))
+        .then(res=> {
+            
+            if(res.ok){
+                res.json()
+
+                .then(data=> console.log(data))
 
        
 
@@ -184,7 +192,15 @@ function UpdateMeal(){
             .then(res=> res.json())
             .then(data=> console.log(data))
         })
-        history.push('/mealplan')
+        history.push(`/meal/${meal.id}`)
+            }
+            else{
+                res.json()
+                .then(res=> setErrors(res.errors))
+            }
+            
+            })
+        
     }
 
     let showMeals
@@ -232,6 +248,7 @@ function UpdateMeal(){
     return(
         <> 
         <h1> Update {meal.name}</h1>
+        <ErrorsCard errors={errors}/>
         <br />
         <form onSubmit={handleSubmit}>
             <label name='mealname'>New Meal Name</label>

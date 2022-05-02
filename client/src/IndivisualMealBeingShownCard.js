@@ -1,16 +1,36 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import IngredientCard from "./IngredientCard";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 
-function IndivisualMealBeingShownCard({meal}){
+function IndivisualMealBeingShownCard(){
     const history = useHistory()
+    const params= useParams()
+    const [meal, setMeal]= useState([])
     let ingredientsArray = []
     let carbs
     let protein 
     let fat
 
-    function makeIngredientsArray(){
+    useEffect(()=>{
+        fetch(`http://localhost:4000/meals/${params.id}`)
+        .then(res=> res.json())
+        .then(res=> {
+            console.log(res)
+            setMeal(res)
+            return makeIngredientsArray(res)
+
+        })
+    }, [])
+    
+
+    console.log(meal)
+    makeIngredientsArray(meal)
+
+    function makeIngredientsArray(meal){
+        if(meal.meal_ingredients===undefined){
+            return console.log('undefined')
+        }
         let carbCalculation = 0
         let proteinCalculation = 0
         let fatCalculation = 0
@@ -43,9 +63,10 @@ function IndivisualMealBeingShownCard({meal}){
         protein= proteinCalculation
         fat = fatCalculation
 
+        console.log(ingredients)
+
         return(carbs, protein, fat, ingredientsArray = ingredients)
     }
-    makeIngredientsArray()
 
     return(
         <> 

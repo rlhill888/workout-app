@@ -18,11 +18,12 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 
+
+
 const giphy = new GiphyFetch(process.env.REACT_APP_GIPHY_KEY)
 
 
-function PostCard({post, user}){
-
+function PostCardWithSettings({post, user}){
     const [comment, setComment]= useState('')
     let commentsSection
    
@@ -46,6 +47,7 @@ function PostCard({post, user}){
         .then(res=> console.log(res))
 
     }
+    
     function checkCommentInput(){
                     if(comment===''){
                         return true
@@ -62,6 +64,9 @@ function PostCard({post, user}){
         <Paper elevation={15}> 
             <Box p={3}> 
             <Container>
+        <br />
+        <PostSettings post={post}></PostSettings>
+        <br />
         <br />
        <div>
            <Avatar src={post.user.profile_pic}></Avatar>
@@ -99,13 +104,13 @@ function PostCard({post, user}){
                 </>
                 ) :
                 
-                (post.comments.map((c)=>{
+                post.comments.map((c)=>{
             return(
                 <div key={`comment ${c.id}`}>
                     <h3>{c.comment_text}</h3>
                 </div>
             )
-        }))
+        })
     }
             </AccordionDetails>
 
@@ -119,4 +124,4 @@ function PostCard({post, user}){
     )
 }
 
-export default PostCard
+export default PostCardWithSettings

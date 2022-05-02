@@ -86,7 +86,7 @@ class UsersController < ApplicationController
     
 
     def show
-        render json: current_user, include: ['routines', 'routines.workouts', 'routines.workout_routines', 'meals', 'meals.ingredients', 'meals.meal_ingredients', 'user_routines', 'posts', 'posts.user', 'post.comments'], status: :ok
+        render json: current_user, include: ['routines', 'routines.workouts', 'routines.workout_routines', 'meals', 'meals.ingredients', 'meals.meal_ingredients', 'user_routines', 'posts', 'posts.user', 'posts.comments'], status: :ok
     end
 
     def update
@@ -97,6 +97,7 @@ class UsersController < ApplicationController
         
         user.bmi = bmi_calculation
         user.bmr = bmr_calculation
+        user.save
         
         render json: user
     end
@@ -126,6 +127,6 @@ class UsersController < ApplicationController
     end
 
     def update_user_params
-        params.permit( :age, :weight, :profile_pic, :public_user)
+        params.permit( :age, :weight, :profile_pic, :public_user, :calories, :carb_macros, :protein_macros, :fat_macros)
     end
 end

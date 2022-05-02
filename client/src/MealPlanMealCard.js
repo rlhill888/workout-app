@@ -1,9 +1,17 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
+import { CardActionArea, CardMedia, CardContent, Card } from '@mui/material';
+import Box from '@mui/material/Box';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import MuiAccordionDetails from '@mui/material/AccordionDetails';
+import Button from '@mui/material/Button';
 
 
-function MealPlanMealCard({meal, setMealBeingShown, user}){
-    const [showDetails, setShowDetails]= useState(false)
+
+
+function MealPlanMealCard({meal, user}){
     const history= useHistory()
     let carbs
     let protein 
@@ -53,11 +61,41 @@ function MealPlanMealCard({meal, setMealBeingShown, user}){
     }
 
     calculateMacros()
-    if(showDetails===false){
-        showMacroDetails= <button onClick={()=> setShowDetails(true)}>Show Meal-Daiy Goal Macro Details</button>
-    }
-    if(showDetails===true){
-        showMacroDetails= <div>
+
+    
+
+    return (
+        <Box m={4} p={2}
+        sx={{
+            width: 300,
+            height: 300
+          }}> 
+        
+            <Card elevation={15}>
+        
+        <CardMedia 
+        component="img"
+        height="300"
+        image={meal.image}
+        >
+
+        </CardMedia>
+       {/* <img onClick={()=> {
+           history.push(`/meal/${meal.id}`)
+       }} src={meal.image} width='200px' height='200px'></img> */}
+       <br />
+       <h2>{meal.name}</h2>
+       <h2>Macros:</h2>
+       <h3>Carbs: {carbs.toFixed(2)} grams</h3>
+       <h3>Protein: {protein.toFixed(2)} grams</h3>
+       <h3>Fat: {fat.toFixed(2)} grams</h3>
+       <br />
+       <Accordion>
+           <AccordionSummary expandIcon={<ArrowDropDownIcon />}>
+               <h3>Show Meal Macro Percentages</h3>
+               </AccordionSummary>
+            <MuiAccordionDetails>
+               <div>
             <h2>This meal contains: </h2>
             <ul>
                 <li>
@@ -69,31 +107,16 @@ function MealPlanMealCard({meal, setMealBeingShown, user}){
                 <li>
                     <h3>{(protein/user.protein_macros*100).toFixed(0)}% of your daily protein goals</h3>
                 </li>
-
-
             </ul>
-            <br />
-            <button onClick={()=> setShowDetails(false)}>Close Meal-Daily Goal Macro Details</button>
+            <Button variant="contained" onClick={()=> history.push(`meal/${meal.id}`)}>More Meal Details and Ingredients</Button>
         </div>
-    }
 
-    
+               </MuiAccordionDetails>
 
-    return (
-        <div> 
-        <h2>{meal.name}</h2>
-       <img onClick={()=> {
-           setMealBeingShown(meal)
-           history.push(`/meal/${meal.id}`)
-       }} src={meal.image} width='200px' height='200px'></img>
-       <br />
-       <h2>Macros:</h2>
-       <h3>Carbs: {carbs.toFixed(2)} grams</h3>
-       <h3>Protein: {protein.toFixed(2)} grams</h3>
-       <h3>Fat: {fat.toFixed(2)} grams</h3>
-       <br />
-       {showMacroDetails}
-        </div>
+       </Accordion>
+
+       </Card>
+        </Box>
     )
 }
 
