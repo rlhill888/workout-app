@@ -7,6 +7,9 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import './routinecard.css'
+
 
 
 
@@ -52,23 +55,40 @@ function RoutineCard({user, setRoutineBeingShown, setWorkoutBeingShown}){
 
 
    
-    return (<> 
+    return (
+    <div
+    className='main-background'
+    > 
     <NavBar user={user}/>
     <br />
     <br />
-    <h1>{routine.name}</h1>
     <br />
+    <br />
+    <Container style={{
+        textAlign:'center' 
+    }}>
+        <Paper className='main-workout-paper' elevation={15}>
+            <Box pb={12}>
+    <br />
+    <br />
+    <Container>
+    <Paper>
+        <Box p={4}>
+    <h1>{routine.name}</h1>
     <br />
     <div>
         <h3>{routine.description}</h3>
     </div>
-    <br />
-    <br />
-    <Grid container spacing={2}>
-
+    </Box>
+    </Paper>
+    </Container>
+    <Grid container  style={{
+        textAlign:'center' 
+    }} >
+        
         {workoutArray.map((w)=>{
         return(<Box
-            m={4} 
+            m={3} my={4}
             p={2}
             sx={{
                 width: 300,
@@ -96,9 +116,12 @@ function RoutineCard({user, setRoutineBeingShown, setWorkoutBeingShown}){
            
         )
     })}
-    </Grid>
     
-    </>)
+    </Grid>
+    </Box>
+    </Paper>
+    </Container>
+    </div>)
 }
 
 export default RoutineCard

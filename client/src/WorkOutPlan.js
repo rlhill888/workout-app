@@ -5,6 +5,11 @@ import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import AddIcon from '@mui/icons-material/Add';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import './workoutplan.css'
 
 import { useHistory } from "react-router-dom";
 
@@ -30,20 +35,53 @@ function WorkOutPlan({user}){
    
 
     return(
-    <>
+    <div className='main-background'>
+    <NavBar user={user}/>
     <br />
     <br />
+    <br />
+    <Box>
+        <Container>
+            <br />
+            <br />
+            <Paper 
+            className='workout-paper'
+            elevation={10}>
+                <Box p={8}>
+            <br />
+            <br />
+            <Paper
+            elevation={5}
+            style={{
+                textAlign:'center' 
+            }}
+            >
+                <Box p={4}>
     <h1>Work Out Plan</h1>
     <h3>Manage All Your Routines Here</h3>
-    <NavBar user={user}/>
+                </Box>
+    </Paper>
+    
+    <Grid container>
     {routines.map((r)=>{
         return(
+            <Box m={4}>
             <RoutineDisplayCardWorkoutPlan r={r} user={user} deleteRoutine={deleteRoutine}/>
+            </Box>
         )
     })}
+    </Grid>
     <SpeedDial 
     ariaLabel="SpeedDial basic example"
-    sx={{ position: 'absolute', bottom: 16, right: 16 }}
+    sx={{ position: 'fixed', bottom: 16, right: 16 }}
+    FabProps={{
+        sx: {
+          bgcolor: 'secondary.main',
+          '&:hover': {
+            bgcolor: 'secondary.main',
+          }
+        }
+      }}
     icon={<SpeedDialIcon />}
     >
         <SpeedDialAction
@@ -55,7 +93,11 @@ function WorkOutPlan({user}){
         </SpeedDialAction>
 
     </SpeedDial>
-    </>
+    </Box>
+    </Paper>
+        </Container>
+    </Box>
+    </div>
     )
 }
 

@@ -1,0 +1,5 @@
+.paper-background{
+    background: rgb(76,0,161);
+    background: linear-gradient(54deg, rgba(76,0,161,1) 0%, rgba(0,0,0,1) 100%);
+opacity: 0.9;
+}

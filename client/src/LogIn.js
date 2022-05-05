@@ -1,8 +1,17 @@
 import React, {useState} from 'react';
 import {Link} from  "react-router-dom";
 import { useHistory } from "react-router-dom";
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import logo from './workout4melogo.png'
+import "./login.css";
+
 
 function LogIn({setUser}){
+
 
     const history = useHistory();
 
@@ -52,25 +61,43 @@ function LogIn({setUser}){
 
     return(
 
-        <> 
-         <h1>WORK OUT 4 ME</h1>
-
-         <h3>Log In</h3>
+        <div
+        className='Login'
+        > 
+        <Box 
+        style={{
+            textAlign:'center' 
+        }}
         
+        m={15}>
+            <Container
+            maxWidth='xs'
+            >
+                <Paper  
+                className='paper-background'
+                elevation={15}>
+                    <Box 
+                    
+                    p={5}>
+                    <img src={logo} alt="mainlogo" width="300" height="300" />
+
+        <Paper 
+        elevation={5}>
+            <Box p={4}>
+         <h2>Log In</h2>
+        <br />
 
          <form>
 
-        <label name='User Name'>User Name</label>
-        <br></br>
-        <input name='User Name' onChange={(e)=> setUserName(e.target.value)}></input>
-        <br></br>
-        <br></br>
-        <label name='Password'> Password</label>
-        <br></br>
-        <input name= 'Password' type="password" onChange={(e)=> setPassword(e.target.value)}></input>
+        <h3 name='User Name'>User Name</h3>
+        <TextField variant='outlined' name='User Name' onChange={(e)=> setUserName(e.target.value)}></TextField>
         <br></br>
         <br></br>
-        <input type='submit' onClick={handleSubmit} value='log in'></input>
+        <h3 name='Password'> Password</h3>
+        <TextField variant='outlined' name= 'Password' type="password" onChange={(e)=> setPassword(e.target.value)}></TextField>
+        <br></br>
+        <br></br>
+        <Button type='submit' onClick={handleSubmit} variant='contained'>Log In</Button>
         
          </form>
          <br />
@@ -78,14 +105,19 @@ function LogIn({setUser}){
                     return <h3>{error}</h3>
                 }))}
          <br/>
-         <Link to="/signup" exact>  Sign Up</Link>
-
-        
+         <h3>New User?</h3>
+         <Button color='secondary' onClick={()=> history.push('/signup')}>Create An Account</Button>
+         </Box>
+         </Paper>
+                        </Box>
+                    </Paper>
+                </Container>
+        </Box>
 
         
          
 
-        </>
+        </div>
     )
 
 

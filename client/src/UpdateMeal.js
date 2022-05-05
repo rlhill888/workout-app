@@ -2,9 +2,20 @@ import React, {useState, useEffect} from "react";
 import MealSelectorCard from "./MealSelectorCard";
 import { useParams, useHistory } from "react-router-dom";
 import ErrorsCard from "./ErrorsCard";
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Grid';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import NavBar from "./NavBar";
+import './updatemeal.css'
 
 
-function UpdateMeal(){
+function UpdateMeal({user}){
     const [filterOption, setFilterOption]= useState('')
     const [searchFilter, setSearchFilter]= useState('')
     const [name, setName]= useState('')
@@ -207,30 +218,40 @@ function UpdateMeal(){
 
 
     if(showMealPanel===false){
-        showMeals = <button onClick={()=> setShowMealPanel(true)}> Show Meals</button>
+        showMeals = 
+        <Stack>
+        <Button color='secondary' variant="contained" onClick={()=> setShowMealPanel(true)}> Show Meals</Button>
+        </Stack>
     }
 
     if(showMealPanel===true){
         const filteredIngredientsArray= ingredients.filter((i)=> i.macro_type.includes(filterOption) && i.name.includes(searchFilter))
         showMeals = <div> 
-
-        <button onClick={()=> setShowMealPanel(false)}>Hide Meals </button>
+        
+        <Stack>
+        <Button color='secondary' variant="contained" onClick={()=> setShowMealPanel(false)}>Hide Meals </Button>
+        </Stack>
+        <Container
+        style={{
+            textAlign:'center' 
+        }}
+        >
                 <br/>
                 <br/>
-                <label type='search ingredient'>Search Ingredient: </label>
-                <input type='search ingredient' value={searchFilter} onChange={(e)=> setSearchFilter(e.target.value)}></input>
-                     <select onChange={(e)=>setFilterOption(e.target.value)}name="Macro Search Filter" id='macrosearchfilter' >
-                        <option value="">--- Pick a macro to search by ---</option>
-                        <option value="protein">Protein</option>
-                        <option value="carb">Carb</option>
-                        <option value="fat">Fat</option>
-                    </select>
+                <h3 type='search ingredient'>Search Ingredient: </h3>
+                <TextField color='secondary' variant='standard' type='search ingredient' value={searchFilter} onChange={(e)=> setSearchFilter(e.target.value)}></TextField>
+                <Select color='secondary'  label="Pick a macro to search by" onChange={(e)=>setFilterOption(e.target.value)}name="Macro Search Filter" id='macrosearchfilter' >
+                        <MenuItem value="">Pick a Macro To Search By</MenuItem>
+                        <MenuItem value="protein">Protein</MenuItem>
+                        <MenuItem value="carb">Carb</MenuItem>
+                        <MenuItem value="fat">Fat</MenuItem>
+                    </Select>
                 <br/>
                 <br />
                 <br/>
                 <br/>
-        
-        
+        </Container>
+        <Grid container>
         {filteredIngredientsArray.map((i)=>{
             return <MealSelectorCard 
             key={`Meal Selector Card: ${i.id}`}
@@ -241,50 +262,82 @@ function UpdateMeal(){
             setMealObj={setMealObj}
             />
         })}
+        </Grid>
         </div>
     }
 
   
     return(
-        <> 
+        <div className='main-background'> 
+        <NavBar user={user}/>
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <Box>
+            <Container>
+                <Paper className='update-meal-main-paper' elevation={15}>
+                    <Box p={4}>
+
+
+
+
+
+
+        <Box>
+            <Container
+            style={{
+                textAlign:'center' 
+            }}
+            >
+                <Paper elevation={10}>
+        <br />
         <h1> Update {meal.name}</h1>
         <ErrorsCard errors={errors}/>
         <br />
         <form onSubmit={handleSubmit}>
-            <label name='mealname'>New Meal Name</label>
+            <h3 name='mealname'>New Meal Name</h3>
             <br />
-            <input value={name} onChange={(e)=> setName(e.target.value)} name='mealname'></input>
+            <TextField value={name} onChange={(e)=> setName(e.target.value)} name='mealname' variant="standard"></TextField>
             <br />
             <br />
-            <label name='mealdescription'>New Meal Description</label>
-            <br />
-            <input value={description} onChange={(e)=> setDescription(e.target.value)} name='mealdescription'></input>
+            <h3 name='mealdescription'>New Meal Description</h3>
+            <TextField value={description} onChange={(e)=> setDescription(e.target.value)} name='mealdescription' variant="standard"></TextField>
             <br />
              <br />
-            <label name='mealimage'>Image Link For Your New Meal</label>
+            <h3 name='mealimage'>Image Link For Your New Meal</h3>
             <br />
             <img src={image} height='300' width='300'></img>
             <br />
             <br />
-            <input value={image} onChange={(e)=> setImage(e.target.value)} name='mealimage'></input>
+            <TextField value={image} onChange={(e)=> setImage(e.target.value)} variant="filled" name='mealimage'></TextField>
             <br />
             <br />
-            <input type='submit' value='Update Meal'></input>
+            <Button color='secondary' type='submit' variant="contained">Update {meal.name}</Button>
         </form>
         <br />
+        </Paper>
+        </Container>
+    </Box>
         <br />
-        {/* <label type='search ingredient'>Search Ingredient: </label>
-        <select onChange={(e)=>setFilterOption(e.target.value)}name="Macro Search Filter" id='macrosearchfilter' >
-            <option value="">--- Pick a macro to search by ---</option>
-            <option value="protein">Protein</option>
-            <option value="carb">Carb</option>
-            <option value="fat">Fat</option>
-        </select>
-        <input type='search ingredient' value={searchFilter} onChange={(e)=> setSearchFilter(e.target.value)}></input>
-        <br/>
-        <br /> */}
-        {showMeals}
-        </>
+        <br />
+        <Container>
+            <Paper elevation={10}>
+            {showMeals}
+            </Paper>
+        </Container>
+
+            </Box>
+            </Paper>
+            </Container>
+            </Box>
+
+
+
+
+        
+        </div>
     )
 }
 

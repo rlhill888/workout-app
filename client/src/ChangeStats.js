@@ -1,6 +1,12 @@
 import React, {useState} from "react";
-
+import NavBar from "./NavBar";
 import { useHistory } from "react-router-dom";
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import './changestats.css';
 
 function ChangeStats({user}){
     const [age, setAge]= useState(user.age)
@@ -32,35 +38,52 @@ function ChangeStats({user}){
     }
 
     return(
-        <div>
-         <button onClick={history.goBack}>Back</button>
+        <div className='main-background'>
+            <NavBar user={user}/>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <Box
+             style={{
+                textAlign:'center' 
+            }}
+            >
+                <Container>
+                    <Paper elevation={15}>
+                        <Box p={4}>
             <h1>{user.user_name}</h1>
             <br />
             <form onSubmit={handleSubmit}>
-                <label name='age'>Age: </label>
-                <input name='age' value={age} onChange={(e)=> setAge(e.target.value)}></input>
+                <h3 name='age'>Age: </h3>
+                <TextField name='age' variant='standard' value={age} onChange={(e)=> setAge(e.target.value)}></TextField>
                 <br />
                 <br />
-                <label name='weight'>Weight: </label>
-                <input name='weight' value={weight} onChange={(e)=> setWeight(e.target.value)}></input>
+                <h3 name='weight'>Weight: </h3>
+                <TextField name='weight' variant='standard' value={weight} onChange={(e)=> setWeight(e.target.value)}></TextField>
                 <br />
                 <br />
-                <label>Account Privacy: </label>
+                <h3>Account Privacy: </h3>
                 <select onChange={(e)=> setPrivacySetting(e.target.value)} value={privacySetting}>
                 <option value={true}>Public</option>
                 <option value={false}>Private</option>
                 </select>
                 <br />
                 <br />
-                <label name='profilepic'>Profile Pic Url:</label>
-                <input name='profilepic' value={profilePic} onChange={(e)=> setProfilePic(e.target.value)}></input>
+                <h3 name='profilepic'>Profile Pic Url:</h3>
+                <TextField name='profilepic' value={profilePic} onChange={(e)=> setProfilePic(e.target.value)}></TextField>
                 <br />
                 <br />
                 <img src={profilePic}height='250' width='250'></img>
                 <br />
                 <br />
-                <input type='submit' value='Update Profile'></input>
+                <Button color='secondary' type='submit' variant='contained'>Update Profile</Button>
                 </form>
+                </Box>
+                </Paper>
+                </Container>
+                </Box>
         </div>
     )
 }

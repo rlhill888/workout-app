@@ -10,10 +10,14 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import { CardActionArea, CardMedia, CardContent, Card } from '@mui/material';
 import PostCardWithSettings from "./PostCardWithSettings";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import RoutinePostCardWithSettings from "./RoutinePostCardWithSettings";
 import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import Container from '@mui/material/Container';
+import './settings.css'
 
 
 
@@ -36,12 +40,38 @@ function Settings({user}){
         }
     }
     return(
-        <> 
-        <h1>Profile</h1>
+        <div className='main-background'> 
+            <br />
+            <br />
+            <br />
+            <br />
         <NavBar user={user}/>
-        <img src={user.profile_pic} height='200' width='200'></img>
+        <Box>
+            <Container>
+                <Paper className='profile-background-main-card' elevation={15}>
+                    <Box 
+                    p={4}
+                    >
+        <h1>
+            <Avatar
+            src={user.profile_pic}></Avatar>
+            Profile</h1>
+        
+        <Box
+        sx={{ width: 90 }}
+        >
+       
+        <Paper
+        style={{
+                textAlign:'center' 
+            }}
+        >
+            
+            <h2>{user.user_name}</h2>
+        </Paper>
+        </Box>
         <br />
-        <h2>{user.user_name}</h2>
+        
         <br />
         <Accordion>
             <AccordionSummary  expandIcon={<ExpandMoreIcon />}>
@@ -55,7 +85,7 @@ function Settings({user}){
             <h3>{`age: ${user.age}`}</h3>
             <h3>{`weight: ${user.weight}`}</h3>
             <h3>{`Height: ${height()}`}</h3>
-             <Button onClick={()=> history.push(`/changestats/${user.id}`)}>Change Account Information</Button>
+             <Button color='secondary' onClick={()=> history.push(`/changestats/${user.id}`)}>Change Account Information</Button>
             </AccordionDetails>
            
         </Accordion>
@@ -68,7 +98,7 @@ function Settings({user}){
             <h3>{user.carb_macros} Grams of Carbs</h3>
             <h3>{user.protein_macros} Grams of Protein</h3>
             <h3>{user.fat_macros} Grams of Fats</h3>
-             <Button onClick={()=> history.push('/updatedailymacros')}>Change Daily Macro Goals</Button>
+             <Button color='secondary' onClick={()=> history.push('/updatedailymacros')}>Change Daily Macro Goals</Button>
         </AccordionDetails>
         </Accordion>
         <div >
@@ -99,8 +129,12 @@ function Settings({user}){
             }
         })}
         </Grid>
+        </Box>
+        </Paper>
+        </Container>
+        </Box>
         
-        </>
+        </div>
     )
 }
 

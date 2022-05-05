@@ -83,7 +83,7 @@ function RoutinePostCardWithSettings({post, user}){
 
         <br />
         <br />
-        <PostSettings></PostSettings>
+        <PostSettings user={user} post={post}></PostSettings>
         <br />
         <br />
        <div>

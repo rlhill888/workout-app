@@ -1,4 +1,11 @@
 import React, {useState} from "react";
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import NavBar from "./NavBar";
+import './updatedailymacros.css'
 
 
 function UpdateDailyMacros({user}){
@@ -8,7 +15,21 @@ function UpdateDailyMacros({user}){
     const [fats, setFats]= useState(user.fat_macros)
     console.log(calories)
     return(
-        <div>
+        <div className='main-background'>
+            <NavBar user={user}/>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <Box
+            style={{
+                textAlign:'center' 
+            }}
+            >
+                <Container>
+                    <Paper elevation={15}>
+                        <Box p={4}>
             <h1>
                 Change daily macros
             </h1>
@@ -29,24 +50,28 @@ function UpdateDailyMacros({user}){
                 .then(res=> res.json())
                 .then(data=> console.log(data))
             }}>
-                <label name='calories'>Calories: </label>
-                <input onChange={(e)=> setCalories(e.target.value)}value={calories} name='calories'type='number'></input>
+                <h3 name='calories'>Calories: </h3>
+                <TextField variant='standard' onChange={(e)=> setCalories(e.target.value)}value={calories} name='calories'type='number'></TextField>
                 <br />
                 <br />
-                <label name='fats'>Grams of fat: </label>
-                <input onChange={(e)=> setFats(e.target.value)} value={fats} name='fats' type='number'></input>
+                <h3 name='fats'>Grams of fat: </h3>
+                <TextField variant='standard' onChange={(e)=> setFats(e.target.value)} value={fats} name='fats' type='number'></TextField>
                 <br />
                 <br />
-                <label name='proteins'>Grams of protein: </label>
-                <input onChange={(e)=> setProtein(e.target.value)} value={protein} name='proteins' type='number'></input>
+                <h3 name='proteins'>Grams of protein: </h3>
+                <TextField variant='standard' onChange={(e)=> setProtein(e.target.value)} value={protein} name='proteins' type='number'></TextField>
                 <br />
                 <br />
-                <label name='carbs'>Grams of carbs: </label>
-                <input onChange={(e)=> setCarbs(e.target.value)} value={carbs} name='carbs' type='number'></input>
+                <h3 name='carbs'>Grams of carbs: </h3>
+                <TextField variant='standard' onChange={(e)=> setCarbs(e.target.value)} value={carbs} name='carbs' type='number'></TextField>
                 <br />
                 <br />
-                <input type='submit' value='Update Your Daily Macro Goals'></input>
+                <Button type='submit' variant='contained'>Update Your Daily Macro Goals</Button>
             </form>
+            </Box>
+            </Paper>
+            </Container>
+            </Box>
         </div>
     )
 }

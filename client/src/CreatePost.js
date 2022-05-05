@@ -1,9 +1,12 @@
 import React, {useState} from "react";
 import PostCardTemplate from "./PostCardTemplate";
 import {  useHistory } from "react-router-dom";
-
-
-
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import NavBar from "./NavBar";
 
 function CreatePost({user}){
 
@@ -37,27 +40,41 @@ function CreatePost({user}){
     return(
 
         <> 
-        
+        <NavBar user={user}/>
         <div>
-            <button onClick={()=> history.push('/')}>Back</button>
             <br />
             <br />
+            <br />
+            <br />
+            <br />
+            <Box
+             style={{
+                textAlign:'center' 
+            }}
+            >
+                <Container>
+                    <Paper elevation={15}>
+                        <Box p={4}>
             <form onSubmit={handleSubmit}>
-                <label name='title'>Title: </label>
-                <input value={title} onChange={(e)=> setTitle(e.target.value)} name='title'></input>
+                <h3 name='title'>Post Title: </h3>
+                <TextField value={title} variant='standard' onChange={(e)=> setTitle(e.target.value)} name='title'></TextField>
                 <br />
-                <label name='Image'>Image Link:</label>
-                <input value={image} name='Image' onChange={(e)=> setImage(e.target.value)}></input>
+                <h3 name='Image'>Image Link:</h3>
+                <TextField value={image} name='Image' variant='standard' onChange={(e)=> setImage(e.target.value)}></TextField>
                 <br />
-                <label name='description'>Description: </label>
-                <input name='description' value={description} onChange={(e)=> setDescription(e.target.value)}></input>
+                <h3 name='description'>Description: </h3>
+                <TextField variant='standard' name='description' value={description} onChange={(e)=> setDescription(e.target.value)}></TextField>
                 <br />
                 <br />
-                <input type='submit' value='Create Post'></input>
+                <Button type='submit'>Create Post</Button>
             </form>
+            </Box>
+            </Paper>
+            </Container>
+            </Box>
         </div>
         <br />
-        <PostCardTemplate title={title} image={image} description={description}/>
+        <PostCardTemplate user={user} title={title} image={image} description={description}/>
         </>
     )
 }

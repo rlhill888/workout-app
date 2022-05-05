@@ -2,6 +2,17 @@ import React, {useState, useEffect} from "react";
 import { useHistory, useParams } from "react-router-dom";
 import CreateRoutineSelectorCard from "./CreateRoutineSelectorCard";
 import ErrorsCard from "./ErrorsCard";
+import NavBar from "./NavBar";
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Grid';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import './updateroutine.css'
 
 function UpdateRoutine({ user}){
 
@@ -195,22 +206,35 @@ function UpdateRoutine({ user}){
     console.log(worokoutInfoObject)
     
     if(showWorkouts===false){
-        workoutsearch= <button onClick={()=> setShowworkouts(true)}>Select Workouts For Routine</button>
+        workoutsearch= 
+        <Stack>
+        <Button color='secondary' variant="contained" onClick={()=> setShowworkouts(true)}>Select Workouts For Routine</Button>
+        </Stack>
     }
     if(showWorkouts===true){
 
         const filteredWorkoutSearch = workouts.filter((w)=> w.name.includes(workoutSearchFilter)) 
         workoutsearch= <div>
-            
-            <button onClick={()=> setShowworkouts(false)}> Hide Workouts</button>
+            <Stack>
+            <Button color='secondary' variant="contained" onClick={()=> setShowworkouts(false)}> Hide Workouts</Button>
+            </Stack>
+
+            <Container style={{
+                textAlign:'center' 
+            }}>
             <br/>
             <br />
 
 
-            <label name='workout search'> Search Work Outs:</label>
-            <input value={workoutSearchFilter} onChange={(e)=> setWorkoutSearchFilter(e.target.value)} name='workout search'></input>
-
+            <h3 name='workout search'> Search Work Outs:</h3>
+            <TextField variant="standard" value={workoutSearchFilter} onChange={(e)=> setWorkoutSearchFilter(e.target.value)} name='workout search'></TextField>
+            </Container>
             
+            <Grid
+            style={{
+                textAlign:'center' 
+            }}
+            >
             {filteredWorkoutSearch.map((w)=>{
                 return <CreateRoutineSelectorCard 
                 key={`Create Routine Selector Card ${w.id}`}
@@ -221,44 +245,78 @@ function UpdateRoutine({ user}){
                 setworokoutInfoObject={setworokoutInfoObject}
                 />
             })}
+            </Grid>
         </div>
     }
   
     return(
-       <> 
-       <button onClick={()=> history.push('/workoutplan')}>Back To Workout Plan</button>
+       <div className='main-background'> 
+       <NavBar user={user}/>
+       <br />
+       <br />
+       <br />
+
+
+        <Box>
+            <Container>
+                <Paper className='update-workout-main-paper' elevation={15}>
+                    <Box p={4}>
+
+
+
+
+       <Box>
+           <Container style={{
+        textAlign:'center' 
+    }}>
+               <Paper elevation={10}>
        <h1>Update {routine.name}</h1>
        <ErrorsCard errors={errors}/>
        <form onSubmit={handleSubmit}>
-
            <div>  
-            <label name='name'>Routine Name</label>
+            <h3 name='name'>Routine Name</h3>
            <br></br>
-           <input value={routineName} onChange={(e)=> setRoutineName(e.target.value)} name='name'></input>
+           <TextField variant="standard" value={routineName} onChange={(e)=> setRoutineName(e.target.value)} name='name'></TextField>
            <br />
            <br />
            <label name= 'description'>Description </label>
            <br />
-           <input value={routineDescription} onChange={(e)=> setRoutineDescription(e.target.value)} name='description'></input>
+           <TextField variant="standard" value={routineDescription} onChange={(e)=> setRoutineDescription(e.target.value)} name='description'></TextField>
            <br />
            <br />
-           <label name= 'image'>Image Link</label>
+           <h3 name= 'image'>Image Link</h3>
            <br />
             <img src={imageLink} height='300' width='400'></img>
             <br />
-           <input value={imageLink} onChange={(e)=> setImageLink(e.target.value)} name= 'image'></input>
+           <TextField value={imageLink} variant="filled" onChange={(e)=> setImageLink(e.target.value)} name= 'image'></TextField>
            </div>
            <br />
-           <input value='Update Routine'  type='submit'></input>
+           <Button  color='secondary' variant="contained" type='submit'> Update {routine.name}</Button>
+        </form>
+        <br />
+            </Paper>
+            </Container>
+        </Box>
+           <br />
+           <br />
 
-           <br />
-           <br />
-           <br />
+          
+         <Container>
+                <Paper elevation={10}>
            {workoutsearch}
-
-       </form>
+                </Paper>
+         </Container>
        
-       </>
+       
+
+
+    </Box>
+    </Paper>
+    </Container>
+        </Box>
+
+
+       </div>
     )
 }
 

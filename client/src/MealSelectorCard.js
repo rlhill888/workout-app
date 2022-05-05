@@ -1,5 +1,8 @@
 import React, {useState} from "react";
 import ServingsTab from "./ServingsTab";
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Checkbox from '@mui/material/Checkbox';
 
 function MealSelectorCard({i, mealCheckedObj, setMealCheckedObj, mealObj, setMealObj}){
     const [showServingsBoolean, setShowServingsBoolean]= useState(false)
@@ -21,10 +24,14 @@ function MealSelectorCard({i, mealCheckedObj, setMealCheckedObj, mealObj, setMea
 
     return(
         <> 
+        <Box m={4}>
+        <Paper elevation={3}>
+        <Box m={4} >
+        
          <div key={`ingredientdiv${i.id}`}>
                     <br />
                     <h2>{i.name} 
-                    <input name={`${i.name} checked`}
+                    <Checkbox color='secondary' name={`${i.name} checked`}
                     type='checkbox' 
                     key={`mealcheckbox${i.id}`} 
                     id={`mealcheckbox${i.name}`} 
@@ -56,16 +63,13 @@ function MealSelectorCard({i, mealCheckedObj, setMealCheckedObj, mealObj, setMea
 
                     }}
                     name={i.name}
-                    ></input>
+                    ></Checkbox>
                     </h2> 
                     
                     <h3>Main Macro: {i.macro_type}</h3>
-                    <br />
-                    <h3>Serving Size:</h3>
-                    <h3>{i.serving_size} {i.serving_measurement_type}</h3>
+                    <h3>Serving Size: {i.serving_size} {i.serving_measurement_type}</h3>
                     <br />
                     {showServings}
-                    <br />
                     <h2>Macros:</h2>
                     <ul>
                         <li>Protein: {i.protein} g</li>
@@ -74,6 +78,9 @@ function MealSelectorCard({i, mealCheckedObj, setMealCheckedObj, mealObj, setMea
                     </ul>
                     <br />
                 </div>
+                </Box>
+                </Paper>
+                </Box>
         </>
     )
 }

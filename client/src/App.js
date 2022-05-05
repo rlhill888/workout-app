@@ -24,7 +24,11 @@ import Socail from './Socail';
 import * as gymData from "./data/open-gym.json"
 
 
+
 import {GoogleMap, withScriptjs, withGoogleMap, Marker} from 'react-google-maps'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+
 
 
 function Map(){
@@ -138,7 +142,7 @@ function App() {
           <RoutineCard setRoutineBeingShown={setRoutineBeingShown} routine={routineBeingShown} setWorkoutBeingShown={setWorkoutBeingShown} user={user}/>
         </Route>
         <Route exact path="/meal/:id">
-          <IndivisualMealBeingShownCard meal={mealBeingShown}/>
+          <IndivisualMealBeingShownCard user={user} meal={mealBeingShown}/>
         </Route>
         <Route exact path="/routine/updateroutine/:id">
           <UpdateRoutine workouts={workouts} setUpdateData={setUpdateData} user={user} routine={routineBeingShown} setWorkoutBeingShown={setWorkoutBeingShown}/>
@@ -147,7 +151,7 @@ function App() {
           <CreateMeal ingredients={ingredients} user={user}/>
         </Route>
         <Route exact path="/updatemeal/:id">
-          <UpdateMeal ingredients={ingredients} meal={mealBeingShown}/>
+          <UpdateMeal user={user} ingredients={ingredients} meal={mealBeingShown}/>
         </Route>
         <Route exact path="/changestats/:id">
           <ChangeStats user={user}/>

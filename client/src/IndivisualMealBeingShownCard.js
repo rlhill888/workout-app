@@ -1,9 +1,19 @@
 import React, {useState, useEffect} from "react";
 import IngredientCard from "./IngredientCard";
 import { useHistory, useParams } from "react-router-dom";
+import NavBar from "./NavBar";
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import { CardActionArea, CardMedia, CardContent, Card } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import './indivisualmealbeingshown.css';
 
 
-function IndivisualMealBeingShownCard(){
+function IndivisualMealBeingShownCard({user}){
     const history = useHistory()
     const params= useParams()
     const [meal, setMeal]= useState([])
@@ -69,46 +79,103 @@ function IndivisualMealBeingShownCard(){
     }
 
     return(
-        <> 
-        <button onClick={history.goBack }>Back</button>
-        <button onClick={()=> history.push(`/updatemeal/${meal.id}`)}>Update Meal</button>
-        <button onClick={()=>{
+        <div className='main-background'> 
+        <NavBar user={user}/>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+
+        <Box>
+
+            <Container>
+            <Paper className='main-indivisual-meal-paper' elevation={15}>
+                <Box p={4}>
+
+
+        <Container  style={{
+        textAlign:'center' 
+    }}> 
+            <Paper elevation={3}>
+                <Container>
+                    <Paper>
+                         <h1>{meal.name}</h1>
+                    </Paper>  
+                </Container>
+        
+        <CardMedia component="img" image={meal.image} height={'500px'} width={'500px'}></CardMedia>
+        <br />
+        <br />
+
+        <Paper >
+                <h3>{meal.description}</h3>
+            </Paper>
+         <ButtonGroup color='secondary' variant='contained' aria-label="outlined primary button group">
+            <Button  onClick={()=> history.push(`/updatemeal/${meal.id}`)}>Update Meal</Button>
+            <Button onClick={()=>{
             fetch(`http://localhost:4000/meals/${meal.id}`,{
                 method: 'DELETE',
                 headers: {
                     'Content-Type' : 'application/json'
                 }
             })
-        }}>Delete Meal</button>
+        }}>
+            <DeleteIcon />
+            Delete Meal</Button>
+        </ButtonGroup>
         <br />
         <br />
-        <h1>{meal.name}</h1>
-        <img src={meal.image} height={'500px'} width={'500px'}></img>
-        <br />
-        <br />
-        <p>{meal.description}</p>
-        <br />
-        <br />
+        
+            </Paper>
+        </Container>
+        <Container style={{
+        textAlign:'center'
+    }}>
+            <Paper elevation={3}>
         <h2>Meal Macros:</h2>
-        <br />
-        <br />
         <h2>Carbs: {carbs} grams</h2>
         <h2>Protein: {protein} grams</h2>
         <h2>Fat: {fat} grams</h2>
+            </Paper>
+        </Container>
+       
         <br />
         <br />
-        <h2>Ingredients: </h2> 
-        <br />
+        <Container>
+            <Paper elevation={3}>
+                <Paper
+                style={{
+                    textAlign:'center'
+                }}
+                >
+                    <h2>Ingredients: </h2> 
+                </Paper>
+                <br />
+                <Grid container>
         {ingredientsArray.map((ingredient)=>{
             return( 
-            <> 
+            <Grid item> 
             <br />
              <IngredientCard ingredient={ingredient}/>
              <br />
-            </> )
+            </Grid> )
         })}
+            </Grid>
+                </Paper>
+            
+        
+        </Container>
 
-        </>
+        </Box>
+
+        </Paper>
+        </Container>
+
+        </Box>
+
+        </div>
     )
 
 

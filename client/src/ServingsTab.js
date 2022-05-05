@@ -1,4 +1,5 @@
 import React from "react";
+import TextField from '@mui/material/TextField';
 
 
 function ServingsTab({i, mealObj, setMealObj}){
@@ -10,15 +11,15 @@ function ServingsTab({i, mealObj, setMealObj}){
     return(
 
         <div> 
-        <label>Servings:</label>
-        <input onChange={(e)=>{
+        <h3>Servings of {i.name}:</h3>
+        <TextField onChange={(e)=>{
             let copyMealObj = [...mealObj]
             copyMealObj[index] = {...copyMealObj[index], servings: e.target.value}
             
             setMealObj(copyMealObj)
 
         }}type='number'
-        value={mealObj[index].servings === undefined ? '' :mealObj[index].servings}></input>
+        value={mealObj[index].servings === undefined ? '' :mealObj[index].servings}></TextField>
         </div>
     )
 }

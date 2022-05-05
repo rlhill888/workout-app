@@ -2,6 +2,7 @@ class Routine < ApplicationRecord
 
     has_many :user_routines, dependent: :destroy
     has_many :workout_routines, dependent: :destroy
+    # has_many :posts, dependent: :destroy
 
 
     has_many :users, through: :user_routines

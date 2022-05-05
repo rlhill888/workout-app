@@ -1,6 +1,10 @@
 import React, {useEffect, useState} from "react";
 import { useHistory, useParams } from "react-router-dom";
 import NavBar from "./NavBar";
+import Paper from '@mui/material/Paper';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import './workoutcard.css'
 
 
 function WorkoutCard({user}){
@@ -15,11 +19,29 @@ function WorkoutCard({user}){
         .then(res=> setWorkout(res))
     }, [])
     return(
-        <div>
+        <div className='main-background'>
             <NavBar user={user}/>
             <br />
             <br />
+            <br />
+            <br />
+            <br />
+            <Box
+            style={{
+                textAlign:'center' 
+            }}
+            m={5}
+            >
+                <Container>
+                    <Paper elevation={15}>
+                        <Box p={5}>
+                            <Box>
+                                <Paper elevation={3}>
+                                    <Box p={2}>
              <h1>{workout.name}</h1>
+             </Box>
+             </Paper>
+             </Box>
              <br />
              <br />
              <h3>{workout.description}</h3>
@@ -31,10 +53,12 @@ function WorkoutCard({user}){
              <h3> {`Targeted muscle groups for ${workout.name}: ${workout.target_muscles}`}</h3>
              <br />
              <br />
-             <h2>{`Heres on a video explaining good form and teqniques for ${workout.name}`} </h2>
+             <h2>{`Heres a video explaining good form and teqniques for ${workout.name}`} </h2>
              <br />
              <br />
-             
+             <Box>
+                 <Paper className='workout-video-card' elevation={3}>
+                     <Box p={2}>
              <iframe
       width="853"
       height="480"
@@ -44,6 +68,13 @@ function WorkoutCard({user}){
       allowFullScreen
       title="Embedded youtube"
     />
+    </Box>
+    </Paper>
+    </Box>
+    </Box>
+    </Paper>
+    </Container>
+    </Box>
         </div>
     )
 }

@@ -28,8 +28,8 @@ function PostForm({users, posts, user}){
 
     return(
        <div>
-           <h1 >Posts</h1>
            <br />
+           <Container>
            <Grid container>
             <div>
                {posts.map((p)=>{
@@ -55,6 +55,7 @@ function PostForm({users, posts, user}){
                })}
            </div>
            </Grid>
+           </Container>
           
            
            

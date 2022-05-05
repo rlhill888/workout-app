@@ -20,17 +20,23 @@ function FollowUserCard({user, users}){
         followUserButton= <> 
         <br />
         <br />
-        <Button type='submit' variant="contained">
+        <Button type='submit'  color='secondary' variant="contained">
             <Avatar src={userShowing.profile_pic}></Avatar>
               Follow {inputValue}</Button> 
         </>
     }
     if(showFollowButton=== false){
-        followUserButton= <> </>
+        followUserButton= <> 
+        <br />
+        <br />
+        <Button disabled  variant="contained">
+            <Avatar></Avatar>
+              Follow {inputValue}</Button> 
+        </>
     }
 
     return(
-        <Stack direction="row">
+        <Stack>
                <form onSubmit={(e)=>{
                    e.preventDefault()
                    console.log(userShowing[0].id)
@@ -50,7 +56,7 @@ function FollowUserCard({user, users}){
                    refreshPage()
                    
                }}>
-                   <TextField onChange={(e)=>{
+                   <TextField color='secondary' onChange={(e)=>{
                         setInputValue(e.target.value)
                         let user_filter = users.filter((u)=>{ 
                             return e.target.value === u.user_name})
@@ -65,6 +71,8 @@ function FollowUserCard({user, users}){
                              return setShowFollowButton(false)
                         }
                    }} placeholder='search a User to follow'></TextField>
+                   
+                
                    {followUserButton}
                </form>
            </Stack>

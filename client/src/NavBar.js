@@ -11,6 +11,7 @@ import LogOutButton from './LogOutButton';
 import HomeIcon from '@mui/icons-material/Home';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import './navBar.css'
 
 
 
@@ -25,20 +26,34 @@ function NavBar({user}){
         setAnchorEl(null)
     }
     return (
-   
-    <AppBar>
-         <Box p={1}> 
+   <div
+   className='navbar'
+   >
+    <AppBar elevation={15}>
+         <Box 
+         s={{ justifyContent: 'space-between' }}
+         p={1}
+         className='navbar'
+         > 
         <Stack direction="row" spacing={2}>
-            <Button variant='contained' onClick={()=> history.push('/')}>
+            <Button 
+            color='secondary'
+            variant='contained' onClick={()=> history.push('/')}>
             <HomeIcon />
             </Button>
-            <Button variant='contained' onClick={()=> history.push('/mealPlan')}>Meal Plan</Button>
-            <Button variant='contained' onClick={()=> history.push('/workoutplan')}>Work Out Plan</Button>
-            <Button variant='contained' onClick={()=> history.push('/social')}>Social</Button>
-            <Avatar src={user.profile_pic} onClick={(e)=> {
+            <Button color='secondary' variant='contained' onClick={()=> history.push('/mealPlan')}>Meal Plan</Button>
+            <Button color='secondary' variant='contained' onClick={()=> history.push('/workoutplan')}>Work Out Plan</Button>
+            <Button color='secondary' variant='contained' onClick={()=> history.push('/social')}>Social</Button>
+            <Button color='secondary' variant='contained'
+            onClick={(e)=> {
                 setOpenMenu(previousState=> !previousState)
                 setAnchorEl(e.currentTarget)
-                } }></Avatar>
+                } }
+            >
+                <Avatar src={user.profile_pic} ></Avatar>
+                 { `   ${user.user_name}`}
+            </Button>
+            
         </Stack>
         <Menu 
         anchorEl={anchorEl}
@@ -58,6 +73,7 @@ function NavBar({user}){
      </Box>
     {/* <Link to='/profile'> Profile </Link> */}
     </AppBar>
+    </div>
     
    
     )

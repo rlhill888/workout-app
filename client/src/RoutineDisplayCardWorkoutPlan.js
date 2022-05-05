@@ -39,6 +39,7 @@ function RoutineDisplayCardWorkoutPlan({r, user, deleteRoutine}){
                 <MuiAccordionDetails>
                     <Stack>
                         <Button 
+                        color='secondary'
                        onClick={()=> deleteRoutine(r.id)}
                         variant="contained" >
                             <DeleteIcon /> Delete Routine
@@ -82,11 +83,14 @@ function RoutineDisplayCardWorkoutPlan({r, user, deleteRoutine}){
                             .then(res=> res.json())
                             .then(res=> console.log(res))
                         }}
+                        color='secondary'
                         variant="contained">
                             <PresentToAllIcon />
                             Share Routine
                         </Button>
-                        <Button onClick={()=> history.push(`/routine/${r.id}`)}>
+                        <Button 
+                        color='secondary'
+                        onClick={()=> history.push(`/routine/${r.id}`)}>
                             <CallMissedOutgoingIcon />
                             Go To Routine
                         </Button>
@@ -119,10 +123,13 @@ function RoutineDisplayCardWorkoutPlan({r, user, deleteRoutine}){
                                 }
                             })
                         }}
+                        color='secondary'
                         variant="contained" >
                             <DeleteIcon /> Remove Routine
                         </Button>
-                        <Button onClick={()=> history.push(`/routine/${r.id}`)}>
+                        <Button 
+                        color='secondary'
+                        onClick={()=> history.push(`/routine/${r.id}`)}>
                             <CallMissedOutgoingIcon />
                             Go To Routine
                         </Button>

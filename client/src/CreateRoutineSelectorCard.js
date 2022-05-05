@@ -1,6 +1,10 @@
 import React from "react";
 import {  useHistory } from "react-router-dom";
 import SetsAndRepsTab from "./SetsAndRepsTab";
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Checkbox from '@mui/material/Checkbox';
+import Container from '@mui/material/Container';
 
 function CreateRoutineSelectorCard({w, worokoutInfoObject, workOutSearchCheckBox, setWorkOutSearchCheckBox, setworokoutInfoObject}){
 
@@ -28,12 +32,17 @@ function CreateRoutineSelectorCard({w, worokoutInfoObject, workOutSearchCheckBox
 
                 
                 return (
-                    
-                    
+                    <>
+                    <Box style={{
+        textAlign:'center' 
+    }} m={4}>
+                        <Paper  elevation={3}>
+                        <Box m={4} >
                     <div key={`workoutsearch${w.id}`} > <> 
                     <br />
                     <h2>{w.name}
-                    <input  
+                    <Checkbox  
+                    color='secondary'
                     checked={checkBoxes(w)}
                     key={`workoutcheckbox${w.id}`} 
                     id={`workoutcheckbox${w.name}`} 
@@ -58,7 +67,7 @@ function CreateRoutineSelectorCard({w, worokoutInfoObject, workOutSearchCheckBox
                         type='checkbox'  
                         name={w.name}
                         value={w.id}>
-                    </input>
+                    </Checkbox>
                     </h2>
                     <br />
                     <img src={w.gif} width="300" height="300"></img>
@@ -71,6 +80,14 @@ function CreateRoutineSelectorCard({w, worokoutInfoObject, workOutSearchCheckBox
                         }}>{`Click to see more information about ${w.name}`}</h2>
                         <br />
                     </div>
+                        </Box>
+                    </Paper>
+
+                    </Box>
+
+
+
+                    </>
                 
                 )
 }

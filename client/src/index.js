@@ -4,12 +4,36 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme =createTheme({
+  palette: {
+    type: 'light',
+    primary: {
+      main: '#000000',
+      light: '#606060',
+    },
+    secondary: {
+      main: '#4c00a1',
+    },
+    background: {
+      default: '#ffffff',
+      paper: '#d8d8d8',
+    },
+    stepper: {
+      iconColor: 'green' // or logic to change color
+  }
+  }
+
+})
 
 ReactDOM.render(
   <React.StrictMode>
+    <ThemeProvider theme={theme}>
     <BrowserRouter>
     <App />
     </BrowserRouter>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Container from '@mui/material/Container';
-import HomeCSS from './Home.module.css'
+import "./home.css";
 
 import { CardActionArea, CardMedia, CardContent, Card } from '@mui/material';
 
@@ -44,17 +44,48 @@ function Home({user}){
     
 
 return(
-    <>
+    <div className='main-background'>
+        <NavBar user={user}/>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    <Box>
+        <Container>
+            <Paper
+            className='home-paper-background'
+            >
+                <Box p={4}>
     <br />
-    <LogOutButton />
-    <h1>Welcome {user.user_name}</h1>
     <br />
     <br />
-    <NavBar user={user}/>
+    <Container
+    style={{
+        textAlign:'center' 
+    }}
+    >
+        <Paper>
+            <Box py={4}>
+    <h1>WELCOME {user.user_name}!</h1>
+    </Box>
+    </Paper>
+    </Container>
     <br />
     <br />
-    <h1>Here Are Your Routines You Are Currently Using</h1>
+    
     <br />
+    <br />
+   
+    <br />
+    <Box
+    >
+        <Paper 
+        className='home-paper-workout-cards-background'
+        elevation={4}>
+            
+            <Box p={4}>
+                 <h1>Here Are Your Routines You Are Currently Using</h1>
     {routines.map((a)=>{
         console.log(a)
         return(
@@ -76,10 +107,17 @@ return(
         
         )
     })}
+            </Box>
+        </Paper>
+    </Box>
     <br />
     <br />
     <PostForm posts={posts} user={user} users={users}/>
-    </>
+    </Box>
+    </Paper>
+    </Container>
+    </Box>
+    </div>
 )
 
 }

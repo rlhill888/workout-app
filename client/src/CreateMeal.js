@@ -1,7 +1,19 @@
 import React, {useState, useEffect} from "react";
 import MealSelectorCard from "./MealSelectorCard";
 import { useHistory } from "react-router-dom";
+import NavBar from "./NavBar";
 import ErrorsCard from "./ErrorsCard";
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Grid';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import './createmeal.css'
+
 
 
 function CreateMeal({user, ingredients}){
@@ -14,11 +26,14 @@ function CreateMeal({user, ingredients}){
     const [mealCheckedObj, setMealCheckedObj]= useState([])
     const [showMealPanel, setShowMealPanel]= useState(false)
     const [errors, setErrors]= useState([])
+    const filteredIngredientsArray= ingredients.filter((i)=> i.macro_type.includes(filterOption) && i.name.includes(searchFilter))
 
     const history = useHistory()
 
     useEffect(()=>{
-        ingredients.map((i)=> setMealCheckedObj((p)=> [...p, { [`${i.name} checked`] : false}]))
+        let copyArray= []
+        ingredients.map((i)=>  copyArray.push({ [`${i.name} checked`] : false}))
+        setMealCheckedObj(copyArray) 
         
     }, [])
 
@@ -92,30 +107,40 @@ function CreateMeal({user, ingredients}){
     let showMeals
 
     if(showMealPanel===false){
-        showMeals = <button onClick={()=> setShowMealPanel(true)}> Show Meals</button>
+        showMeals = 
+        <Stack>
+             <Button color='secondary' variant="contained" onClick={()=> setShowMealPanel(true)}> Show Meals</Button>
+        </Stack>
+       
     }
 
     if(showMealPanel===true){
         const filteredIngredientsArray= ingredients.filter((i)=> i.macro_type.includes(filterOption) && i.name.includes(searchFilter))
         showMeals = <div> 
-
-        <button onClick={()=> setShowMealPanel(false)}>Hide Meals </button>
+        <Stack>
+            <Button color='secondary' variant="contained" onClick={()=> setShowMealPanel(false)}>Hide Meals </Button>
+        </Stack>
+                <Container style={{
+        textAlign:'center' 
+    }}>
                 <br/>
                 <br/>
-                <label type='search ingredient'>Search Ingredient: </label>
-                <input type='search ingredient' value={searchFilter} onChange={(e)=> setSearchFilter(e.target.value)}></input>
-                     <select onChange={(e)=>setFilterOption(e.target.value)}name="Macro Search Filter" id='macrosearchfilter' >
-                        <option value="">--- Pick a macro to search by ---</option>
-                        <option value="protein">Protein</option>
-                        <option value="carb">Carb</option>
-                        <option value="fat">Fat</option>
-                    </select>
+                <h3 type='search ingredient'>Search Ingredient:  </h3>
+                <TextField color='secondary'  type='search ingredient' variant="standard" value={searchFilter} onChange={(e)=> setSearchFilter(e.target.value)}></TextField>
+                
+                     <Select   color='secondary'  label="Pick a macro to search by" onChange={(e)=>setFilterOption(e.target.value)}name="Macro Search Filter" id='macrosearchfilter' >
+                        <MenuItem value="">Pick a Macro To Search By</MenuItem>
+                        <MenuItem value="protein">Protein</MenuItem>
+                        <MenuItem value="carb">Carb</MenuItem>
+                        <MenuItem value="fat">Fat</MenuItem>
+                    </Select>
+                   
                 <br/>
                 <br />
                 <br/>
                 <br/>
-        
-        
+                </Container>
+                <Grid container>
         {filteredIngredientsArray.map((i)=>{
             return <MealSelectorCard 
             key={`Meal Selector Card: ${i.id}`}
@@ -126,50 +151,80 @@ function CreateMeal({user, ingredients}){
             setMealObj={setMealObj}
             />
         })}
+
+                </Grid>
+        
+        
+        
         </div>
     }
 
   
     return(
-        <> 
-        <h1> Create Meal</h1>
+        <div className='main-background'> 
+        <NavBar user={user}/>
+        <br />
+        <br />
+        <br />
+
+        <Box>
+            <Container>
+                <Paper elevation={15} className='create-meal-main-paper'>
+                    <Box p={4}>
+
+
+        <Box m={4}>
+        <Container  style={{
+        textAlign:'center' 
+    }}>
+            <Paper elevation={10}>
+        <br />
+        <br />
+        <h1> Create A New Meal</h1>
         <ErrorsCard errors={errors}/>
         <br />
         <form onSubmit={handleSubmit}>
-            <label name='mealname'>New Meal Name</label>
+            <h3 name='mealname'>New Meal Name</h3>
+            <TextField value={name} onChange={(e)=> setName(e.target.value)} name='mealname'  variant="standard"></TextField>
             <br />
-            <input value={name} onChange={(e)=> setName(e.target.value)} name='mealname'></input>
+            <br />
+            <h3 name='mealdescription'>New Meal Description</h3>
+            <TextField value={description} onChange={(e)=> setDescription(e.target.value)} name='mealdescription' variant="standard"></TextField>
             <br />
             <br />
-            <label name='mealdescription'>New Meal Description</label>
-            <br />
-            <input value={description} onChange={(e)=> setDescription(e.target.value)} name='mealdescription'></input>
-            <br />
-             <br />
-            <label name='mealimage'>Image Link For Your New Meal</label>
+            <h3 name='mealimage'>Image Link For Your New Meal</h3>
             <br />
             <img src={image} height='300' width='300'></img>
             <br />
             <br />
-            <input value={image} onChange={(e)=> setImage(e.target.value)} name='mealimage'></input>
+            <TextField value={image} onChange={(e)=> setImage(e.target.value)} name='mealimage' variant="filled" placeholder="Image Link Here"></TextField>
             <br />
             <br />
-            <input type='submit' value='Create Meal'></input>
+            <Button color='secondary' type='submit' variant="contained">Create Meal</Button>
         </form>
         <br />
         <br />
-        {/* <label type='search ingredient'>Search Ingredient: </label>
-        <select onChange={(e)=>setFilterOption(e.target.value)}name="Macro Search Filter" id='macrosearchfilter' >
-            <option value="">--- Pick a macro to search by ---</option>
-            <option value="protein">Protein</option>
-            <option value="carb">Carb</option>
-            <option value="fat">Fat</option>
-        </select>
-        <input type='search ingredient' value={searchFilter} onChange={(e)=> setSearchFilter(e.target.value)}></input>
-        <br/>
-        <br /> */}
-        {showMeals}
-        </>
+
+            </Paper>
+
+        </Container>
+        </Box>
+
+        <br />
+        <br />
+        <Container>
+            <Paper elevation={10}>
+            {showMeals}
+            </Paper>
+        </Container>
+
+
+    </Box>
+    </Paper>
+    </Container>
+        </Box>
+        
+        </div>
     )
 }
 
