@@ -91,6 +91,7 @@ function CreateMeal({user, ingredients}){
                 .then(res=> console.log(res))
             })
             history.push(`/meal/${mealId}`)
+            window.location.reload(false)
         })
         }
         else{
@@ -161,7 +162,7 @@ function CreateMeal({user, ingredients}){
 
   
     return(
-        <div className='main-background'> 
+        <div className='meal-background'> 
         <NavBar user={user}/>
         <br />
         <br />

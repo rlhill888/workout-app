@@ -14,6 +14,7 @@ import UpgradeIcon from '@mui/icons-material/Upgrade';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import PresentToAllIcon from '@mui/icons-material/PresentToAll';
 import CallMissedOutgoingIcon from '@mui/icons-material/CallMissedOutgoing';
+import Modal from '@mui/material/Modal';
 
 
 
@@ -21,6 +22,20 @@ import CallMissedOutgoingIcon from '@mui/icons-material/CallMissedOutgoing';
 function RoutineDisplayCardWorkoutPlan({r, user, deleteRoutine}){
     let settings
     const history = useHistory();
+    const [openDeleteTab, setOpenDeleteTab]= useState(false)
+    const handleOpen = () => setOpenDeleteTab(true);
+    const handleClose = () => setOpenDeleteTab(false);
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+      };
     console.log(r)
     console.log(user)
 
@@ -40,7 +55,7 @@ function RoutineDisplayCardWorkoutPlan({r, user, deleteRoutine}){
                     <Stack>
                         <Button 
                         color='secondary'
-                       onClick={()=> deleteRoutine(r.id)}
+                       onClick={()=> handleOpen()}
                         variant="contained" >
                             <DeleteIcon /> Delete Routine
                         </Button>
@@ -96,6 +111,30 @@ function RoutineDisplayCardWorkoutPlan({r, user, deleteRoutine}){
                         </Button>
 
                     </Stack>
+                    <Modal
+        open={openDeleteTab}
+        onClose={handleClose}
+        >
+            <Box
+            sx={style}
+            >
+                <h3>
+                    Are You Sure You Want To Delete This Workout?
+                </h3>
+                <ButtonGroup>
+                <Button color='secondary' variant='contained'
+                onClick={()=>{
+                    deleteRoutine(r.id)
+                    history.push('/workoutplan')
+                    window.location.reload(false)
+                }}
+                
+                >Yes</Button>
+                <Button onClick={()=> handleClose()} variant='contained'>Cancel</Button>
+                </ButtonGroup>
+
+            </Box>
+        </Modal>
                 </MuiAccordionDetails>
 
             </Accordion>
@@ -111,17 +150,7 @@ function RoutineDisplayCardWorkoutPlan({r, user, deleteRoutine}){
                    <Stack >
                         <Button 
                         onClick={()=>{
-                            const filteredArray = user.user_routines.filter((userRoutine)=>{
-                                return userRoutine.user_id === user.id && userRoutine.routine_id === r.id
-                            })
-                            const selectedUserRoutine= filteredArray[0]
-                
-                            fetch(`/user_routines/${selectedUserRoutine.id}`, {
-                                method: 'DELETE',
-                                headers: {
-                                    'Content-Type' : 'application/json'
-                                }
-                            })
+                           handleOpen()
                         }}
                         color='secondary'
                         variant="contained" >
@@ -136,6 +165,41 @@ function RoutineDisplayCardWorkoutPlan({r, user, deleteRoutine}){
                         
                        
                     </Stack>
+                    <Modal
+        open={openDeleteTab}
+        onClose={handleClose}
+        >
+            <Box
+            sx={style}
+            >
+                <h3>
+                    Are You Sure You Want To Remove This Workout?
+                </h3>
+                <ButtonGroup>
+                <Button color='secondary' variant='contained'
+                onClick={()=>{
+                    const filteredArray = user.user_routines.filter((userRoutine)=>{
+                        return userRoutine.user_id === user.id && userRoutine.routine_id === r.id
+                    })
+                    const selectedUserRoutine= filteredArray[0]
+        
+                    fetch(`/user_routines/${selectedUserRoutine.id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type' : 'application/json'
+                        }
+                    })
+                    
+                    history.push('/workoutplan')
+                    window.location.reload(false)
+                }}
+                
+                >Yes</Button>
+                <Button onClick={()=> handleClose()} variant='contained'>Cancel</Button>
+                </ButtonGroup>
+
+            </Box>
+        </Modal>
 
                     
                 </MuiAccordionDetails>

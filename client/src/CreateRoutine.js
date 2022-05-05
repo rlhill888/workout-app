@@ -107,6 +107,7 @@ function CreateRoutine({user}){
             .then(data => console.log(data))
             })
             history.push(`routine/${routineid}`)
+            window.location.reload(false)
         })
         }
         else{

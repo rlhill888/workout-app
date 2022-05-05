@@ -193,7 +193,9 @@ function UpdateRoutine({ user}){
             .then(res=> res.json())
             .then(data=> console.log(data))
         })
+       
         history.push(`/routine/${routine.id}`)
+         window.location.reload(false)
         } 
         else{
             res.json()

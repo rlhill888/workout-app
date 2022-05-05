@@ -1,5 +1,11 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
+import './welcomelogin.css'
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 
 function WelcomeLogIn({setUser}){
@@ -16,24 +22,24 @@ function WelcomeLogIn({setUser}){
         logIn=  <form>
 
         <h3>Enter Your New Account Information To Log In</h3>
+        <br />
+        <br />
 
-        <label name='User Name'>User Name</label>
-        <br></br>
-        <input name='User Name' value={userName} onChange={(e)=> setUserName(e.target.value)}></input>
-        <br></br>
-        <br></br>
-        <label name='Password'> Password</label>
-        <br></br>
-        <input name= 'Password' value={password} onChange={(e)=> setPassword(e.target.value)}></input>
+        <h3 name='User Name'>User Name</h3>
+        <TextField color='secondary' variant='standard' name='User Name' value={userName} onChange={(e)=> setUserName(e.target.value)}></TextField>
         <br></br>
         <br></br>
-        <input type='submit' onClick={handleSubmit} value='log in'></input>
+        <h3 name='Password'> Password</h3>
+        <TextField color='secondary' variant='standard' name= 'Password' value={password} onChange={(e)=> setPassword(e.target.value)}></TextField>
+        <br></br>
+        <br></br>
+        <Button color='secondary' variant='contained'  onClick={handleSubmit} value='log in'>Submit</Button>
         
          </form>
     }
     if(showLogIn===false){
         logIn=
-        <button onClick={()=>setShowLogIn(true) } >Get Started</button>
+        <Button color='secondary' onClick={()=>setShowLogIn(true) } >Get Started</Button>
       
     }
 
@@ -64,29 +70,24 @@ function WelcomeLogIn({setUser}){
 }
    
     return(
-        <> 
+        <div className='main-welcome-background'> 
+
+            <Box>
+                <Container>
+                    <Paper>
+                        <Box p={4}>
 
         <h1>Congrats On Your Start To Your New Work Out Journey</h1>
         <br />
         {logIn}
 
+        </Box>
+        </Paper>
 
-        {/* <form>
+        </Container>
+        </Box>
 
-       <label name='User Name'>User Name</label>
-       <br></br>
-       <input name='User Name' value={userName} onChange={(e)=> setUserName(e.target.value)}></input>
-       <br></br>
-       <br></br>
-       <label name='Password'> Password</label>
-       <br></br>
-       <input name= 'Password' value={password} onChange={(e)=> setPassword(e.target.value)}></input>
-       <br></br>
-       <br></br>
-       <input type='submit' onClick={handleSubmit} value='log in'></input>
-       
-        </form> */}
-       </>
+       </div>
     )
 
 }

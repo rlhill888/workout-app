@@ -17,14 +17,16 @@ import Stack from '@mui/material/Stack';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
+import Modal from '@mui/material/Modal';
 
 
 
-const giphy = new GiphyFetch(process.env.REACT_APP_GIPHY_KEY)
+
 
 
 function PostCardWithSettings({post, user}){
     const [comment, setComment]= useState('')
+    
     let commentsSection
    
     

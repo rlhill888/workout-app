@@ -13,7 +13,6 @@
 }
 
 .profile-background-main-card{
-    background: rgb(69,69,69);
-    background: radial-gradient(circle, rgba(69,69,69,1) 0%, rgba(43,43,43,1) 100%);
-    color: white;
+    background: rgb(76,0,161);
+background: radial-gradient(circle, rgba(76,0,161,1) 0%, rgba(31,0,66,1) 100%);
 }

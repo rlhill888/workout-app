@@ -28,7 +28,7 @@ function MealPlan({user}){
     }, [])
 
     return(
-        <div className='main-background'>
+        <div className='meal-background'>
         <NavBar user={user}/> 
         <br />
         <br />

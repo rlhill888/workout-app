@@ -52,24 +52,17 @@ function Settings({user}){
                     <Box 
                     p={4}
                     >
+                        <Container>
+                            <Paper>
+                                <Box p={4}>
+
+
         <h1>
             <Avatar
             src={user.profile_pic}></Avatar>
             Profile</h1>
-        
-        <Box
-        sx={{ width: 90 }}
-        >
-       
-        <Paper
-        style={{
-                textAlign:'center' 
-            }}
-        >
             
             <h2>{user.user_name}</h2>
-        </Paper>
-        </Box>
         <br />
         
         <br />
@@ -129,7 +122,28 @@ function Settings({user}){
             }
         })}
         </Grid>
+
+
+
+
         </Box>
+        </Paper>
+        </Container>
+
+
+
+
+
+
+
+
+        </Box>
+
+
+
+
+
+
         </Paper>
         </Container>
         </Box>

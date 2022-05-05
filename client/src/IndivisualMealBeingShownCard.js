@@ -11,12 +11,27 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import './indivisualmealbeingshown.css';
+import Modal from '@mui/material/Modal';
 
 
 function IndivisualMealBeingShownCard({user}){
     const history = useHistory()
     const params= useParams()
     const [meal, setMeal]= useState([])
+    const [openDeleteTab, setOpenDeleteTab]= useState(false)
+    const handleOpen = () => setOpenDeleteTab(true);
+    const handleClose = () => setOpenDeleteTab(false);
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+      };
     let ingredientsArray = []
     let carbs
     let protein 
@@ -79,7 +94,7 @@ function IndivisualMealBeingShownCard({user}){
     }
 
     return(
-        <div className='main-background'> 
+        <div className='meal-background'> 
         <NavBar user={user}/>
         <br />
         <br />
@@ -115,12 +130,7 @@ function IndivisualMealBeingShownCard({user}){
          <ButtonGroup color='secondary' variant='contained' aria-label="outlined primary button group">
             <Button  onClick={()=> history.push(`/updatemeal/${meal.id}`)}>Update Meal</Button>
             <Button onClick={()=>{
-            fetch(`http://localhost:4000/meals/${meal.id}`,{
-                method: 'DELETE',
-                headers: {
-                    'Content-Type' : 'application/json'
-                }
-            })
+            setOpenDeleteTab(true)
         }}>
             <DeleteIcon />
             Delete Meal</Button>
@@ -174,6 +184,37 @@ function IndivisualMealBeingShownCard({user}){
         </Container>
 
         </Box>
+        
+
+        <Modal
+        open={openDeleteTab}
+        onClose={handleClose}
+        >
+            <Box
+            sx={style}
+            >
+                <h3>
+                    Are You Sure You Want To Delete This Meal?
+                </h3>
+                <ButtonGroup>
+                <Button color='secondary' variant='contained'
+                onClick={()=>{
+                    fetch(`http://localhost:4000/meals/${meal.id}`,{
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type' : 'application/json'
+                        }
+                    })
+                    history.push('/mealplan')
+                    window.location.reload(false)
+                }}
+                
+                >Yes</Button>
+                <Button onClick={()=> handleClose()} variant='contained'>Cancel</Button>
+                </ButtonGroup>
+
+            </Box>
+        </Modal>
 
         </div>
     )

@@ -57,6 +57,13 @@ return(
             className='home-paper-background'
             >
                 <Box p={4}>
+
+                    <Container>
+                        <Paper  className='main-home-paper'>
+                            <Box p={4}>
+
+
+
     <br />
     <br />
     <br />
@@ -113,6 +120,15 @@ return(
     <br />
     <br />
     <PostForm posts={posts} user={user} users={users}/>
+
+
+
+    </Box>
+    </Paper>
+    </Container>
+
+
+
     </Box>
     </Paper>
     </Container>

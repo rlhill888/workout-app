@@ -34,12 +34,13 @@ function CreatePost({user}){
         .then(res=> res.json())
         .then(res=> console.log(res))
 
-        history.push('/')
+        history.push('/profile')
+        window.location.reload(false)
     }
     
     return(
 
-        <> 
+        <div className='main-background'> 
         <NavBar user={user}/>
         <div>
             <br />
@@ -66,7 +67,7 @@ function CreatePost({user}){
                 <TextField variant='standard' name='description' value={description} onChange={(e)=> setDescription(e.target.value)}></TextField>
                 <br />
                 <br />
-                <Button type='submit'>Create Post</Button>
+                <Button color='secondary' type='submit'>Create Post</Button>
             </form>
             </Box>
             </Paper>
@@ -75,7 +76,7 @@ function CreatePost({user}){
         </div>
         <br />
         <PostCardTemplate user={user} title={title} image={image} description={description}/>
-        </>
+        </div>
     )
 }
 

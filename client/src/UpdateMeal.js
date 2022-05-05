@@ -204,6 +204,7 @@ function UpdateMeal({user}){
             .then(data=> console.log(data))
         })
         history.push(`/meal/${meal.id}`)
+        window.location.reload(false)
             }
             else{
                 res.json()
@@ -268,7 +269,7 @@ function UpdateMeal({user}){
 
   
     return(
-        <div className='main-background'> 
+        <div className='meal-background'> 
         <NavBar user={user}/>
         <br />
         <br />
