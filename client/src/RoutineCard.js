@@ -57,7 +57,7 @@ function RoutineCard({user, setRoutineBeingShown, setWorkoutBeingShown}){
    
     return (
     <div
-    className='main-background'
+    className='other-background'
     > 
     <NavBar user={user}/>
     <br />

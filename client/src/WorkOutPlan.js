@@ -35,7 +35,7 @@ function WorkOutPlan({user}){
    
 
     return(
-    <div className='main-background'>
+    <div className='other-background'>
     <NavBar user={user}/>
     <br />
     <br />

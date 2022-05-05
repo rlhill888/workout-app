@@ -166,7 +166,7 @@ function CreateRoutine({user}){
     }
   
     return(
-       <div className='main-background'> 
+       <div className='other-background'> 
        <br />
        <br />
        <NavBar user={user}/>
