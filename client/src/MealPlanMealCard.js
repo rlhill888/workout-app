@@ -65,11 +65,12 @@ function MealPlanMealCard({meal, user}){
     
 
     return (
-        <Box m={4} p={2} mb={90}
+        <Box m={4} p={2} 
         sx={{
-            width: 300,
-            height: 300
-          }}> 
+            width: 300
+          }}
+          
+          > 
         
             <Card elevation={15}>
         

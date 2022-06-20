@@ -3,3 +3,88 @@
     background: linear-gradient(54deg, rgba(76,0,161,1) 0%, rgba(0,0,0,1) 100%);
 opacity: 0.9;
 }
+
+@media only screen and (min-width: 1280px) {
+    /* For desktops: */
+
+    
+    .loginContainer{
+        position: inherit;
+ 
+     }
+     .loginMainPaperWidth{
+         position: inherit;
+     }
+     .mainLogoImage{
+        position: relative;
+        width: 300px;
+    }
+    
+    
+    
+  }
+
+ @media only screen and (max-width: 1279px) {
+    /* For for laptops and tabletss: */
+
+    
+    .loginContainer{
+        position: inherit;
+ 
+     }
+     .loginMainPaperWidth{
+         position: inherit;
+     }
+     .mainLogoImage{
+        position: relative;
+        width: 30vw;
+    }
+    
+   
+   
+    
+  }
+
+  
+  @media only screen and (max-width: 769px) {
+    /* Forbigger mobile phones and small tablets: */
+
+    .loginContainer{
+       position: inherit;
+
+    }
+    .loginMainPaperWidth{
+        position: inherit;
+    }
+   
+    .mainLogoImage{
+        position: relative;
+        width: 40vw;
+    }
+   
+    
+ 
+   
+    
+  }
+  
+  @media only screen and (max-width: 480px) {
+    /* For mobile phones: */
+
+    .mainLogoImage{
+        position: relative;
+        width: 60vw;
+    }
+
+    .loginContainer{
+        position: relative;
+        display: flex;
+        justify-content: center;
+
+    }
+    .loginMainPaperWidth{
+        width: 50vw;
+    }
+   
+    
+  }

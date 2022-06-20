@@ -34,7 +34,7 @@ function WorkoutCard({user}){
             >
                 <Container>
                     <Paper elevation={15}>
-                        <Box p={5}>
+                        <Box p={1}>
                             <Box>
                                 <Paper elevation={3}>
                                     <Box p={2}>
@@ -60,8 +60,7 @@ function WorkoutCard({user}){
                  <Paper className='workout-video-card' elevation={3}>
                      <Box p={2}>
              <iframe
-      width="853"
-      height="480"
+      className="workoutYoutubeVideo"
       src={`https://www.youtube.com/embed/${workout.video_link}`}
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

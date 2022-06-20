@@ -309,7 +309,9 @@ function UpdateMeal({user}){
              <br />
             <h3 name='mealimage'>Image Link For Your New Meal</h3>
             <br />
-            <img src={image} height='300' width='300'></img>
+            <img src={image} 
+            className='createRoutineImage'
+            ></img>
             <br />
             <br />
             <TextField value={image} onChange={(e)=> setImage(e.target.value)} variant="filled" name='mealimage'></TextField>

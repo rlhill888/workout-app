@@ -40,7 +40,12 @@ function Settings({user}){
         }
     }
     return(
-        <div className='main-background'> 
+        <div 
+        style={{
+            height: '100%'
+            
+        }}
+        className='main-background'> 
             <br />
             <br />
             <br />

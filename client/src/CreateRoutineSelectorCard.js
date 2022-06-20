@@ -5,6 +5,7 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
 import Container from '@mui/material/Container';
+import './CreateRoutineSelectorCard.css'
 
 function CreateRoutineSelectorCard({w, worokoutInfoObject, workOutSearchCheckBox, setWorkOutSearchCheckBox, setworokoutInfoObject}){
 
@@ -70,7 +71,9 @@ function CreateRoutineSelectorCard({w, worokoutInfoObject, workOutSearchCheckBox
                     </Checkbox>
                     </h2>
                     <br />
-                    <img src={w.gif} width="300" height="300"></img>
+                    <img src={w.gif} 
+                    className='createRoutineImageIndivisual'
+                    ></img>
                     <br />
                     <br />
                     {showSetsAndReps}

@@ -30,3 +30,78 @@ background: radial-gradient(circle, rgba(76,0,161,1) 0%, rgba(31,0,66,1) 100%);
     background: rgb(69,69,69);
     background: radial-gradient(circle, rgba(69,69,69,1) 0%, rgba(43,43,43,1) 100%);
 }
+
+@media only screen and (min-width: 1280px) {
+    /* For desktops: */
+
+    .homeCardImage{
+
+        max-height: 300px;
+    }
+    
+    
+    
+  }
+
+ @media only screen and (max-width: 1279px) {
+    /* For for laptops and tabletss: */
+
+    
+    
+    .homeCardImage{
+
+        max-height: 300px;
+    }
+   
+   
+    
+  }
+
+  
+  @media only screen and (max-width: 769px) {
+    /* Forbigger mobile phones and small tablets: */
+
+  
+   
+    
+ 
+    .homeCardImage{
+
+        max-height: 300px;
+    }
+    
+  }
+  
+  @media only screen and (max-width: 480px) {
+    /* For mobile phones: */
+
+    .mediumTextSize{
+
+        font-size: medium;
+
+    }
+    .largeTextSize{
+        font-size: large;
+    }
+
+    .smallTextSize{
+        font-size: small;
+
+    }
+    .mainHomeDiv{
+        /* position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: column; */
+       
+
+        width: 70vw;
+
+    }
+    .homeCardImage{
+
+        max-height: 300px;
+    }
+   
+    
+  }

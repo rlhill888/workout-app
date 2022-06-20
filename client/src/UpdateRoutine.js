@@ -288,7 +288,9 @@ function UpdateRoutine({ user}){
            <br />
            <h3 name= 'image'>Image Link</h3>
            <br />
-            <img src={imageLink} height='300' width='400'></img>
+            <img src={imageLink} 
+            className='createRoutineImage'
+            ></img>
             <br />
            <TextField value={imageLink} variant="filled" onChange={(e)=> setImageLink(e.target.value)} name= 'image'></TextField>
            </div>

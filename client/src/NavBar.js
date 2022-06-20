@@ -37,21 +37,33 @@ function NavBar({user}){
          > 
         <Stack direction="row" spacing={2}>
             <Button 
+            className='navBarButton'
             color='secondary'
             variant='contained' onClick={()=> history.push('/')}>
             <HomeIcon />
             </Button>
-            <Button color='secondary' variant='contained' onClick={()=> history.push('/mealPlan')}>Meal Plan</Button>
-            <Button color='secondary' variant='contained' onClick={()=> history.push('/workoutplan')}>Work Out Plan</Button>
-            <Button color='secondary' variant='contained' onClick={()=> history.push('/social')}>Social</Button>
-            <Button color='secondary' variant='contained'
+            <Button 
+             className='navBarButton'
+            color='secondary' variant='contained' onClick={()=> history.push('/mealPlan')}>Meal Plan</Button>
+            <Button  className='navBarButton' color='secondary' variant='contained' onClick={()=> history.push('/workoutplan')}>Work Out Plan</Button>
+            <Button  className='navBarButton' color='secondary' variant='contained' onClick={()=> history.push('/social')}>Social</Button>
+            <Button  className='navBarButton' color='secondary' variant='contained'
             onClick={(e)=> {
                 setOpenMenu(previousState=> !previousState)
                 setAnchorEl(e.currentTarget)
                 } }
             >
+                {window.innerWidth  <= 556 ?  <Avatar src={user.profile_pic} ></Avatar> :
+
+                <>
                 <Avatar src={user.profile_pic} ></Avatar>
-                 { `   ${user.user_name}`}
+                     <p>
+
+                       { `   ${user.user_name}`}
+                     </p>
+                </>
+                    
+                }
             </Button>
             
         </Stack>

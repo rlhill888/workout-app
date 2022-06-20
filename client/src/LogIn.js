@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import logo from './workout4melogo.png'
 import "./login.css";
+import { display } from '@mui/system';
 
 
 function LogIn({setUser}){
@@ -73,18 +74,40 @@ function LogIn({setUser}){
             <Container
             maxWidth='xs'
             >
-                <Paper  
+
+                <Box
+                 className='loginContainer'
+                 >
+
+                     <Paper  
+                style={{
+                    // width: '80vw'
+                    
+                }}
                 className='paper-background'
                 elevation={15}>
                     <Box 
                     
                     p={5}>
-                    <img src={logo} alt="mainlogo" width="300" height="300" />
+                        
+                   
+                             <img src={logo} alt="mainlogo" className='mainLogoImage'  />
+                      
+                   
 
         <Paper 
-        elevation={5}>
-            <Box p={4}>
-         <h2>Log In</h2>
+        elevation={5}
+       
+        >
+            <Box p={4}
+            className='loginMainPaperWidth'
+            >
+
+                <div
+                
+                >
+
+                     <h2>Log In</h2>
         <br />
 
          <form>
@@ -107,10 +130,14 @@ function LogIn({setUser}){
          <br/>
          <h3>New User?</h3>
          <Button color='secondary' onClick={()=> history.push('/signup')}>Create An Account</Button>
+                </div>
+        
          </Box>
          </Paper>
                         </Box>
                     </Paper>
+                </Box>
+               
                 </Container>
         </Box>
 

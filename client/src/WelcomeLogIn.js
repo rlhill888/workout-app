@@ -25,7 +25,7 @@ function WelcomeLogIn({setUser}){
         <br />
         <br />
 
-        <h3 name='User Name'>User Name</h3>
+        <h3 name='Email'>Email</h3>
         <TextField color='secondary' variant='standard' name='User Name' value={userName} onChange={(e)=> setUserName(e.target.value)}></TextField>
         <br></br>
         <br></br>

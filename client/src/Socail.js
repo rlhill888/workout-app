@@ -37,7 +37,13 @@ function Socail({user}){
     }, [])
 
     return(
-        <div className='main-background'> 
+        <div 
+        // style={{
+
+        //     height: '100vh'
+        // }}
+        
+        className='meal-background'> 
         <NavBar user={user}/>
         
         <br />

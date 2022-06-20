@@ -17,11 +17,12 @@ function FollowUserCard({user, users}){
       }
 
     if(showFollowButton=== true){
+        console.log(userShowing)
         followUserButton= <> 
         <br />
         <br />
         <Button type='submit'  color='secondary' variant="contained">
-            <Avatar src={userShowing.profile_pic}></Avatar>
+            <Avatar src={userShowing[0].profile_pic}></Avatar>
               Follow {inputValue}</Button> 
         </>
     }

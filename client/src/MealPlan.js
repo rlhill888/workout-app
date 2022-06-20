@@ -28,7 +28,13 @@ function MealPlan({user}){
     }, [])
 
     return(
-        <div className='meal-background'>
+        <div 
+        // style={{
+        //     height: '100%',
+        //     margin: 'auto',
+            
+        // }}
+        className='main-meal-background'>
         <NavBar user={user}/> 
         <br />
         <br />
@@ -38,7 +44,7 @@ function MealPlan({user}){
         <Box>
             <Container>
                 <Paper className='main-meal-paper' elevation={15}>
-                    <Box p={8}>
+                    <Box p={2}>
 
         <Container>
             <Paper
@@ -60,7 +66,7 @@ function MealPlan({user}){
             textAlign:'center' 
         }}
         >
-        <h2>Here are your daily macro goals:</h2>
+        <h2>Here are your Daily Macro Goals {user.goal_type}:</h2>
         <h3>{user.calories} Calories</h3>
         <h3>Protein: {user.protein_macros.toFixed(2)} grams</h3>
         <h3>Fat: {user.fat_macros.toFixed(2)} grams</h3>
@@ -73,7 +79,7 @@ function MealPlan({user}){
         <br />
         <Container>
             <Paper elevation={7}>
-                <Box  pb={8}>
+                <Box  pb={2}>
         <h2 
          style={{
             textAlign:'center' 

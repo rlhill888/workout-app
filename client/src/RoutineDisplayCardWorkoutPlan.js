@@ -15,7 +15,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import PresentToAllIcon from '@mui/icons-material/PresentToAll';
 import CallMissedOutgoingIcon from '@mui/icons-material/CallMissedOutgoing';
 import Modal from '@mui/material/Modal';
-
+import './RoutineDisplayCard.css'
 
 
 
@@ -208,13 +208,12 @@ function RoutineDisplayCardWorkoutPlan({r, user, deleteRoutine}){
         </>
     }
     return(
-        <Box my={8} sx={{
-            width: 300,
-            height: 300
-          }}> 
+        <Box  > 
          <Card elevation={15}>  
             <h2>{r.name}</h2>
-            <img  width="300" height="200" src={r.image}></img>
+            <img 
+            className="routineDisplayCardDiv"
+             src={r.image}></img>
            {settings} 
         </Card>
         </Box>

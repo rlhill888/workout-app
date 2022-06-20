@@ -35,7 +35,14 @@ function WorkOutPlan({user}){
    
 
     return(
-    <div className='other-background'>
+    <div 
+    
+    className='other-background'
+    style={{
+        height: '100%',
+        
+    }}
+    >
     <NavBar user={user}/>
     <br />
     <br />
@@ -47,7 +54,7 @@ function WorkOutPlan({user}){
             <Paper 
             className='workout-paper'
             elevation={10}>
-                <Box p={8}>
+                <Box p={3}>
             <br />
             <br />
             <Paper

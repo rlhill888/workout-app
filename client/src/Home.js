@@ -44,7 +44,12 @@ function Home({user}){
     
 
 return(
-    <div className='main-background'>
+    <div className='main-background'
+    style={{
+        height: '100%',
+        paddingBottom: '2vh'
+    }}
+    >
         <NavBar user={user}/>
         <br />
         <br />
@@ -56,16 +61,17 @@ return(
             <Paper
             className='home-paper-background'
             >
-                <Box p={4}>
+                <Box py={3}>
 
                     <Container>
                         <Paper  className='main-home-paper'>
-                            <Box p={4}>
+                            <Box 
+                            
+                            p={2}>
 
 
 
-    <br />
-    <br />
+  
     <br />
     <Container
     style={{
@@ -73,13 +79,13 @@ return(
     }}
     >
         <Paper>
-            <Box py={4}>
-    <h1>WELCOME {user.user_name}!</h1>
+            <Box p={1}>
+    <h1
+    className="largeTextSize"
+    >WELCOME {user.user_name}!</h1>
     </Box>
     </Paper>
     </Container>
-    <br />
-    <br />
     
     <br />
     <br />
@@ -91,20 +97,34 @@ return(
         className='home-paper-workout-cards-background'
         elevation={4}>
             
-            <Box p={4}>
-                 <h1>Here Are Your Routines You Are Currently Using</h1>
+            <Box 
+            
+            py={4}
+            px={2}
+            
+            >
+                 <h1
+                 style={{
+                    textAlign: 'center'
+                 }}
+                 className="largeTextSize"
+                 >Here Are Your Routines You Are Currently Using</h1>
     {routines.map((a)=>{
         console.log(a)
         return(
-            <Box my={4}>
+            <Box my={4}
+            
+            >
             <Card elevation={15} >
             <CardContent>
-                <h1>{a.name}</h1>
+                <h1
+                className="largeTextSize"
+                >{a.name}</h1>
             </CardContent>
             <CardActionArea   onClick={()=>{ history.push(`routine/${a.id}`)}}>
             <CardMedia
             component="img"
-            height="300"
+            className="homeCardImage"
             image={a.image}
             ></CardMedia> 
             </CardActionArea>
@@ -117,9 +137,7 @@ return(
             </Box>
         </Paper>
     </Box>
-    <br />
-    <br />
-    <PostForm posts={posts} user={user} users={users}/>
+    {/* <PostForm posts={posts} user={user} users={users}/> */}
 
 
 

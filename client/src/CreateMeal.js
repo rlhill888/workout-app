@@ -195,7 +195,9 @@ function CreateMeal({user, ingredients}){
             <br />
             <h3 name='mealimage'>Image Link For Your New Meal</h3>
             <br />
-            <img src={image} height='300' width='300'></img>
+            <img src={image} 
+            className='createRoutineImage'
+            ></img>
             <br />
             <br />
             <TextField value={image} onChange={(e)=> setImage(e.target.value)} name='mealimage' variant="filled" placeholder="Image Link Here"></TextField>

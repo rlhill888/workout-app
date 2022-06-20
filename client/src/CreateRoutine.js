@@ -200,7 +200,11 @@ function CreateRoutine({user}){
            <br />
            <h3 name= 'image'>Image Link</h3>
            <br />
-            <img src={imageLink} height='300' width='400'></img>
+            <img 
+            
+            className="createRoutineImage"
+            
+            src={imageLink} ></img>
             <br />
             <br />
            <TextField value={imageLink} onChange={(e)=> setImageLink(e.target.value)} name= 'image' variant="filled" placeholder="Image Link Here"></TextField>

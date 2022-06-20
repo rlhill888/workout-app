@@ -35,8 +35,30 @@ function SignUp({setUser }){
 
     let formdata
     let errorMessages
+    let stepper
 
     const history = useHistory();
+
+    if(window.innerWidth<425){
+        stepper =<></>
+    }
+    if(window.innerWidth>=567){
+        stepper=<>
+
+    <Stepper color='secondary' activeStep={formPage}>
+            <Step>
+                <StepLabel color='secondary'>Basic Account information</StepLabel>
+            </Step>
+            <Step>
+                <StepLabel>Workout 4 Me Calculation Disclosure</StepLabel>
+            </Step>
+            <Step>
+                <StepLabel>Personal Stat information</StepLabel>
+            </Step>
+        </Stepper>
+        
+        </>
+    }
   
     function handleSubmit(e){
         e.preventDefault()
@@ -105,7 +127,11 @@ function SignUp({setUser }){
 
     if (formPage=== 0) {
         formdata =  <div>
-        <h1>Create a new account</h1>
+        <h1
+        style={{
+            textAlign: 'center'
+        }}
+        >Create a new account</h1>
         <br />
         <div>
 
@@ -154,11 +180,17 @@ function SignUp({setUser }){
     if(formPage===1){
         formdata = <> 
         <Button color='secondary' onClick={()=> setformPage(0)}><ArrowBackIosIcon /></Button>
-        <h1>Workout 4 me uses your information to calculate a custom work out and meal plan catered towards you</h1>
+        <h1
+        className="workOut4DisclaimerMeFontSize2"
+        >Workout 4 me uses your information to calculate a custom work out and meal plan catered towards you</h1>
         <br />
         <br />
-        <h3>Workout 4 me uses data such as your age, weight, and height to caculate stats that are needed in order to make this custom plan.</h3>
-        <h3>These stats include:</h3>
+        <h3
+         className="workOut4DisclaimerMeFontSize2"
+        >Workout 4 me uses data such as your age, weight, and height to caculate stats that are needed in order to make this custom plan.</h3>
+        <h3
+        className="workOut4DisclaimerMeFontSize2"
+        >These stats include:</h3>
         <br />
         <br />
         <h3>Your BMI</h3>
@@ -247,8 +279,12 @@ function SignUp({setUser }){
                     className='background'
                     p={4}>
                         <Paper elevation={15}>
-                            <Box p={4}> 
-        <Button color='secondary' variant='contained' onClick={()=> history.push('/login')}>Back To Login</Button>
+                            <Box 
+                            className="mainSignUpDiv"
+                            p={4}> 
+        <Button 
+        className="backToLoginButton"
+        color='secondary' variant='contained' onClick={()=> history.push('/login')}>Back To Login</Button>
         <br />
         <br />
         <ErrorsCard errors={errorMessage}/>
@@ -260,17 +296,9 @@ function SignUp({setUser }){
         </form>
         <br />
         <br />
-        <Stepper color='secondary' activeStep={formPage}>
-            <Step>
-                <StepLabel color='secondary'>Basic Account information</StepLabel>
-            </Step>
-            <Step>
-                <StepLabel>Workout 4 Me Calculation Disclosure</StepLabel>
-            </Step>
-            <Step>
-                <StepLabel>Personal Stat information</StepLabel>
-            </Step>
-        </Stepper>
+
+
+        {stepper}
         </Box>
         </Paper>
         </Box>
