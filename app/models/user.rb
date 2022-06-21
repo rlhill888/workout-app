@@ -20,7 +20,7 @@ class User < ApplicationRecord
 
     validates :email, :user_name, uniqueness: true
     validates :user_name, length: { minimum: 5 }
-    validates :password, length: { minimum: 6 }
+    # validates :password, length: { minimum: 6 }
 
     has_secure_password
 

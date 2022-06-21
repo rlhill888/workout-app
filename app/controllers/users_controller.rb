@@ -90,10 +90,12 @@ class UsersController < ApplicationController
     end
 
     def update
+        # byebug
         user= current_user
+        user.update!(update_user_params)
+        
         bmi_calculation= (user.weight * 703)/(user.height * user.height)
         bmr_calculation= 66.47+(6.24 * user.weight)+(12.7*user.height)-(6.75*user.age)
-        user.update!(update_user_params)
         
         user.bmi = bmi_calculation
         user.bmr = bmr_calculation
@@ -127,6 +129,6 @@ class UsersController < ApplicationController
     end
 
     def update_user_params
-        params.permit( :age, :weight, :profile_pic, :public_user, :calories, :carb_macros, :protein_macros, :fat_macros)
+        params.permit( :height, :age, :weight, :profile_pic, :public_user, :calories, :carb_macros, :protein_macros, :fat_macros)
     end
 end

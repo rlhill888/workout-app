@@ -5,10 +5,12 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import NavBar from "./NavBar";
+import { useHistory } from "react-router-dom";
 import './updatedailymacros.css'
 
 
 function UpdateDailyMacros({user}){
+    const history = useHistory()
     const [calories, setCalories]= useState(user.calories)
     const [carbs, setCarbs]= useState(user.carb_macros)
     const [protein, setProtein]= useState(user.protein_macros)
@@ -38,7 +40,7 @@ function UpdateDailyMacros({user}){
                 fetch(`http://localhost:4000/users/${user.id}`, {
                     method: 'PATCH', 
                     headers: {
-                        'Content-Type' : 'application/jsom'
+                        'Content-Type' : 'application/json'
                     },
                     body: JSON.stringify({
                         calories: calories,
@@ -48,7 +50,12 @@ function UpdateDailyMacros({user}){
                     })
                 })
                 .then(res=> res.json())
-                .then(data=> console.log(data))
+                .then(data=>{
+                    
+                    console.log(data)
+                history.push('/profile')
+                window.location.reload()
+                })
             }}>
                 <h3 name='calories'>Calories: </h3>
                 <TextField variant='standard' onChange={(e)=> setCalories(e.target.value)}value={calories} name='calories'type='number'></TextField>

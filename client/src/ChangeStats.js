@@ -6,6 +6,9 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import ErrorsCard from "./ErrorsCard";
 import './changestats.css';
 
 function ChangeStats({user}){
@@ -15,6 +18,7 @@ function ChangeStats({user}){
     const [profilePic, setProfilePic]= useState(user.profile_pic) 
     const [goalType, setGoalType]= useState(user.goal_type)
     const [privacySetting, setPrivacySetting]= useState(user.public_user)
+    const [errors, setErrors]= useState( [])
 
     const history= useHistory()
 
@@ -33,8 +37,23 @@ function ChangeStats({user}){
                 public_user: privacySetting
             })
         })
-        .then(res=> res.json())
-        .then(res=> console.log(res))
+        .then(res=>{
+            if(res.ok){
+                res.json()
+                .then(res=> {
+
+                    console.log(res)
+                    history.push('/profile')
+                    window.location.reload()
+                })
+            }
+            else{
+                res.json()
+                .then(res=> setErrors(res.errors))
+            }
+
+        }  )
+        // .then(res=> console.log(res))
     }
 
     return(
@@ -53,6 +72,7 @@ function ChangeStats({user}){
                 <Container>
                     <Paper elevation={15}>
                         <Box p={4}>
+                            <ErrorsCard errors={errors}/>
             <h1>{user.user_name}</h1>
             <br />
             <form onSubmit={handleSubmit}>
@@ -65,10 +85,16 @@ function ChangeStats({user}){
                 <br />
                 <br />
                 <h3>Account Privacy: </h3>
-                <select onChange={(e)=> setPrivacySetting(e.target.value)} value={privacySetting}>
+                {/* <select onChange={(e)=> setPrivacySetting(e.target.value)} value={privacySetting}>
                 <option value={true}>Public</option>
                 <option value={false}>Private</option>
-                </select>
+                </select> */}
+                <Select color="secondary"
+                onChange={(e)=> setPrivacySetting(e.target.value)}
+                value={privacySetting}>
+                    <MenuItem value={true}>Public</MenuItem>
+                    <MenuItem value={false}>Private</MenuItem>
+                </Select>
                 <br />
                 <br />
                 <h3 name='profilepic'>Profile Pic Url:</h3>

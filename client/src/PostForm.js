@@ -35,7 +35,7 @@ function PostForm({users, posts, user}){
                {posts.map((p)=>{
                    if(p.routine_post===true){
                     return (
-                    <Box key={`post ${p.id}`}mx={4} my={2}>
+                    <Box key={`post ${p.id}`}mx={1} my={2}>
                     <Grid item>
                     <RoutinePost user={user} post={p}/>
                     </Grid>
@@ -44,7 +44,7 @@ function PostForm({users, posts, user}){
                 }
                    if(p.routine_post=== false && p.meal_post=== false){
                     return( 
-                    <Box key={`post ${p.id}`} mx={4} my={2}>
+                    <Box key={`post ${p.id}`} mx={1} my={2}>
                     <Grid item>
                     <PostCard user={user} key={`postcard-${p.id}`} post={p}/>
                     </Grid>

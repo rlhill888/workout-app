@@ -53,7 +53,9 @@ function Socail({user}){
         <Box>
             <Container>
                 <Paper>
-                    <Box p={4}>
+                    <Box
+                    
+                    p={1}>
          <Box sx={{ flexDirection: 'row-reverse' }}>
             
         <Button variant='contained' onClick={()=> setOpenDrawer(true)}>
@@ -64,8 +66,18 @@ function Socail({user}){
             <h1 >Social</h1>
         </Box>
 
+        <div
+        style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+        }}
 
-        <PostForm posts={posts} user={user} users={users}/>
+        pt={3}
+        >
+             <PostForm posts={posts} user={user} users={users}/>
+        </div>
+       
         </Box>
         </Paper>
         </Container>

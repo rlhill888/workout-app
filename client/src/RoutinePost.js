@@ -77,7 +77,11 @@ function RoutinePost({post, user}){
    
     return(
         <Paper elevation={15}> 
-            <Box>
+            <Box style={{
+                position: 'relative',
+                maxWidth: '85vw'
+            }}  
+            >
                 <Container>
 
         <br />
@@ -88,7 +92,10 @@ function RoutinePost({post, user}){
             <Button variant="contained" onClick={addRoutine}>Add {post.user.user_name}'s "{routine.name}"  to your list of routines</Button>
             <br />
             <br />
-            <CardMedia component="img" image={post.image} height='400' width='500'></CardMedia>
+            <CardMedia component="img" image={post.image} 
+            style={{
+                maxWidth: '100vw'
+            }}></CardMedia>
             <br />
             <br />
             <h2>Routine description: </h2>
@@ -114,11 +121,16 @@ function RoutinePost({post, user}){
                         }
                     })
                     return(
-                            <Box mx={2}>
+                            <Box m={1}>
                                 <Card>
                                     <Container>
                                         <CardActionArea>
-                                             <img height='325' width='325' src={w.gif} onClick={()=> history.push(`/workouts/${w.id}`)}></img>
+                                             <img
+
+                                             style={{
+                                                maxWidth: '50vw'
+                                             }}
+                                              src={w.gif} onClick={()=> history.push(`/workouts/${w.id}`)}></img>
                                         </CardActionArea>
                                     </Container>
                                     

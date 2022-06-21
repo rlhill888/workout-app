@@ -69,7 +69,9 @@ function PostCard({post, user}){
             <h1>{post.title}</h1>
             <br />
             <br />
-            <CardMedia component="img" image={post.image} height='400' width='500'></CardMedia>
+            <CardMedia component="img" image={post.image} style={{
+                maxWidth: '100vw'
+            }}></CardMedia>
             <br />
             <br />
             <h2>{post.description}</h2>
