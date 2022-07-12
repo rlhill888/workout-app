@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     def create
         
         
-        user= User.create!(create_user_params)
+        user= User.new(create_user_params)
 
         bmi_calculation= (user.weight / (user.height * user.height).to_d * 703).to_d 
         bmr_calculation= 66+(13.7 * (user.weight * 0.453592))+(5*(user.height * 2.54))-(6.8 * user.age)
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
         user.bmr= bmr_calculation
         user.public_user= false
         user.protein_macros= user.weight
-        user.save
+      
 
         if user.initial_form_activity_level == "Little or no exercise"
             user.calories = user.bmr * 1.2
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
         if user.initial_form_activity_level == "Heavy exercise 6-7 times per week"
             user.calories = user.bmr * 1.725
         end 
-        user.save
+   
     
         if user.goal_type == "To Tone muscles and get muscle definition"
             user.calories = user.calories - 350
