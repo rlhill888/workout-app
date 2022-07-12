@@ -19,6 +19,8 @@ class UsersController < ApplicationController
         user.bmr= bmr_calculation
         user.public_user= false
         user.protein_macros= user.weight
+
+        byebug
       
 
         if user.initial_form_activity_level == "Little or no exercise"
@@ -40,10 +42,12 @@ class UsersController < ApplicationController
             user.fat_macros = user.weight*0.30
             protein_calorie_measurement = user.protein_macros * 4
             fat_calorie_measurement = user.fat_macros * 9
+            byebug
             user.carb_macros = (user.calories - protein_calorie_measurement - fat_calorie_measurement)/4
             UserRoutine.create!(user_id: user.id, routine_id: (Routine.find_by(description: 'Back And Biceps Workout For toning muscle and building definition', default_workout4me_routine: true).id), currently_using: true)
             UserRoutine.create!(user_id: user.id, routine_id: (Routine.find_by(description: 'Chest and Tricep Workout for toning muscle and building definition', default_workout4me_routine: true).id), currently_using: true)
             UserRoutine.create!(user_id: user.id, routine_id: (Routine.find_by(description: 'Lag Day workout for toning muscle and building definition', default_workout4me_routine: true).id), currently_using: true)
+            byebug
             user.save
         end
 
