@@ -25,28 +25,15 @@ import * as gymData from "./data/open-gym.json"
 
 
 
-import {GoogleMap, withScriptjs, withGoogleMap, Marker} from 'react-google-maps'
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 
 
-function Map(){
 
-    return(
-        <GoogleMap 
-        defaultZoom={10} 
-        defaultCenter={{lat: 39.952583, lng: -75.165222}}
-        >
-          {/* {gymData.map((a)=>{
-            <Marker key={`${a.postalcode1}${a.address11}`}/>
-          })} */}
-          </GoogleMap>
 
-    )
-}
 
-const WrappedMap = withScriptjs(withGoogleMap(Map))
 
 function App() {
 
@@ -159,20 +146,6 @@ function App() {
         <Route exact path="/updatedailymacros">
           <UpdateDailyMacros user={user}/>
         </Route>
-        <Route exact path="/map">
-          <div style={{width: "100vw", height: "100vh"}}> 
-          <WrappedMap 
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCfcLd8NSm0bUbI3zKOTDOPxrWFw-L92LQ`}
-          loadingElement={<div style={{height: "100%"}}/>} 
-          containerElement={<div style={{height: "100%"}}/>} 
-          mapElement={<div style={{height: "100%"}}/>} 
-          />
-
-          </div>
-        </Route>
-        {/* <Route  exact path ="/createroutine/workout">
-             <WorkoutCard />
-        </Route> */}
       </Switch>
       </>
     )
