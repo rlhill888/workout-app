@@ -19,6 +19,7 @@ class UsersController < ApplicationController
         user.bmr= bmr_calculation
         user.public_user= false
         user.protein_macros= user.weight
+        user.save
 
         if user.initial_form_activity_level == "Little or no exercise"
             user.calories = user.bmr * 1.2
