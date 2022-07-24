@@ -8,9 +8,7 @@ class UsersController < ApplicationController
     end 
 
     def create
-        
-        
-        user= User.new(create_user_params)
+        user= User.create(create_user_params)
 
         bmi_calculation= (user.weight / (user.height * user.height).to_d * 703).to_d 
         bmr_calculation= 66+(13.7 * (user.weight * 0.453592))+(5*(user.height * 2.54))-(6.8 * user.age)
@@ -20,8 +18,6 @@ class UsersController < ApplicationController
         user.public_user= false
         user.protein_macros= user.weight
 
-        
-       
 
         if user.initial_form_activity_level == "Little or no exercise"
             user.calories = user.bmr * 1.2
