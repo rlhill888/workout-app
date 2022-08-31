@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import LogIn from './LogIn';
 import Home from './Home';
@@ -21,6 +21,7 @@ import IndivisualMealBeingShownCard from './IndivisualMealBeingShownCard';
 import UpdateMeal from './UpdateMeal';
 import UpdateDailyMacros from './UpdateDailyMacros';
 import Socail from './Socail';
+import logo from './workout4melogo.png'
 import CircularProgress from '@mui/material/CircularProgress';
 import LinearProgress from '@mui/material/LinearProgress';
 import * as gymData from "./data/open-gym.json"
@@ -53,6 +54,14 @@ function App() {
     <div
     className='loadingScreenborder'
     >
+      <div >
+        <center>
+          <img
+        className='loadingImgLogo'
+        src={logo}></img>
+        </center>
+        
+      </div>
       <div
       className='loadingScreen'
       >

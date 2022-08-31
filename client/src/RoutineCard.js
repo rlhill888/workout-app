@@ -109,7 +109,11 @@ function RoutineCard({user, setRoutineBeingShown, setWorkoutBeingShown}){
                 </CardActionArea>
                 <h2>{`
                 ${ w.sets === null ? '' : `Sets: ${w.sets}`}`}</h2>
-                <h2>{` ${ w.reps === null ? '' : `Reps: ${w.reps}`}`}</h2>
+                <h2>{
+                w.sets ===null && w.reps ? ` Time: ${w.reps} minutes` :
+                (` ${ w.reps === null ? '' : `Reps: ${w.reps}`}`)
+            
+            }</h2>
 
             </Card>
         <br />
