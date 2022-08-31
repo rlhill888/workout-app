@@ -43,7 +43,7 @@ function Socail({user}){
         //     height: '100vh'
         // }}
         
-        className='meal-background'> 
+        className='main-meal-background'> 
         <NavBar user={user}/>
         
         <br />

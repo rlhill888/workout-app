@@ -34,7 +34,7 @@ function MealPlan({user}){
         //     margin: 'auto',
             
         // }}
-        className='main-meal-background'>
+        className='meal-background'>
         <NavBar user={user}/> 
         <br />
         <br />

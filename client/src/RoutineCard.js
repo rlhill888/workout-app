@@ -107,8 +107,9 @@ function RoutineCard({user, setRoutineBeingShown, setWorkoutBeingShown}){
                     history.push(`/workouts/${w.workout.id}`)
                 }} src={w.gif} height='200' width='300'></img>
                 </CardActionArea>
-                <h2>{`Sets: ${w.sets}`}</h2>
-                <h2>{`Reps: ${w.reps}`}</h2>
+                <h2>{`
+                ${ w.sets === null ? '' : `Sets: ${w.sets}`}`}</h2>
+                <h2>{` ${ w.reps === null ? '' : `Reps: ${w.reps}`}`}</h2>
 
             </Card>
         <br />
