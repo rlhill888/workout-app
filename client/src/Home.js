@@ -94,7 +94,6 @@ return(
     <Box
     >
         <Paper 
-        className='home-paper-workout-cards-background'
         elevation={4}>
             
             <Box 
