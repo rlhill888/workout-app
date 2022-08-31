@@ -41,13 +41,13 @@ function UpdateMeal({user}){
         let ingredientsArray =[]
         let ingredients
         let meal
-        fetch('http://localhost:4000/ingredients')
+        fetch('/ingredients')
         .then(res=> res.json())
         .then(res=> {
             ingredients = res
             setIngredients(res)
 
-        fetch(`http://localhost:4000/meals/${params.id}`)
+        fetch(`/meals/${params.id}`)
         .then(res=> res.json())
         .then(res=> {
             setMeal(res)
@@ -101,7 +101,7 @@ function UpdateMeal({user}){
             image: image,
         }
         e.preventDefault()
-        fetch(`http://localhost:4000/meals/${meal.id}`, {
+        fetch(`/meals/${meal.id}`, {
             method: 'PATCH',
             headers:{
                 'Content-Type' : 'application/json'
@@ -164,7 +164,7 @@ function UpdateMeal({user}){
         console.log('Servings being updated: ', updateServingsarray)
         
         ingredientsBeingAddedArray.map((ingredient)=>{
-            fetch('http://localhost:4000/meal_ingredients', {
+            fetch('/meal_ingredients', {
                 method: 'POST',
                 headers: {
                     'Content-Type' : 'application/json'
@@ -180,7 +180,7 @@ function UpdateMeal({user}){
         })
 
         ingredientsBeingsDeletedArray.map((ingredient)=>{
-            fetch(`http://localhost:4000/meal_ingredients/${ingredient.mealIngredientId}`, {
+            fetch(`/meal_ingredients/${ingredient.mealIngredientId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type' : 'application/json'
@@ -191,7 +191,7 @@ function UpdateMeal({user}){
         })
 
         updateServingsarray.map((ingredient)=>{
-            fetch(`http://localhost:4000/meal_ingredients/${ingredient.mealIngredientId}`, {
+            fetch(`/meal_ingredients/${ingredient.mealIngredientId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-type' : 'application/json'

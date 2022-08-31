@@ -14,7 +14,7 @@ function WorkoutCard({user}){
     const [workout, setWorkout]=useState({})
     
     useEffect(()=>{ 
-        fetch(`http://localhost:4000/workouts/${params.id}`)
+        fetch(`/workouts/${params.id}`)
         .then(res=> res.json())
         .then(res=> setWorkout(res))
     }, [])

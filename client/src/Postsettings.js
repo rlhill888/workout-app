@@ -52,7 +52,7 @@ function PostSettings({post}){
                 </h3>
                 <ButtonGroup>
                 <Button color='secondary' variant='contained'
-                onClick={()=>{ fetch(`http://localhost:4000/posts/${post.id}`, {
+                onClick={()=>{ fetch(`/posts/${post.id}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-type' : 'applicaton/json'

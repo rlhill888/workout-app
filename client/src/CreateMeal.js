@@ -47,7 +47,7 @@ function CreateMeal({user, ingredients}){
             image: image,
         }
 
-        fetch('meals', {
+        fetch('/meals', {
             method: 'POST',
             headers:{
                 'Content-Type' : 'application/json'
@@ -62,7 +62,7 @@ function CreateMeal({user, ingredients}){
             console.log(data)
             mealId= data.id
             console.log(mealId)
-            fetch('user_meals', {
+            fetch('/user_meals', {
                 method: 'POST',
                 headers: {
                     'Content-Type' : 'application/json'

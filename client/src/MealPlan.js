@@ -20,7 +20,7 @@ function MealPlan({user}){
     const [meals, setMeals]= useState([])
 
     useEffect(()=>{
-        fetch('http://localhost:4000/current_user_meals')
+        fetch('/current_user_meals')
         .then(res=> res.json())
         .then(res=> {
             console.log(res)

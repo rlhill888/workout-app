@@ -35,12 +35,12 @@ function UpdateRoutine({ user}){
 
 
     useEffect(()=>{
-        fetch('http://localhost:4000/workouts')
+        fetch('/workouts')
         .then(res=>res.json())
         .then(res=> {
             let workouts = res
             setWorkouts(res)
-        fetch(`http://localhost:4000/routines/${params.id}`)
+        fetch(`/routines/${params.id}`)
         .then(res => res.json())
         .then(res =>{
         let routine = res
@@ -104,7 +104,7 @@ function UpdateRoutine({ user}){
             created_by_id: user.id
         }
 
-        fetch(`http://localhost:4000/routines/${routine.id}`, {
+        fetch(`/routines/${routine.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type' : 'application/json'
@@ -163,7 +163,7 @@ function UpdateRoutine({ user}){
         console.log('Workouts being updated: ', updateSetsAndReps)
 
         workoutBeingAdded.map((workout)=>{
-            fetch('http://localhost:4000/workout_routines', {
+            fetch('/workout_routines', {
                 method: 'POST',
                 headers: {
                     'Content-Type' : 'application/json'
@@ -180,7 +180,7 @@ function UpdateRoutine({ user}){
         })
 
         workoutBeingDeleted.map((workout)=>{
-            fetch(`http://localhost:4000/workout_routines/${workout.workoutRoutineId}`, {
+            fetch(`/workout_routines/${workout.workoutRoutineId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type' : 'application/json'
@@ -190,7 +190,7 @@ function UpdateRoutine({ user}){
         })
 
         updateSetsAndReps.map((workout)=>{
-            fetch(`http://localhost:4000/workout_routines/${workout.workoutRoutineId}`, {
+            fetch(`/workout_routines/${workout.workoutRoutineId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-type' : 'application/json'

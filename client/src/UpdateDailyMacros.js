@@ -37,7 +37,7 @@ function UpdateDailyMacros({user}){
             </h1>
             <form onSubmit={(e)=>{
                 e.preventDefault()
-                fetch(`http://localhost:4000/users/${user.id}`, {
+                fetch(`/users/${user.id}`, {
                     method: 'PATCH', 
                     headers: {
                         'Content-Type' : 'application/json'

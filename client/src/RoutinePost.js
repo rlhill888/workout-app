@@ -49,7 +49,7 @@ function RoutinePost({post, user}){
     }
 
     function addRoutine(){
-        fetch(`http://localhost:4000/user_routines`,{
+        fetch(`/user_routines`,{
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'

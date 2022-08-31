@@ -43,7 +43,7 @@ function RoutineCardSettings({routine, user}){
                     share_routine_id: routine.id
                 }
                 
-                 fetch('http://localhost:4000/posts',{
+                 fetch('/posts',{
                     method: 'POST',
                     headers: {
                         'Content-Type' : 'application/json'

@@ -80,7 +80,7 @@ function RoutineDisplayCardWorkoutPlan({r, user, deleteRoutine}){
                                 share_routine_id: r.id
                             }
                             
-                             fetch('http://localhost:4000/posts',{
+                             fetch('/posts',{
                                 method: 'POST',
                                 headers: {
                                     'Content-Type' : 'application/json'

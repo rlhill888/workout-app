@@ -21,7 +21,7 @@ function RoutineCard({user, setRoutineBeingShown, setWorkoutBeingShown}){
    
     useEffect(()=>{
         let routine 
-        fetch(`http://localhost:4000/routines/${params.id}`)
+        fetch(`/routines/${params.id}`)
         .then(res=> res.json())
         .then(res=> {
             

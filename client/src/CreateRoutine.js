@@ -67,7 +67,7 @@ function CreateRoutine({user}){
             created_by_id: user.id
         }
 
-        fetch('routines', {
+        fetch('/routines', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
@@ -87,7 +87,7 @@ function CreateRoutine({user}){
                 currently_using: true
             }
             console.log(routineid)
-            fetch('user_routines', {
+            fetch('/user_routines', {
                 method: 'POST',
                 headers: {
                     'Content-Type' : 'application/json'
@@ -100,7 +100,7 @@ function CreateRoutine({user}){
     
             worokoutInfoObject.forEach((o)=>{
                 
-                 fetch('workout_routines', {
+                 fetch('/workout_routines', {
                     method: 'POST',
                     headers: {
                         'Content-Type' : 'application/json'
@@ -115,7 +115,7 @@ function CreateRoutine({user}){
             .then(res=> res.json())
             .then(data => console.log(data))
             })
-            history.push(`routine/${routineid}`)
+            history.push(`/routine/${routineid}`)
             window.location.reload(false)
         })
         }

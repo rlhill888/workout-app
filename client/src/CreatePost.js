@@ -17,7 +17,7 @@ function CreatePost({user}){
 
     function handleSubmit(e){
         e.preventDefault()
-        fetch('http://localhost:4000/posts',{
+        fetch('/posts',{
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'

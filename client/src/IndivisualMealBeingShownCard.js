@@ -38,7 +38,7 @@ function IndivisualMealBeingShownCard({user}){
     let fat
 
     useEffect(()=>{
-        fetch(`http://localhost:4000/meals/${params.id}`)
+        fetch(`/meals/${params.id}`)
         .then(res=> res.json())
         .then(res=> {
             console.log(res)
@@ -199,7 +199,7 @@ function IndivisualMealBeingShownCard({user}){
                 <ButtonGroup>
                 <Button color='secondary' variant='contained'
                 onClick={()=>{
-                    fetch(`http://localhost:4000/meals/${meal.id}`,{
+                    fetch(`/meals/${meal.id}`,{
                         method: 'DELETE',
                         headers: {
                             'Content-Type' : 'application/json'
