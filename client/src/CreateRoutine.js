@@ -33,7 +33,7 @@ function CreateRoutine({user}){
     let workoutsearch
 
     useEffect(()=>{
-        fetch('http://localhost:4000/workouts')
+        fetch('/workouts')
         .then(res=>res.json())
         .then(res=> {
             setWorkouts(res)
