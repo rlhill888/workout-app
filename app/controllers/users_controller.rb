@@ -89,7 +89,6 @@ class UsersController < ApplicationController
     end
 
     def update
-        # byebug
         user= current_user
         user.update!(update_user_params)
         

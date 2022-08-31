@@ -21,6 +21,8 @@ import IndivisualMealBeingShownCard from './IndivisualMealBeingShownCard';
 import UpdateMeal from './UpdateMeal';
 import UpdateDailyMacros from './UpdateDailyMacros';
 import Socail from './Socail';
+import CircularProgress from '@mui/material/CircularProgress';
+import LinearProgress from '@mui/material/LinearProgress';
 import * as gymData from "./data/open-gym.json"
 
 
@@ -46,7 +48,21 @@ function App() {
   const [mealBeingShown, setMealBeingShown]= useState(null)
   const [workouts, setWorkouts]= useState(null)
 
-  const [ingredients, setIngredients]= useState([])
+  const [ingredients, setIngredients]= useState()
+  const [homescreen, setHomescreen]= useState(
+    <div
+    className='loadingScreenborder'
+    >
+      <div
+      className='loadingScreen'
+      >
+        <LinearProgress 
+     color='secondary'
+     />
+      </div>
+     
+    </div>
+  )
 
 
 
@@ -55,12 +71,37 @@ function App() {
     .then(res=>{
       if(res.ok){
         res.json()
-        .then((res)=> setUser(res))
+        .then((res)=>{ 
+          setUser(res)
+        
+        })
       }
       else{
         res.json()
         .then(data=> console.log(data))
-        .then(history.push('/login'))
+        .then(()=> {
+          history.push('/login')
+          setHomescreen(
+            <div>
+            <Switch>
+          <Route   exact path="/">
+                <LogIn setUser={setUser}/>
+              </Route>
+              <Route   exact path="/login">
+                <LogIn setUser={setUser}/>
+              </Route>
+              <Route exact path="/signup">
+                <SignUp setUser={setUser}/>
+              </Route>
+              <Route exact path="/welcome">
+                <WelcomeLogIn setUser={setUser}/>
+              </Route>
+          </Switch>
+          </div>
+          )
+        }
+        )
+          
       }
     })
     fetch('workouts')
@@ -152,24 +193,7 @@ function App() {
   }
   return (
     <> 
-    <Switch>
-    <Route   exact path="/">
-          <LogIn setUser={setUser}/>
-        </Route>
-        <Route   exact path="/login">
-          <LogIn setUser={setUser}/>
-        </Route>
-        <Route exact path="/signup">
-          <SignUp setUser={setUser}/>
-        </Route>
-        <Route exact path="/welcome">
-          <WelcomeLogIn setUser={setUser}/>
-        </Route>
-    </Switch>
-    {/* <LogIn />
-    <h2>New User?</h2>
-    <br />
-    <Link to="/signup" exact>  Sign Up</Link> */}
+    {homescreen}
     </>
   );
 }
