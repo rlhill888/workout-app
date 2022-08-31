@@ -52,7 +52,8 @@ function CreateRoutine({user}){
 
         
     }, [])
-    console.log(worokoutInfoObject)
+
+    console.log(workouts)
    
     
 
