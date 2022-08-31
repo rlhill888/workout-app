@@ -22,11 +22,12 @@ function UpdateRoutine({ user}){
     const [routineName, setRoutineName]= useState('')
     const [routineDescription, setRoutineDescription]= useState('')
     const [imageLink, setImageLink]= useState('')
-    const [workOutSearchCheckBox, setWorkOutSearchCheckBox]= useState([])
     const [originalWorkoutObj, setOriginalWorkoutObj]= useState([])
     const [workouts, setWorkouts]= useState([])
     const [routine, setRoutine]= useState({})
     const [errors, setErros]= useState([])
+    const [workoutList, setWorkoutList]= useState({})
+   
 
     let workoutsearch
     const history= useHistory()
@@ -47,18 +48,27 @@ function UpdateRoutine({ user}){
         let workOutSearchCheckBox =[]
         let workoutObj= []
 
+        let copyObj ={}
+        let copyArray=[]
+
+
         workouts.map((workout)=>{
-            workOutSearchCheckBox.push({[`${workout.name} checked`] : false})
+               copyObj= {...copyObj, [workout.name]: { checked: false}  }
+        })
+        routine.workouts.map((workout)=>{
+            return  copyObj[workout.name].checked = true
         })
 
-        workOutSearchCheckBox.map((object)=>{
-            routine.workouts.map((workout)=>{
-                if(Object.keys(object)[0]===`${workout.name} checked`){
-                    const index = workOutSearchCheckBox.indexOf(object)
-                    workOutSearchCheckBox[index] = {[`${workout.name} checked`] : true}
-                }
-            })
-        })
+        // workOutSearchCheckBox.map((object)=>{
+        //     routine.workouts.map((workout)=>{
+        //         if(Object.keys(object)[0]===`${workout.name} checked`){
+        //             const index = workOutSearchCheckBox.indexOf(object)
+        //             workOutSearchCheckBox[index] = {[`${workout.name} checked`] : true}
+        //         }
+        //     })
+        // })
+
+
 
         routine.workout_routines.map((workoutRoutine)=>{
             routine.workouts.map((workout)=>{
@@ -71,7 +81,7 @@ function UpdateRoutine({ user}){
 
         setworokoutInfoObject([...workoutObj])
         setOriginalWorkoutObj([...workoutObj])
-        setWorkOutSearchCheckBox([...workOutSearchCheckBox])
+        setWorkoutList(copyObj)
         setRoutineName(routine.name)
         setRoutineDescription(routine.description)
         setImageLink(routine.image)
@@ -242,8 +252,9 @@ function UpdateRoutine({ user}){
                 key={`Create Routine Selector Card ${w.id}`}
                 w={w} 
                 worokoutInfoObject={worokoutInfoObject} 
-                workOutSearchCheckBox={workOutSearchCheckBox} 
-                setWorkOutSearchCheckBox={setWorkOutSearchCheckBox} 
+                workoutList={workoutList} 
+                setWorkoutList={setWorkoutList}
+               
                 setworokoutInfoObject={setworokoutInfoObject}
                 />
             })}

@@ -5,31 +5,28 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
 import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
 import './CreateRoutineSelectorCard.css'
 
-function CreateRoutineSelectorCard({w, worokoutInfoObject, workOutSearchCheckBox, setWorkOutSearchCheckBox, setworokoutInfoObject}){
-
+function CreateRoutineSelectorCard({w, worokoutInfoObject, setworokoutInfoObject, workoutList, setWorkoutList}){
+                
                 const history = useHistory();
               
                 let showSetsAndReps
                 checkSetsAndRepsAreBeingShown()
 
                 function checkSetsAndRepsAreBeingShown(){
-                    const index =workOutSearchCheckBox.findIndex((element)=> Object.keys(element)[0]===`${w.name} checked`)
-                    if(workOutSearchCheckBox[index][`${w.name} checked`]===false){
+                    if(workoutList[w.name].checked===false){
                         return showSetsAndReps= <> </>
                     }
-                    if(workOutSearchCheckBox[index][`${w.name} checked`]===true){
+                    if(workoutList[w.name].checked===true){
                         return showSetsAndReps= <div> 
                             <SetsAndRepsTab w={w} worokoutInfoObject={worokoutInfoObject} setworokoutInfoObject={setworokoutInfoObject}/>
                         </div>
                     }
                 }
 
-                function checkBoxes(w){
-                    const index =workOutSearchCheckBox.findIndex((element)=> Object.keys(element)[0]===`${w.name} checked`)
-                    return workOutSearchCheckBox[index][`${w.name} checked`]
-                }
+               
 
                 
                 return (
@@ -44,14 +41,14 @@ function CreateRoutineSelectorCard({w, worokoutInfoObject, workOutSearchCheckBox
                     <h2>{w.name}
                     <Checkbox  
                     color='secondary'
-                    checked={checkBoxes(w)}
+                    checked={workoutList[w.name].checked}
                     key={`workoutcheckbox${w.id}`} 
                     id={`workoutcheckbox${w.name}`} 
                     onChange={(e)=>{ 
-                        const index =workOutSearchCheckBox.findIndex((element)=> Object.keys(element)[0]===`${w.name} checked`)
-                        let copyOfWorkoutSearchCheckObj = [...workOutSearchCheckBox]
-                        copyOfWorkoutSearchCheckObj[index]= {...copyOfWorkoutSearchCheckObj[index], [`${w.name} checked`] : !Object.values(copyOfWorkoutSearchCheckObj[index])[0]}
-                        setWorkOutSearchCheckBox(copyOfWorkoutSearchCheckObj)
+                       
+                        let copyOfWorkoutList ={...workoutList}
+                        copyOfWorkoutList[w.name].checked = !copyOfWorkoutList[w.name].checked
+                        setWorkoutList(copyOfWorkoutList)
                         if(e.target.checked){
                             setworokoutInfoObject((p)=> [...p, w])
                         }
@@ -78,9 +75,17 @@ function CreateRoutineSelectorCard({w, worokoutInfoObject, workOutSearchCheckBox
                     <br />
                     {showSetsAndReps}
                     </>
-                    <h2 onClick={()=> {
-                        history.push(`workouts/${w.id}`)
-                        }}>{`Click to see more information about ${w.name}`}</h2>
+                    <br />
+                    <Button
+                    onClick={()=> {
+                        history.push(`/workouts/${w.id}`)
+                        }}
+                        variant='contained'
+                        color="secondary"
+                    >
+                        Click to see more information about {w.name}
+                    </Button>
+                        <br />
                         <br />
                     </div>
                         </Box>

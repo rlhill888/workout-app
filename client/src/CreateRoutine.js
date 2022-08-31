@@ -26,9 +26,9 @@ function CreateRoutine({user}){
     const [routineName, setRoutineName]= useState('')
     const [routineDescription, setRoutineDescription]= useState('')
     const [imageLink, setImageLink]= useState('')
-    const [workOutSearchCheckBox, setWorkOutSearchCheckBox]= useState([])
     const [workouts, setWorkouts]= useState([])
     const [errors, setErrors]= useState([])
+    const [workoutList, setWorkoutList]= useState({})
     
     let workoutsearch
 
@@ -38,12 +38,20 @@ function CreateRoutine({user}){
         .then(res=> {
             setWorkouts(res)
             let copyArray= []
+            let copyObj= {}
             let workouts = res
-            workouts.map((w)=> copyArray.push({ [`${w.name} checked`]: false }))
-            setWorkOutSearchCheckBox(copyArray)
+           
+            workouts.map((w)=>{ 
+                return  ( copyObj= {...copyObj, [w.name]: { checked: false}  })
+           
+            })
+           
+            setWorkoutList(copyObj)
+            console.log(copyObj)
         })
+
+        
     }, [])
-    
     console.log(worokoutInfoObject)
    
     
@@ -154,11 +162,11 @@ function CreateRoutine({user}){
     }}>
             {filteredWorkoutSearch.map((w)=>{
                 return <CreateRoutineSelectorCard 
+                workoutList={workoutList}
+                setWorkoutList={setWorkoutList}
                 key={`Create Routine Selector Card ${w.id}`}
                 w={w} 
                 worokoutInfoObject={worokoutInfoObject} 
-                workOutSearchCheckBox={workOutSearchCheckBox} 
-                setWorkOutSearchCheckBox={setWorkOutSearchCheckBox} 
                 setworokoutInfoObject={setworokoutInfoObject}
                 />
             })}
