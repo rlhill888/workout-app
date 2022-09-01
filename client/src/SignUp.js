@@ -80,7 +80,7 @@ function SignUp({setUser }){
                 first_name: firstName,
                 last_name: lastName,
                 user_name: userName,
-                email: email,
+                email: email.toLowerCase(),
                 goal_type: goal,
                 age: age,
                 weight: weight,

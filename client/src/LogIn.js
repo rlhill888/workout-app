@@ -25,7 +25,7 @@ function LogIn({setUser}){
         e.preventDefault()
 
         const body ={
-            email: userName,
+            email: userName.toLowerCase(),
             password: password
 
         }
@@ -112,7 +112,7 @@ function LogIn({setUser}){
 
          <form>
 
-        <h3 name='User Name'>User Name</h3>
+        <h3 name='User Name'>Email</h3>
         <TextField variant='outlined' name='User Name' onChange={(e)=> setUserName(e.target.value)}></TextField>
         <br></br>
         <br></br>

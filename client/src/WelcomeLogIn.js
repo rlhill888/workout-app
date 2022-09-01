@@ -50,7 +50,7 @@ function WelcomeLogIn({setUser}){
     e.preventDefault()
 
     const body ={
-        email: userName,
+        email: userName.toLowerCase(),
         password: password
 
     }
