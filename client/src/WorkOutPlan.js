@@ -69,7 +69,13 @@ function WorkOutPlan({user}){
                 </Box>
     </Paper>
     
-    <Grid container>
+    <Grid container
+    style={{
+        textAlign:'center',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }}
+    >
     {routines.map((r)=>{
         return(
             <Box m={4}>

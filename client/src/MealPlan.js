@@ -86,6 +86,11 @@ function MealPlan({user}){
         }}
         >Your meals:</h2>
         <Grid 
+        style={{
+            textAlign:'center',
+            alignItems: 'center',
+            justifyContent: 'center'
+        }}
         container spacing={2}>
             {meals.map((meal)=>{
             return (

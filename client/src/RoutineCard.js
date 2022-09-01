@@ -69,6 +69,10 @@ function RoutineCard({user, setRoutineBeingShown, setWorkoutBeingShown}){
     }}>
         <Paper className='main-workout-paper' elevation={15}>
             <Box pb={12}>
+                <div>
+
+                    
+                </div>
     <br />
     <br />
     <Container>
@@ -80,10 +84,14 @@ function RoutineCard({user, setRoutineBeingShown, setWorkoutBeingShown}){
         <h3>{routine.description}</h3>
     </div>
     </Box>
+
     </Paper>
     </Container>
+    
     <Grid container  style={{
-        textAlign:'center' 
+        textAlign:'center',
+        alignItems: 'center',
+        justifyContent: 'center'
     }} >
         
         {workoutArray.map((w)=>{

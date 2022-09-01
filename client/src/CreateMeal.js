@@ -171,10 +171,10 @@ function CreateMeal({user, ingredients}){
         <Box>
             <Container>
                 <Paper elevation={15} className='create-meal-main-paper'>
-                    <Box p={4}>
+                    <Box p={1}>
 
 
-        <Box m={4}>
+        <Box m={1}>
         <Container  style={{
         textAlign:'center' 
     }}>

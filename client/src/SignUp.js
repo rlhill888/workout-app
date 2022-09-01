@@ -230,8 +230,6 @@ function SignUp({setUser }){
             <br />
             <br />
             <h3 name= "Activity Level Question" > What is your activity level? </h3>
-            <br/>
-            <br />
             
             <input  name= "Activity Level Question" type="radio" onChange={(e)=> setActivityLevel(e.target.value)} value="Little or no exercise" className= "radio" /> Little or no exercise
             <br />
@@ -243,8 +241,6 @@ function SignUp({setUser }){
             <br />
             <br/>
             <h3 name ="goals" > What is your main goal for working out? </h3>
-            <br/>
-            <br />
             <input  name ="goals"  onChange={(e)=> setGoal(e.target.value)} type="radio" value= "To Gain Overall Weight" className="radio" /> To gain overall weight
             <br/>
             <input  name ="goals"  onChange={(e)=> setGoal(e.target.value)} type="radio" value= "To Loose Overall Weight" className="radio" /> To lose overall weight
@@ -271,13 +267,13 @@ function SignUp({setUser }){
         <div 
         className='Signup'
         >
-        <Box m={5}>
+        <Box m={1}>
 
             <Container>
                 <Paper className='mainCard' elevation={15}>
                     <Box 
                     className='background'
-                    p={4}>
+                    p={2}>
                         <Paper elevation={15}>
                             <Box 
                             className="mainSignUpDiv"
