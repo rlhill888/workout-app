@@ -96,6 +96,7 @@ function SignUp({setUser, setTempUser }){
         .then(res=>{
             if(res.ok){
                 res.json().then((res)=> {
+                    window.scrollTo(0,0)
 
                     history.push('/welcome')
                 })
@@ -107,6 +108,7 @@ function SignUp({setUser, setTempUser }){
                     res.errors.map((error)=>{
                         errorsArray.push(error)
                     })
+                    window.scrollTo(0,0)
                      setErrorMessage(errorsArray)
                 })
                 
