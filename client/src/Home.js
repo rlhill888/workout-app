@@ -120,7 +120,11 @@ return(
                 className="largeTextSize"
                 >{a.name}</h1>
             </CardContent>
-            <CardActionArea   onClick={()=>{ history.push(`routine/${a.id}`)}}>
+            <CardActionArea   onClick={()=>{ 
+                
+                history.push(`routine/${a.id}`)
+                window.scrollTo(0,0)
+                }}>
             <CardMedia
             component="img"
             className="homeCardImage"

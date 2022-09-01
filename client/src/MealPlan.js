@@ -130,7 +130,9 @@ function MealPlan({user}){
         <SpeedDialAction
         icon={<AddIcon />}
         tooltipTitle='Create a New Meal'
-        onClick={()=> history.push('/createMeal')}
+        onClick={()=>{ 
+            window.scrollTo(0,0)
+            history.push('/createMeal')}}
         >
         </SpeedDialAction>
 

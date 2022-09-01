@@ -53,9 +53,7 @@ background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(0,0,0,1) 100%);
     }
 
     .mainSignUpDiv{
-        height: 75vh;
         position:relative;
-        overflow-x: auto;
        }
 
        .workOut4DisclaimerMeFontSize1{

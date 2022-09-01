@@ -16,7 +16,7 @@ import ErrorsCard from "./ErrorsCard";
 import './signup.css'
 
 
-function SignUp({setUser }){
+function SignUp({setUser, setTempUser }){
 
     const [formPage, setformPage]= useState(0)
     const [email, setEmail]= useState('')
@@ -32,6 +32,8 @@ function SignUp({setUser }){
     const [activityLevel, setActivityLevel]= useState('')
     const [goal, setGoal]= useState('')
     const [errorMessage, setErrorMessage]= useState([])
+
+    const signUpDiv = document.querySelector('#mainSignUpDiv')
 
     let formdata
     let errorMessages
@@ -94,7 +96,7 @@ function SignUp({setUser }){
         .then(res=>{
             if(res.ok){
                 res.json().then((res)=> {
-                    setUser(res)
+
                     history.push('/welcome')
                 })
             }
@@ -173,7 +175,14 @@ function SignUp({setUser }){
 
         <br/>
         <br />
-        <Button color='secondary' onClick={()=> setformPage(1)}>Next</Button>
+        <Button color='secondary' onClick={()=>{
+           
+               window.scrollTo(0,0) 
+            
+            setformPage(1)
+        }
+    
+    }>Next</Button>
         </div>
     }
 
@@ -201,7 +210,12 @@ function SignUp({setUser }){
         <p>Basal metabolic rate is the rate of energy expenditure per unit time by endothermic animals at rest. It is reported in energy units per unit time ranging from watt to ml O₂/min or joule per hour per kg body mass J/. Proper measurement requires a strict set of criteria to be met.</p>
         <br/>
         <br />
-        <Button  color='secondary' onClick={()=> setformPage(2)}>Continue Creating Account</Button>
+        <Button  color='secondary' onClick={()=>{ 
+            
+            window.scrollTo(0,0)
+            setformPage(2)}}>
+                
+                Continue Creating Account</Button>
         </>
 
     }
@@ -277,6 +291,7 @@ function SignUp({setUser }){
                         <Paper elevation={15}>
                             <Box 
                             className="mainSignUpDiv"
+                            id= 'mainSignUpDiv'
                             p={4}> 
         <Button 
         className="backToLoginButton"

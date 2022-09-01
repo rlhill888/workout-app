@@ -48,6 +48,7 @@ function App() {
   const [routineBeingShown, setRoutineBeingShown]= useState(null)
   const [mealBeingShown, setMealBeingShown]= useState(null)
   const [workouts, setWorkouts]= useState(null)
+  const [tempUser, setTempUser]= useState(null)
 
   const [ingredients, setIngredients]= useState()
   const [homescreen, setHomescreen]= useState(
@@ -100,7 +101,7 @@ function App() {
                 <LogIn setUser={setUser}/>
               </Route>
               <Route exact path="/signup">
-                <SignUp setUser={setUser}/>
+                <SignUp setTempUser={setTempUser} setUser={setUser}/>
               </Route>
               <Route exact path="/welcome">
                 <WelcomeLogIn setUser={setUser}/>

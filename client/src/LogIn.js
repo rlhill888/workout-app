@@ -129,7 +129,9 @@ function LogIn({setUser}){
                 }))}
          <br/>
          <h3>New User?</h3>
-         <Button color='secondary' onClick={()=> history.push('/signup')}>Create An Account</Button>
+         <Button color='secondary' onClick={()=> {
+            window.scrollTo(0,0)
+            history.push('/signup')}}>Create An Account</Button>
                 </div>
         
          </Box>

@@ -109,7 +109,9 @@ function MealPlanMealCard({meal, user}){
                     <h3>{(protein/user.protein_macros*100).toFixed(0)}% of your daily protein goals</h3>
                 </li>
             </ul>
-            <Button color='secondary' variant="contained" onClick={()=> history.push(`meal/${meal.id}`)}>More Meal Details and Ingredients</Button>
+            <Button color='secondary' variant="contained" onClick={()=> {
+                window.scrollTo(0,0)
+                history.push(`meal/${meal.id}`)}}>More Meal Details and Ingredients</Button>
         </div>
 
                </MuiAccordionDetails>

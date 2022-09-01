@@ -35,11 +35,14 @@ function NavBar({user}){
          p={1}
          className='navbar'
          > 
-        <Stack direction="row" spacing={2}>
+        <Stack
+        onClick={()=> window.scrollTo(0,0)}
+        direction="row" spacing={2}>
             <Button 
             className='navBarButton'
             color='secondary'
-            variant='contained' onClick={()=> history.push('/')}>
+            variant='contained' onClick={()=>{ 
+                history.push('/')}}>
             <HomeIcon />
             </Button>
             <Button 

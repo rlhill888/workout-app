@@ -100,7 +100,10 @@ function WorkOutPlan({user}){
         <SpeedDialAction
         icon={<AddIcon />}
         tooltipTitle='Create a New Routine'
-        onClick={()=> history.push('/createRoutine')}
+        onClick={()=>{ 
+            window.scrollTo(0,0)
+            history.push('/createRoutine')}
+        }
         >
 
         </SpeedDialAction>

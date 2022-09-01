@@ -112,6 +112,7 @@ function RoutineCard({user, setRoutineBeingShown, setWorkoutBeingShown}){
                 <CardActionArea>
                      <img onClick={()=> {
                     setWorkoutBeingShown(w.workout)
+                    window.scrollTo(0,0)
                     history.push(`/workouts/${w.workout.id}`)
                 }} src={w.gif} height='200' width='300'></img>
                 </CardActionArea>

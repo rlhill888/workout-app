@@ -105,7 +105,9 @@ function RoutineDisplayCardWorkoutPlan({r, user, deleteRoutine}){
                         </Button>
                         <Button 
                         color='secondary'
-                        onClick={()=> history.push(`/routine/${r.id}`)}>
+                        onClick={()=> {
+                            window.scrollTo(0,0)
+                            history.push(`/routine/${r.id}`)}}>
                             <CallMissedOutgoingIcon />
                             Go To Routine
                         </Button>
@@ -158,7 +160,9 @@ function RoutineDisplayCardWorkoutPlan({r, user, deleteRoutine}){
                         </Button>
                         <Button 
                         color='secondary'
-                        onClick={()=> history.push(`/routine/${r.id}`)}>
+                        onClick={()=> {
+                            window.scrollTo(0,0)
+                            history.push(`/routine/${r.id}`)}}>
                             <CallMissedOutgoingIcon />
                             Go To Routine
                         </Button>

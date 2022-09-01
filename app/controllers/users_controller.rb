@@ -80,7 +80,7 @@ class UsersController < ApplicationController
             UserRoutine.create!(user_id: user.id, routine_id: (Routine.find_by(description: 'Back and bicep workout for gaining overall body weight', default_workout4me_routine: true).id), currently_using: true)
             user.save
         end
-        render json: user, status: :created
+        render json: user, include: ['routines', 'routines.workouts', 'routines.workout_routines', 'meals', 'meals.ingredients', 'meals.meal_ingredients', 'user_routines', 'posts', 'posts.user', 'posts.comments'], status: :created
     end
     
 
