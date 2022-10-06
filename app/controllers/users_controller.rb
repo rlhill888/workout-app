@@ -46,7 +46,7 @@ class UsersController < ApplicationController
         end
 
         if user.goal_type == "To gain muscle mass"
-            user.calories = user.calories + 400
+            user.calories = user.calories + 150
             user.fat_macros = user.weight*0.30
             protein_calorie_measurement = user.protein_macros * 4
             fat_calorie_measurement = user.fat_macros * 9
@@ -70,7 +70,7 @@ class UsersController < ApplicationController
         end
 
         if user.goal_type == "To Gain Overall Weight"
-            user.calories = user.calories + 650
+            user.calories = user.calories + 450
             user.fat_macros = user.weight*0.45
             protein_calorie_measurement = user.protein_macros * 4
             fat_calorie_measurement = user.fat_macros * 9
