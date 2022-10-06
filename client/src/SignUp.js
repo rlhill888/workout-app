@@ -12,8 +12,12 @@ import Button from '@mui/material/Button';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
 import ErrorsCard from "./ErrorsCard";
 import './signup.css'
+import { FormLabel } from "@mui/material";
+import LinearProgress from '@mui/material/LinearProgress';
 
 
 function SignUp({setUser, setTempUser }){
@@ -32,6 +36,7 @@ function SignUp({setUser, setTempUser }){
     const [activityLevel, setActivityLevel]= useState('')
     const [goal, setGoal]= useState('')
     const [errorMessage, setErrorMessage]= useState([])
+    const [submitted, setSubmitted]= useState(false)
 
     const signUpDiv = document.querySelector('#mainSignUpDiv')
 
@@ -64,11 +69,14 @@ function SignUp({setUser, setTempUser }){
   
     function handleSubmit(e){
         e.preventDefault()
+        setSubmitted(true)
 
         const height = (parseInt(heightFeet)*12) +parseInt(heightInches)
        
 
         if(password1 !== password2){
+            window.scrollTo(0,0)
+            setSubmitted(false)
              return setErrorMessage(['passwords do not match'])
         }
      
@@ -97,12 +105,38 @@ function SignUp({setUser, setTempUser }){
             if(res.ok){
                 res.json().then((res)=> {
                     window.scrollTo(0,0)
+                    const body ={
+                        email: email.toLowerCase(),
+                        password: password1
+            
+                    }
 
-                    history.push('/welcome')
+                    fetch('login', {
+                        method: 'POST',
+                        headers:{
+                            'Content-Type' : 'application/json'
+                        },
+                        body: JSON.stringify(body)
+                    })
+                    .then(res=>{
+                        if(res.ok){
+                            res.json().then((res)=> {
+                                console.log(res)
+                                setUser(res)
+                                history.push('/')
+                            })
+                        }
+                        else{
+                            res.json()
+                            .then(data=> {
+                                history.push('/')
+                            })
+                        }
+                    })
                 })
             }
             else{
-                
+                setSubmitted(false)
                 res.json().then((res)=> {
                     let errorsArray = []
                     res.errors.map((error)=>{
@@ -117,7 +151,6 @@ function SignUp({setUser, setTempUser }){
         })
     }
   
-    console.log(errorMessage)
     if(errorMessage.length===0){
         errorMessages= <> </>
 
@@ -246,30 +279,40 @@ function SignUp({setUser, setTempUser }){
             <br />
             <br />
             <h3 name= "Activity Level Question" > What is your activity level? </h3>
-            
-            <input  name= "Activity Level Question" type="radio" onChange={(e)=> setActivityLevel(e.target.value)} value="Little or no exercise" className= "radio" /> Little or no exercise
-            <br />
-            <input  name= "Activity Level Question" type="radio" onChange={(e)=> setActivityLevel(e.target.value)} value="Light exercise a few times a week" className= "radio" /> Light exercise a few times a week
-            <br />
-            <input  name= "Activity Level Question" type="radio" onChange={(e)=> setActivityLevel(e.target.value)} value="Moderate exercise 3-5 times a week" className= "radio" /> Moderate exercise 3-5 times a week
-            <br />
-            <input  name= "Activity Level Question"  onChange={(e)=> setActivityLevel(e.target.value)} type="radio" value="Heavy exercise 6-7 times per week" className= "radio" /> Heavy exercise 6-7 times per week
-            <br />
-            <br/>
-            <h3 name ="goals" > What is your main goal for working out? </h3>
-            <input  name ="goals"  onChange={(e)=> setGoal(e.target.value)} type="radio" value= "To Gain Overall Weight" className="radio" /> To gain overall weight
-            <br/>
-            <input  name ="goals"  onChange={(e)=> setGoal(e.target.value)} type="radio" value= "To Loose Overall Weight" className="radio" /> To lose overall weight
-            <br />
-            <input  name ="goals"  onChange={(e)=> setGoal(e.target.value)} type="radio" value="To gain muscle mass" className="radio" /> To gain muscle mass
-            <br/>
 
-            <input  name ="goals"  onChange={(e)=> setGoal(e.target.value)} type="radio" value="To Tone muscles and get muscle definition" className="radio" /> To tone muscles and get muscle definition 
+           <FormControl >
+            <RadioGroup onChange={(e)=> setActivityLevel(e.target.value)} value={activityLevel}>
+            <FormControlLabel value='Little or no exercise' control={<Radio color="secondary"/>} label='Little or no exercise'></FormControlLabel>
+            <FormControlLabel value='Light exercise a few times a week' control={<Radio color="secondary"/>} label='Light exercise a few times a week'></FormControlLabel>
+            <FormControlLabel value='Moderate exercise 3-5 times a week' control={<Radio color="secondary"/>} label='Moderate exercise 3-5 times a week'></FormControlLabel>
+            <FormControlLabel value='Heavy exercise 6-7 times per week' control={<Radio color="secondary"/>} label='Heavy exercise 6-7 times per week'></FormControlLabel>
+            </RadioGroup>
+            
+           </FormControl>
+
+
+
+
+            <h3 name ="goals" > What is your main goal for working out? </h3>
+
+
+            <FormControl >
+            <RadioGroup  onChange={(e)=> setGoal(e.target.value)} value={goal}>
+            <FormControlLabel value='To Gain Overall Weight' control={<Radio color="secondary"/>} label='To Gain Overall Weight'></FormControlLabel>
+            <FormControlLabel value='To Loose Overall Weight' control={<Radio color="secondary"/>} label='To Loose Overall Weight'></FormControlLabel>
+            <FormControlLabel value='To gain muscle mass' control={<Radio color="secondary"/>} label='To gain muscle mass'></FormControlLabel>
+            <FormControlLabel value='To Tone muscles and get muscle definition' control={<Radio color="secondary"/>} label='To Tone muscles and get muscle definition'></FormControlLabel>
+            </RadioGroup>
+            
+           </FormControl>
             <h2>Continue to Workout 4 Me!</h2>
             <br/>
             </div>
             <div >
-            <Button color='secondary'  name= "create account form" type="submit" variant='contained'>Submit</Button>
+                {
+                    submitted ? <LinearProgress color="secondary"></LinearProgress> : <Button color='secondary'  name= "create account form" type="submit" variant='contained'>Submit</Button>
+                }
+            
             </div>
         </>
 
