@@ -169,6 +169,12 @@ function SignUp({setUser, setTempUser }){
             textAlign: 'center'
         }}
         >Create a new account</h1>
+        <h3
+        style={{
+            textAlign: 'center',
+            color: 'red'
+        }}
+        >*** Disclaimer: Please Use a Fake Email and Password When Creating an Account. The database Storing Passwords is Not Yet Secure***</h3>
         <br />
         <div>
 
